@@ -1,7 +1,7 @@
 ﻿
-namespace BancoSangre.Windows
+namespace BancoSangre.Windows.Documentos
 {
-    partial class FrmGeneros
+    partial class FrmDocumentos
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace BancoSangre.Windows
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGeneros));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDocumentos));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
@@ -42,7 +42,7 @@ namespace BancoSangre.Windows
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnCerrar = new System.Windows.Forms.ToolStripButton();
             this.dgbDatos = new System.Windows.Forms.DataGridView();
-            this.cmnGeneros = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnDocumentos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgbDatos)).BeginInit();
             this.SuspendLayout();
@@ -63,7 +63,7 @@ namespace BancoSangre.Windows
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 38);
-            this.toolStrip1.TabIndex = 3;
+            this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // btnNuevo
@@ -151,31 +151,34 @@ namespace BancoSangre.Windows
             this.dgbDatos.AllowUserToDeleteRows = false;
             this.dgbDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgbDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cmnGeneros});
+            this.cmnDocumentos});
             this.dgbDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgbDatos.Location = new System.Drawing.Point(0, 38);
+            this.dgbDatos.MultiSelect = false;
             this.dgbDatos.Name = "dgbDatos";
             this.dgbDatos.ReadOnly = true;
+            this.dgbDatos.RowHeadersVisible = false;
+            this.dgbDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgbDatos.Size = new System.Drawing.Size(800, 412);
-            this.dgbDatos.TabIndex = 4;
+            this.dgbDatos.TabIndex = 5;
             // 
-            // cmnGeneros
+            // cmnDocumentos
             // 
-            this.cmnGeneros.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cmnGeneros.HeaderText = "Generos";
-            this.cmnGeneros.Name = "cmnGeneros";
-            this.cmnGeneros.ReadOnly = true;
+            this.cmnDocumentos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnDocumentos.HeaderText = "Documentos";
+            this.cmnDocumentos.Name = "cmnDocumentos";
+            this.cmnDocumentos.ReadOnly = true;
             // 
-            // FrmGeneros
+            // FrmDocumentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dgbDatos);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "FrmGeneros";
-            this.Text = "FrmGeneros";
-            this.Load += new System.EventHandler(this.FrmGeneros_Load);
+            this.Name = "FrmDocumentos";
+            this.Text = "FrmDocumentos";
+            this.Load += new System.EventHandler(this.FrmDocumentos_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgbDatos)).EndInit();
@@ -198,6 +201,6 @@ namespace BancoSangre.Windows
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton btnCerrar;
         private System.Windows.Forms.DataGridView dgbDatos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cmnGeneros;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnDocumentos;
     }
 }

@@ -34,13 +34,13 @@ namespace BancoSangre.Windows
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.btnBorrar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnBuscar = new System.Windows.Forms.ToolStripButton();
             this.btnActualizar = new System.Windows.Forms.ToolStripButton();
-            this.btnImprimir = new System.Windows.Forms.ToolStripButton();
-            this.btnCerrar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnImprimir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnCerrar = new System.Windows.Forms.ToolStripButton();
             this.dgbDatos = new System.Windows.Forms.DataGridView();
             this.cmnProvincias = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
@@ -93,6 +93,11 @@ namespace BancoSangre.Windows
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
+            // 
             // btnBuscar
             // 
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
@@ -111,6 +116,11 @@ namespace BancoSangre.Windows
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
+            // 
             // btnImprimir
             // 
             this.btnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("btnImprimir.Image")));
@@ -119,6 +129,11 @@ namespace BancoSangre.Windows
             this.btnImprimir.Size = new System.Drawing.Size(57, 35);
             this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 38);
             // 
             // btnCerrar
             // 
@@ -130,21 +145,6 @@ namespace BancoSangre.Windows
             this.btnCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 38);
-            // 
             // dgbDatos
             // 
             this.dgbDatos.AllowUserToAddRows = false;
@@ -154,8 +154,11 @@ namespace BancoSangre.Windows
             this.cmnProvincias});
             this.dgbDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgbDatos.Location = new System.Drawing.Point(0, 38);
+            this.dgbDatos.MultiSelect = false;
             this.dgbDatos.Name = "dgbDatos";
             this.dgbDatos.ReadOnly = true;
+            this.dgbDatos.RowHeadersVisible = false;
+            this.dgbDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgbDatos.Size = new System.Drawing.Size(800, 412);
             this.dgbDatos.TabIndex = 1;
             // 

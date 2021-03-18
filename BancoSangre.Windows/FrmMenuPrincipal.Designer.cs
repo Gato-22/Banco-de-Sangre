@@ -33,6 +33,7 @@ namespace BancoSangre.Windows
             this.btnCerrarTodo = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnGeneros = new System.Windows.Forms.Button();
+            this.btnDocumentos = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProvincia
@@ -66,7 +67,7 @@ namespace BancoSangre.Windows
             // 
             // btnGeneros
             // 
-            this.btnGeneros.Location = new System.Drawing.Point(129, 85);
+            this.btnGeneros.Location = new System.Drawing.Point(114, 85);
             this.btnGeneros.Name = "btnGeneros";
             this.btnGeneros.Size = new System.Drawing.Size(96, 62);
             this.btnGeneros.TabIndex = 3;
@@ -74,11 +75,22 @@ namespace BancoSangre.Windows
             this.btnGeneros.UseVisualStyleBackColor = true;
             this.btnGeneros.Click += new System.EventHandler(this.btnGeneros_Click);
             // 
+            // btnDocumentos
+            // 
+            this.btnDocumentos.Location = new System.Drawing.Point(216, 85);
+            this.btnDocumentos.Name = "btnDocumentos";
+            this.btnDocumentos.Size = new System.Drawing.Size(96, 62);
+            this.btnDocumentos.TabIndex = 3;
+            this.btnDocumentos.Text = "Documentos";
+            this.btnDocumentos.UseVisualStyleBackColor = true;
+            this.btnDocumentos.Click += new System.EventHandler(this.btnDocumentos_Click);
+            // 
             // FrmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnDocumentos);
             this.Controls.Add(this.btnGeneros);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCerrarTodo);
@@ -96,6 +108,7 @@ namespace BancoSangre.Windows
         private System.Windows.Forms.Button btnCerrarTodo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnGeneros;
+        private System.Windows.Forms.Button btnDocumentos;
     }
 }
 

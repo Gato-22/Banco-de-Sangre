@@ -46,10 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrmGeneros.cs">
+    <Compile Include="Documentos\FrmDocumentos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmGeneros.Designer.cs">
+    <Compile Include="Documentos\FrmDocumentos.Designer.cs">
+      <DependentUpon>FrmDocumentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generos\FrmGeneros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generos\FrmGeneros.Designer.cs">
       <DependentUpon>FrmGeneros.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMenuPrincipal.cs">
@@ -58,21 +64,24 @@
     <Compile Include="FrmMenuPrincipal.Designer.cs">
       <DependentUpon>FrmMenuPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmProvincias.cs">
+    <Compile Include="Provincias\FrmProvincias.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmProvincias.Designer.cs">
+    <Compile Include="Provincias\FrmProvincias.Designer.cs">
       <DependentUpon>FrmProvincias.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmGeneros.resx">
+    <EmbeddedResource Include="Documentos\FrmDocumentos.resx">
+      <DependentUpon>FrmDocumentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generos\FrmGeneros.resx">
       <DependentUpon>FrmGeneros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMenuPrincipal.resx">
       <DependentUpon>FrmMenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmProvincias.resx">
+    <EmbeddedResource Include="Provincias\FrmProvincias.resx">
       <DependentUpon>FrmProvincias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
