@@ -49,7 +49,7 @@ namespace BancoSangre.DL.Repositorios
                 return lista;
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
                 throw new Exception("Error al intentar we");
@@ -65,12 +65,7 @@ namespace BancoSangre.DL.Repositorios
             };
         }    
 
-        private Donante ConstruirDonante(SqlDataReader reader)
-        {
-            throw new NotImplementedException();
-        }
-
-
+        
         public void Guardar(Provincia provincia)
         {
             throw new NotImplementedException();

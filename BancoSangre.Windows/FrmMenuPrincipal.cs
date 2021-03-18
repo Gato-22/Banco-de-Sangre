@@ -27,5 +27,11 @@ namespace BancoSangre.Windows
             FrmProvincias frm = new FrmProvincias();
             frm.ShowDialog(this);
         }
+
+        private void btnGeneros_Click(object sender, EventArgs e)
+        {
+            FrmGeneros frm = new FrmGeneros();
+            frm.ShowDialog(this);
+        }
     }
 }

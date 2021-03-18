@@ -9,57 +9,62 @@ using System.Threading.Tasks;
 
 namespace BancoSangre.DL.Repositorios
 {
-    public class RepositorioPacientes : Facades.IRepositorioPacientes
+    public class RepositorioGeneros : IRepositorioGeneros
     {
         private readonly SqlConnection _conexion;
-        public RepositorioPacientes(SqlConnection conexion)
+        public RepositorioGeneros(SqlConnection conexion)
         {
             _conexion = conexion;
         }
-        public void Borrar(int id)
+        public void Borar(int id)
         {
             throw new NotImplementedException();
         }
 
-        public bool Existe(Donante donante)
+        public bool existe(Genero genero)
         {
             throw new NotImplementedException();
         }
 
-        public Donante GetDonantePorID(int id)
+        public Genero GetGeneroPorID(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Donante> GetDonante()
+        public List<Genero> GetGeneros()
         {
-            List<Donante> lista = null;
+            List<Genero> lista = new List<Genero>();
             try
             {
-                string cadenaComando = "SELECT DonanteID, Nombre,Apellido,GeneroID,TipoDeDocumentoID,NroDocumento,Direccion,LocalidadID,ProvinciaID,TelefonoMovil,TelefonoFijo,CorreoElectronico,FechaNacimiento,GrupoSanguineoID fROM Donantes";
+                string cadenaComando = "select GeneroId, Descripcion from Generos";
                 SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
                 SqlDataReader reader = comando.ExecuteReader();
                 while (reader.Read())
                 {
-                    Donante donante = ConstruirDonante(reader);
-                    lista.Add(donante);
+                    Genero genero = ConstruirGenero(reader);
+                    lista.Add(genero);
+
                 }
                 reader.Close();
                 return lista;
+
             }
             catch (Exception)
-            {
-
-                throw new Exception("Error al intentar men");
+            { 
+                throw new Exception("Error al intentar we");
             }
         }
 
-        private Donante ConstruirDonante(SqlDataReader reader)
+        private Genero ConstruirGenero(SqlDataReader reader)
         {
-            throw new NotImplementedException();
+            return new Genero
+            {
+                GeneroID = reader.GetInt32(0),
+                GeneroDescripcion = reader.GetString(1)
+            };
         }
 
-        public void Guardar(Donante donante)
+        public void Guardar(Genero genero)
         {
             throw new NotImplementedException();
         }
