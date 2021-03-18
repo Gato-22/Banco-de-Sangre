@@ -45,8 +45,10 @@
     <Compile Include="Servicios\Facades\IServicioDocumento.cs" />
     <Compile Include="Servicios\Facades\IServicioGenero.cs" />
     <Compile Include="Servicios\Facades\iServiciosProvincia.cs" />
+    <Compile Include="Servicios\Facades\IServicioTipoDonacion.cs" />
     <Compile Include="Servicios\ServicioDocumentos.cs" />
     <Compile Include="Servicios\ServicioGeneros.cs" />
+    <Compile Include="Servicios\ServicioTipoDonacion.cs" />
     <Compile Include="Servicios\ServicioProvincias.cs" />
   </ItemGroup>
   <ItemGroup>

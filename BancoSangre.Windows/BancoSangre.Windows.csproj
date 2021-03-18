@@ -52,6 +52,12 @@
     <Compile Include="Documentos\FrmDocumentos.Designer.cs">
       <DependentUpon>FrmDocumentos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Donaciones\FrmTipoDonaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Donaciones\FrmTipoDonaciones.Designer.cs">
+      <DependentUpon>FrmTipoDonaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Generos\FrmGeneros.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Documentos\FrmDocumentos.resx">
       <DependentUpon>FrmDocumentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Donaciones\FrmTipoDonaciones.resx">
+      <DependentUpon>FrmTipoDonaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generos\FrmGeneros.resx">
       <DependentUpon>FrmGeneros.cs</DependentUpon>

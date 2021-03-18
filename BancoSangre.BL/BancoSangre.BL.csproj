@@ -45,6 +45,7 @@
     <Compile Include="Entidades\Donante.cs" />
     <Compile Include="Entidades\Genero.cs" />
     <Compile Include="Entidades\Provincia.cs" />
+    <Compile Include="Entidades\TipoDonacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

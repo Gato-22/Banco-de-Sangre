@@ -34,6 +34,7 @@ namespace BancoSangre.Windows
             this.label1 = new System.Windows.Forms.Label();
             this.btnGeneros = new System.Windows.Forms.Button();
             this.btnDocumentos = new System.Windows.Forms.Button();
+            this.btnTipoDonaciones = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProvincia
@@ -85,18 +86,29 @@ namespace BancoSangre.Windows
             this.btnDocumentos.UseVisualStyleBackColor = true;
             this.btnDocumentos.Click += new System.EventHandler(this.btnDocumentos_Click);
             // 
+            // btnTipoDonaciones
+            // 
+            this.btnTipoDonaciones.Location = new System.Drawing.Point(318, 85);
+            this.btnTipoDonaciones.Name = "btnTipoDonaciones";
+            this.btnTipoDonaciones.Size = new System.Drawing.Size(124, 62);
+            this.btnTipoDonaciones.TabIndex = 3;
+            this.btnTipoDonaciones.Text = "Tipo De Donaciones";
+            this.btnTipoDonaciones.UseVisualStyleBackColor = true;
+            this.btnTipoDonaciones.Click += new System.EventHandler(this.btnTipoDonaciones_Click);
+            // 
             // FrmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnTipoDonaciones);
             this.Controls.Add(this.btnDocumentos);
             this.Controls.Add(this.btnGeneros);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCerrarTodo);
             this.Controls.Add(this.btnProvincia);
             this.Name = "FrmMenuPrincipal";
-            this.Text = "Form1";
+            this.Text = "Menu Principal";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -109,6 +121,7 @@ namespace BancoSangre.Windows
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnGeneros;
         private System.Windows.Forms.Button btnDocumentos;
+        private System.Windows.Forms.Button btnTipoDonaciones;
     }
 }
 

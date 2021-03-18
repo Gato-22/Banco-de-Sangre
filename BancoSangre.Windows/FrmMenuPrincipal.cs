@@ -1,4 +1,5 @@
 ﻿using BancoSangre.Windows.Documentos;
+using BancoSangre.Windows.Donaciones;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,6 +39,12 @@ namespace BancoSangre.Windows
         private void btnDocumentos_Click(object sender, EventArgs e)
         {
             FrmDocumentos frm = new FrmDocumentos();
+            frm.ShowDialog(this);
+        }
+
+        private void btnTipoDonaciones_Click(object sender, EventArgs e)
+        {
+            FrmTipoDonaciones frm = new FrmTipoDonaciones();
             frm.ShowDialog(this);
         }
     }
