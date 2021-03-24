@@ -40,8 +40,7 @@ namespace BancoSangre.Windows
         }
 
         private void MostrarDatosEnGrilla()
-        {
-            
+        {          
             dgbDatos.Rows.Clear();
             foreach (var genero in _genero)
             {

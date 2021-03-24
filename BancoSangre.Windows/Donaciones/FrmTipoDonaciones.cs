@@ -52,7 +52,7 @@ namespace BancoSangre.Windows.Donaciones
 
         private void agregarfila(DataGridViewRow r)
         {
-            dgbDatos.Rows.Add();
+            dgbDatos.Rows.Add(r);
         }
 
         private void setearFila(DataGridViewRow r, TipoDonacion donacion)
