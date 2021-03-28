@@ -49,11 +49,13 @@
     <Compile Include="Repositorios\Facades\IRepositorioPacientes.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioProvincias.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioTipoDonaciones.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioTipoSangre.cs" />
     <Compile Include="Repositorios\RepositorioDocumentos.cs" />
     <Compile Include="Repositorios\RepositorioGeneros.cs" />
     <Compile Include="Repositorios\RepositorioPacientes.cs" />
     <Compile Include="Repositorios\RepositorioProvincias.cs" />
     <Compile Include="Repositorios\RepositorioTipoDonaciones.cs" />
+    <Compile Include="Repositorios\RepositorioTipoSangre.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BancoSangre.BL\BancoSangre.BL.csproj">

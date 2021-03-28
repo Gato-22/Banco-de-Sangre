@@ -35,6 +35,7 @@ namespace BancoSangre.Windows
             this.btnGeneros = new System.Windows.Forms.Button();
             this.btnDocumentos = new System.Windows.Forms.Button();
             this.btnTipoDonaciones = new System.Windows.Forms.Button();
+            this.btnTipoSangre = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProvincia
@@ -92,15 +93,26 @@ namespace BancoSangre.Windows
             this.btnTipoDonaciones.Name = "btnTipoDonaciones";
             this.btnTipoDonaciones.Size = new System.Drawing.Size(124, 62);
             this.btnTipoDonaciones.TabIndex = 3;
-            this.btnTipoDonaciones.Text = "Tipo De Donaciones";
+            this.btnTipoDonaciones.Text = "Tipos De Donaciones";
             this.btnTipoDonaciones.UseVisualStyleBackColor = true;
             this.btnTipoDonaciones.Click += new System.EventHandler(this.btnTipoDonaciones_Click);
+            // 
+            // btnTipoSangre
+            // 
+            this.btnTipoSangre.Location = new System.Drawing.Point(448, 85);
+            this.btnTipoSangre.Name = "btnTipoSangre";
+            this.btnTipoSangre.Size = new System.Drawing.Size(124, 62);
+            this.btnTipoSangre.TabIndex = 3;
+            this.btnTipoSangre.Text = "Tipos De Sangres";
+            this.btnTipoSangre.UseVisualStyleBackColor = true;
+            this.btnTipoSangre.Click += new System.EventHandler(this.btnTipoSangre_Click);
             // 
             // FrmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnTipoSangre);
             this.Controls.Add(this.btnTipoDonaciones);
             this.Controls.Add(this.btnDocumentos);
             this.Controls.Add(this.btnGeneros);
@@ -122,6 +134,7 @@ namespace BancoSangre.Windows
         private System.Windows.Forms.Button btnGeneros;
         private System.Windows.Forms.Button btnDocumentos;
         private System.Windows.Forms.Button btnTipoDonaciones;
+        private System.Windows.Forms.Button btnTipoSangre;
     }
 }
 
