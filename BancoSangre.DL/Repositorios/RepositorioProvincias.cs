@@ -18,12 +18,43 @@ namespace BancoSangre.DL.Repositorios
         }
         public void borrar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string cadenaComando = "DELETe from Provincias where ProvinciaID=@ID";
+                SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                comando.Parameters.AddWithValue("@ID", id);
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("REFERENCE"))
+                {
+                    throw new Exception("registro con vinculos, eliminacion denega3");
+                }
+                throw new Exception(e.Message);
+                
+            }
         }
 
         public bool existe(Provincia provincia)
         {
-            throw new NotImplementedException();
+            if (provincia.ProvinciaID==0)
+            {
+                string cadenaComando = "SELECT ProvinciaId, NombreProvincia FROM Provincias WHERE NombreProvincia=@nom";
+                SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                comando.Parameters.AddWithValue("@nom", provincia.NombreProvincia);
+                SqlDataReader reader = comando.ExecuteReader();
+                return reader.HasRows;
+            }
+            else
+            {
+                string cadenaComando = "SELECT ProvinciaID, NombreProvincia FROM Provincias WHERE NombreProvincia=@nom AND ProvinciaID<>@id";
+                SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                comando.Parameters.AddWithValue("@nom", provincia.NombreProvincia);
+                comando.Parameters.AddWithValue("@id", provincia.ProvinciaID);
+                SqlDataReader reader = comando.ExecuteReader();
+                return reader.HasRows;
+            }
         }
 
         public Provincia GetProvinciaPorID(int id)
@@ -68,7 +99,43 @@ namespace BancoSangre.DL.Repositorios
         
         public void Guardar(Provincia provincia)
         {
-            throw new NotImplementedException();
+            if (provincia.ProvinciaID==0)
+            {
+                try
+                {
+                    string cadenaComando = "Insert Into Provincias Values(@Nombre)";
+                    SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                    comando.Parameters.AddWithValue("@Nombre", provincia.NombreProvincia);
+                    comando.ExecuteNonQuery();
+                    cadenaComando = "select @@IDENTITY";
+                    comando = new SqlCommand(cadenaComando, _conexion);
+                    provincia.ProvinciaID = (int)(decimal)comando.ExecuteScalar();
+                }
+                catch (Exception e)
+                {
+                    
+                    throw new Exception("ojo llamar al programador (error guardar registro)");
+                }
+
+            }
+            else
+            {
+                try
+                {
+                    string cadenacomando = "UPDATE provincias SET nombreprovincia=@Nombre where ProvinciaID=@ID";
+                    SqlCommand comando = new SqlCommand(cadenacomando, _conexion);
+                    comando.Parameters.AddWithValue("@Nombre", provincia.NombreProvincia);
+                    comando.Parameters.AddWithValue("@ID", provincia.ProvinciaID);
+                    comando.ExecuteNonQuery();
+
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception("ojo llamar al programador (error al modificar registro)");
+                }
+            }
+            
         }
     }
 }

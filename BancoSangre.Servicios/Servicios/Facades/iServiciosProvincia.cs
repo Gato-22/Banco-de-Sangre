@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.DL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,8 @@ namespace BancoSangre.Servicios.Servicios.Facades
         void Guardar(Provincia provincia);
         void Borrar(int id);
         bool Existe(Provincia provincia);
+        
+           
+        
     }
 }

@@ -19,12 +19,36 @@ namespace BancoSangre.Servicios.Servicios
         
         public void Borrar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
+                _Repositorio.borrar(id);
+                _conexionBd.CerrarConexion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public bool Existe(Provincia provincia)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
+                var existe = _Repositorio.existe(provincia);
+                _conexionBd.CerrarConexion();
+                return existe;
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+            
         }
 
         public Provincia GetProvinciaId(int id)
@@ -52,7 +76,18 @@ namespace BancoSangre.Servicios.Servicios
         
         public void Guardar(Provincia provincia)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
+                _Repositorio.Guardar(provincia);
+                _conexionBd.CerrarConexion();
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
         }
     }
 }
