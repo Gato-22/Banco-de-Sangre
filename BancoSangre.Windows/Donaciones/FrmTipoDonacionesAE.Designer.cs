@@ -41,6 +41,7 @@ namespace BancoSangre.Windows.Donaciones
             // txtTipoDonacion
             // 
             this.txtTipoDonacion.Location = new System.Drawing.Point(217, 41);
+            this.txtTipoDonacion.MaxLength = 30;
             this.txtTipoDonacion.Name = "txtTipoDonacion";
             this.txtTipoDonacion.Size = new System.Drawing.Size(133, 20);
             this.txtTipoDonacion.TabIndex = 3;
@@ -53,6 +54,7 @@ namespace BancoSangre.Windows.Donaciones
             this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
@@ -62,6 +64,7 @@ namespace BancoSangre.Windows.Donaciones
             this.btnAceptar.TabIndex = 5;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // label1
             // 

@@ -18,12 +18,35 @@ namespace BancoSangre.Servicios.Servicios
 
         public void Borar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _Repositorio = new RepositorioGeneros(_conexionBd.AbrirConexion());
+                _Repositorio.Borar(id);
+                _conexionBd.CerrarConexion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public bool existe(Genero genero)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _Repositorio = new RepositorioGeneros(_conexionBd.AbrirConexion());
+                var existe = _Repositorio.existe(genero);
+                _conexionBd.CerrarConexion();
+                return existe;
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
         }
 
         public Genero GetGeneroID(int id)
@@ -51,7 +74,18 @@ namespace BancoSangre.Servicios.Servicios
 
         public void Guardar(Genero genero)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _Repositorio = new RepositorioGeneros(_conexionBd.AbrirConexion());
+                _Repositorio.Guardar(genero);
+                _conexionBd.CerrarConexion();
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
         }
     }
 }

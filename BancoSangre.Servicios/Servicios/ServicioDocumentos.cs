@@ -17,12 +17,35 @@ namespace BancoSangre.Servicios.Servicios
         private ConexionBd _conexionBd;
         public void borrar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _Repositorio = new RepositorioDocumentos(_conexionBd.AbrirConexion());
+                _Repositorio.borrar(id);
+                _conexionBd.CerrarConexion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public bool existe(Documento documento)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _Repositorio = new RepositorioDocumentos(_conexionBd.AbrirConexion());
+                var existe = _Repositorio.existe(documento);
+                _conexionBd.CerrarConexion();
+                return existe;
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
         }
 
         public Documento GetDocumentoID(int id)
@@ -50,7 +73,18 @@ namespace BancoSangre.Servicios.Servicios
 
         public void Guardar(Documento documento)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _Repositorio = new RepositorioDocumentos(_conexionBd.AbrirConexion());
+                _Repositorio.Guardar(documento);
+                _conexionBd.CerrarConexion();
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
         }
     }
 }

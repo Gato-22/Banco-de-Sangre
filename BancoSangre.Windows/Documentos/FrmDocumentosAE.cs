@@ -18,13 +18,18 @@ namespace BancoSangre.Windows.Documentos
             InitializeComponent();
         }
         private Documento documento;
-        private void FrmDocumentosAE_Load(object sender, EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             if (documento != null)
             {
                 txtDocumento.Text = documento.Descripcion;
             }
+        }
+
+        private void FrmDocumentosAE_Load(object sender, EventArgs e)
+        {
+            
         }
 
         public Documento GetDocumento()
@@ -62,5 +67,11 @@ namespace BancoSangre.Windows.Documentos
 
             return valido;
         }
+
+        public void SetDocumento(Documento documento)
+        {
+            this.documento = documento;
+        }
+
     }
 }

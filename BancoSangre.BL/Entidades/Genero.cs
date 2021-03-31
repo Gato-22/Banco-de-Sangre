@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace BancoSangre.BL.Entidades
 {
-    public class Genero
+    public class Genero : ICloneable
     {
         public int GeneroID { get; set; }
 
         public string GeneroDescripcion { get; set; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

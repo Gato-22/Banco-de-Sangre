@@ -21,7 +21,7 @@ namespace BancoSangre.DL.Repositorios
             throw new NotImplementedException();
         }
 
-        public bool editar(TipoSangre tipoSangre)
+        public bool existe(TipoSangre tipoSangre)
         {
             throw new NotImplementedException();
         }

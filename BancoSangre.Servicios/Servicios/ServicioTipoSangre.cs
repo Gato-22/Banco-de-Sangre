@@ -17,12 +17,35 @@ namespace BancoSangre.Servicios.Servicios
         private ConexionBd _conexionBd;
         public void borrar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _repo = new RepositorioTipoSangre(_conexionBd.AbrirConexion());
+                _repo.borrar(id);
+                _conexionBd.CerrarConexion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
-        public bool editar(TipoSangre tipoSangre)
+        public bool existe(TipoSangre tipoSangre)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _repo = new RepositorioTipoSangre(_conexionBd.AbrirConexion());
+                var existe = _repo.existe(tipoSangre);
+                _conexionBd.CerrarConexion();
+                return existe;
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
         }
 
         public TipoSangre GetTipoSangreID(int id)
@@ -50,7 +73,18 @@ namespace BancoSangre.Servicios.Servicios
 
         public void guardar(TipoSangre tipoSangre)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _repo = new RepositorioTipoSangre(_conexionBd.AbrirConexion());
+                _repo.guardar(tipoSangre);
+                _conexionBd.CerrarConexion();
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
         }
     }
 }

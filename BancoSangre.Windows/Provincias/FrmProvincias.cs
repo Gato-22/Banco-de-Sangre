@@ -135,7 +135,7 @@ namespace BancoSangre.Windows
                     }
                     catch (Exception ex)
                     {
-                        SetearFila(r, provincia);
+                        SetearFila(r, provincia1);
                         MessageBox.Show(ex.Message, "error llamar al programador", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -150,7 +150,8 @@ namespace BancoSangre.Windows
                 Provincia provincia = (Provincia)r.Tag;
                 DialogResult dr = MessageBox.Show($@"vas a dar de baja el registro que seleccionaste recien: {provincia.NombreProvincia}",
                     @"Confirmar baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                if (dr==DialogResult.Yes)
+                if (dr == DialogResult.Yes)
+                {
                     try
                     {
                         _servicio.Borrar(provincia.ProvinciaID);
@@ -163,10 +164,7 @@ namespace BancoSangre.Windows
                         MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     }
-                {
-
-                }
-
+                }                                                  
             }
         }
     }

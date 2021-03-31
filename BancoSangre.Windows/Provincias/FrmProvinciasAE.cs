@@ -22,6 +22,12 @@ namespace BancoSangre.Windows.Provincias
         {
             this.provincia = provincia;
         }
+       
+
+        public Provincia GetProvincia()
+        {
+            return provincia;
+        }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -31,15 +37,6 @@ namespace BancoSangre.Windows.Provincias
             }
         }
 
-        public Provincia GetProvincia()
-        {
-            return provincia;
-        }
-
-        private void FrmProvinciasAE_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {

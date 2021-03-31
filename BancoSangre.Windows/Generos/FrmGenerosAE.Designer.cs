@@ -55,6 +55,7 @@ namespace BancoSangre.Windows.Generos
             this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
@@ -64,10 +65,12 @@ namespace BancoSangre.Windows.Generos
             this.btnAceptar.TabIndex = 9;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // txtGenero
             // 
             this.txtGenero.Location = new System.Drawing.Point(251, 33);
+            this.txtGenero.MaxLength = 50;
             this.txtGenero.Name = "txtGenero";
             this.txtGenero.Size = new System.Drawing.Size(133, 20);
             this.txtGenero.TabIndex = 7;

@@ -58,6 +58,7 @@ namespace BancoSangre.Windows.Donaciones
         private void setearFila(DataGridViewRow r, TipoDonacion donacion)
         {
             r.Cells[cmnTipoDonaciones.Index].Value = donacion.Descripcion;
+            r.Tag = donacion;
         }
 
         private DataGridViewRow construirfila()
@@ -70,6 +71,102 @@ namespace BancoSangre.Windows.Donaciones
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            if (dgbDatos.SelectedRows.Count > 0)
+            {
+                DataGridViewRow r = dgbDatos.SelectedRows[0];
+                TipoDonacion tipoDonacion = (TipoDonacion)r.Tag;
+                DialogResult dr = MessageBox.Show($@"vas a dar de baja el registro que seleccionaste recientemente: {tipoDonacion.Descripcion}",
+                    @"Confirmar baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (dr == DialogResult.Yes)
+                {
+                    try
+                    {
+                        _servicio.borrar(tipoDonacion.TipoDonacionID);
+                        dgbDatos.Rows.Remove(r);
+                        MessageBox.Show(@"Registro borra3", @"message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.Message, @"errore", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                }
+            }
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            FrmTipoDonacionesAE frm = new FrmTipoDonacionesAE();
+            frm.Text = "Agregar nuevo tipo de Donacion";
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.OK)
+            {
+                try
+                {
+                    TipoDonacion tipoDonacion = frm.GetTipoDonacion();
+                    if (!_servicio.existe(tipoDonacion))
+                    {
+                        _servicio.guardar(tipoDonacion);
+                        DataGridViewRow r = construirfila();
+                        setearFila(r, tipoDonacion);
+                        agregarfila(r);
+                        MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Registro ya existente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception exception)
+                {
+
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (dgbDatos.SelectedRows.Count > 0)
+            {
+                DataGridViewRow r = dgbDatos.SelectedRows[0];
+                TipoDonacion tipodonacion = (TipoDonacion)r.Tag;
+                TipoDonacion tipoAUX = (TipoDonacion)tipodonacion.Clone();
+                FrmTipoDonacionesAE frm = new FrmTipoDonacionesAE();
+                frm.Text = "editar Donacion";
+                frm.SetTipoDonacion(tipodonacion);
+                DialogResult dr = frm.ShowDialog(this);
+                if (dr == DialogResult.OK)
+                {
+                    try
+                    {
+                        tipodonacion = frm.GetTipoDonacion();
+                        if (!_servicio.existe(tipodonacion))
+                        {
+                            _servicio.guardar(tipodonacion);
+                            setearFila(r, tipodonacion);
+                            MessageBox.Show("registro Modifica3", "mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                        else
+                        {
+                            setearFila(r, tipoAUX);
+                            MessageBox.Show("registro ya existente", "mensajee", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        setearFila(r, tipoAUX);
+                        MessageBox.Show(ex.Message, "error llamar al programador", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

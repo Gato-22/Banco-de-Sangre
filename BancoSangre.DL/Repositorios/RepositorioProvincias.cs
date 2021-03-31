@@ -63,7 +63,7 @@ namespace BancoSangre.DL.Repositorios
             try
             {
                 string cadenaComando =
-                    "SELECT provinciaID, nombreprovincia FROM provincias WHERE localidadId=@id";
+                    "SELECT provinciaID, nombreprovincia FROM provincias WHERE ProvinciaID=@id";
                 SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
                 comando.Parameters.AddWithValue("@id", id);
                 SqlDataReader reader = comando.ExecuteReader();

@@ -13,6 +13,6 @@ namespace BancoSangre.DL.Repositorios.Facades
         TipoSangre GetTipoSangrePorID(int id);
         void guardar(TipoSangre tipoSangre);
         void borrar(int id);
-        bool editar(TipoSangre tipoSangre);
+        bool existe(TipoSangre tipoSangre);
     }
 }

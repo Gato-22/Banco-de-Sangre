@@ -59,7 +59,7 @@ namespace BancoSangre.DL.Repositorios
                 }
                 else
                 {
-                    string cadenaComando = "SELECT * FROM localidad WHERE Nombrelocalidad=@nomb AND ProvinciaId=@id AND localidadId<>@localidadId";
+                    string cadenaComando = "SELECT * FROM localidades WHERE Nombrelocalidad=@nomb AND ProvinciaId=@id AND localidadId<>@localidadId";
                     SqlCommand comando = new SqlCommand(cadenaComando, _sqlConnection);
                     comando.Parameters.AddWithValue("@Nomb", localidad.NombreLocalidad);
                     comando.Parameters.AddWithValue("@Id", localidad.provincia.ProvinciaID);

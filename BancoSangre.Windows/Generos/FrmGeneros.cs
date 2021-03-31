@@ -1,6 +1,7 @@
 ﻿using BancoSangre.BL.Entidades;
 using BancoSangre.Servicios.Servicios;
 using BancoSangre.Servicios.Servicios.Facades;
+using BancoSangre.Windows.Generos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -58,6 +59,7 @@ namespace BancoSangre.Windows
         private void SetearFila(DataGridViewRow r, Genero genero)
         {
             r.Cells[cmnGeneros.Index].Value = genero.GeneroDescripcion;
+            r.Tag = genero;
         }
 
         private DataGridViewRow ConstruirFila()
@@ -70,6 +72,102 @@ namespace BancoSangre.Windows
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            FrmGenerosAE frm = new FrmGenerosAE();
+            frm.Text = "Agregar un genero";
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.OK)
+            {
+                try
+                {
+                    Genero genero = frm.GetGenero();
+                    if (!_servicio.existe(genero))
+                    {
+                        _servicio.Guardar(genero);
+                        DataGridViewRow r = ConstruirFila();
+                        SetearFila(r, genero);
+                        AgregarFila(r);
+                        MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Registro ya existente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception exception)
+                {
+
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            if (dgbDatos.SelectedRows.Count > 0)
+            {
+                DataGridViewRow r = dgbDatos.SelectedRows[0];
+                Genero genero = (Genero)r.Tag;
+                DialogResult dr = MessageBox.Show($@"vas a dar de baja el registro que seleccionaste recien: {genero.GeneroDescripcion}",
+                    @"Confirmar baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (dr == DialogResult.Yes)
+                {
+                    try
+                    {
+                        _servicio.Borar(genero.GeneroID);
+                        dgbDatos.Rows.Remove(r);
+                        MessageBox.Show(@"Registro borra3", @"message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                }
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (dgbDatos.SelectedRows.Count > 0)
+            {
+                DataGridViewRow r = dgbDatos.SelectedRows[0];
+                Genero genero = (Genero)r.Tag;
+                Genero GeneroAUX = (Genero)genero.Clone();
+                FrmGenerosAE frm = new FrmGenerosAE();
+                frm.Text = "editar Genero";
+                frm.SetGenero(genero);
+                DialogResult dr = frm.ShowDialog(this);
+                if (dr == DialogResult.OK)
+                {
+                    try
+                    {
+                        genero = frm.GetGenero();
+                        if (!_servicio.existe(genero))
+                        {
+                            _servicio.Guardar(genero);
+                            SetearFila(r, genero);
+                            MessageBox.Show("registro Modifica3", "mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                        else
+                        {
+                            SetearFila(r, GeneroAUX);
+                            MessageBox.Show("registro ya existente", "mensajee", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        SetearFila(r, GeneroAUX);
+                        MessageBox.Show(ex.Message, "error llamar al programador", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

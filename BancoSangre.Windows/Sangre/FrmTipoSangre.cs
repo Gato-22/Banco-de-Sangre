@@ -61,6 +61,7 @@ namespace BancoSangre.Windows.Sangre
         {
             r.Cells[cmnGrupo.Index].Value = tipoSangre.Grupo;
             r.Cells[cmnFactor.Index].Value = tipoSangre.Factor;
+            r.Tag = tipoSangre;
         }
 
         private DataGridViewRow construirFila()
@@ -68,6 +69,11 @@ namespace BancoSangre.Windows.Sangre
             DataGridViewRow r = new DataGridViewRow();
             r.CreateCells(dgbDatos);
             return r;
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

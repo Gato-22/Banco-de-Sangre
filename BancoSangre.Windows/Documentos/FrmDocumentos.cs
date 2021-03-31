@@ -63,6 +63,7 @@ namespace BancoSangre.Windows.Documentos
         private void setearfila(DataGridViewRow r, Documento documento)
         {
             r.Cells[cmnDocumentos.Index].Value = documento.Descripcion;
+            r.Tag = documento;
         }
 
         private DataGridViewRow construirfila()
@@ -101,6 +102,94 @@ namespace BancoSangre.Windows.Documentos
                     MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (dgbDatos.SelectedRows.Count > 0)
+            {
+                DataGridViewRow r = dgbDatos.SelectedRows[0];
+                Documento documento = (Documento)r.Tag;
+                Documento DocAux =(Documento) documento.Clone();
+                FrmDocumentosAE frm = new FrmDocumentosAE();
+                frm.Text = "editar Documento";
+                frm.SetDocumento(documento);
+                DialogResult dr = frm.ShowDialog(this);
+                if (dr == DialogResult.OK)
+                {
+                    try
+                    {
+                        documento = frm.GetDocumento();
+                        if (!_servicio.existe(documento))
+                        {
+                            _servicio.Guardar(documento);
+                            setearfila(r, documento);
+                            MessageBox.Show("registro Modifica3", "mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                        else
+                        {
+                            setearfila(r, DocAux);
+                            MessageBox.Show("registro ya existente", "mensajee", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        setearfila(r, DocAux);
+                        MessageBox.Show(ex.Message, "error llamar al programador", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            if (dgbDatos.SelectedRows.Count > 0)
+            {
+                DataGridViewRow r = dgbDatos.SelectedRows[0];
+                Documento documento = (Documento)r.Tag;
+
+                DialogResult dr = MessageBox.Show($@"vas a dar de baja el registro que seleccionaste recien: {documento.Descripcion}",
+                   @"Confirmar baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                if (dr == DialogResult.Yes)
+                {
+                    
+                    try
+                    {
+                        _servicio.borrar(documento.TipoDocumentoID);
+                        dgbDatos.Rows.Remove(r);
+                        MessageBox.Show(@"Registro Borra3", @"Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            //if (dgbDatos.SelectedRows.Count > 0)
+            //{
+            //    DataGridViewRow r = dgbDatos.SelectedRows[0];
+            //    Provincia provincia = (Provincia)r.Tag;
+            //    DialogResult dr = MessageBox.Show($@"vas a dar de baja el registro que seleccionaste recien: {provincia.NombreProvincia}",
+            //        @"Confirmar baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            //    if (dr == DialogResult.Yes)
+            //    {
+            //        try
+            //        {
+            //            _servicio.Borrar(provincia.ProvinciaID);
+            //            dgbDatos.Rows.Remove(r);
+            //            MessageBox.Show(@"Registro borra3", @"message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        }
+            //        catch (Exception ex)
+            //        {
+
+            //            MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            //        }
+            //    }
+            //}
         }
     }
 }

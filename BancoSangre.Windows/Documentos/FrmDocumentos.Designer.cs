@@ -84,6 +84,7 @@ namespace BancoSangre.Windows.Documentos
             this.btnEditar.Size = new System.Drawing.Size(41, 35);
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnBorrar
             // 
@@ -93,6 +94,7 @@ namespace BancoSangre.Windows.Documentos
             this.btnBorrar.Size = new System.Drawing.Size(43, 35);
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
             // toolStripSeparator1
             // 

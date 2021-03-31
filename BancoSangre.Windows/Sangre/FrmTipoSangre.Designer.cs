@@ -75,6 +75,7 @@ namespace BancoSangre.Windows.Sangre
             this.btnNuevo.Size = new System.Drawing.Size(46, 35);
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // btnEditar
             // 

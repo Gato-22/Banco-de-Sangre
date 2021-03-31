@@ -74,6 +74,7 @@ namespace BancoSangre.Windows.Donaciones
             this.btnNuevo.Size = new System.Drawing.Size(46, 35);
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // btnEditar
             // 
@@ -83,6 +84,7 @@ namespace BancoSangre.Windows.Donaciones
             this.btnEditar.Size = new System.Drawing.Size(41, 35);
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnBorrar
             // 
@@ -92,6 +94,7 @@ namespace BancoSangre.Windows.Donaciones
             this.btnBorrar.Size = new System.Drawing.Size(43, 35);
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
             // toolStripSeparator1
             // 
