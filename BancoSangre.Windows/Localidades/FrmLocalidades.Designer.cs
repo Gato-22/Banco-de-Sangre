@@ -1,7 +1,7 @@
 ﻿
-namespace BancoSangre.Windows.Documentos
+namespace BancoSangre.Windows.Localidades
 {
-    partial class FrmDocumentos
+    partial class FrmLocalidades
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace BancoSangre.Windows.Documentos
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDocumentos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLocalidades));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
@@ -42,7 +42,8 @@ namespace BancoSangre.Windows.Documentos
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnCerrar = new System.Windows.Forms.ToolStripButton();
             this.dgbDatos = new System.Windows.Forms.DataGridView();
-            this.cmnDocumentos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnLocalidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnProvincia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgbDatos)).BeginInit();
             this.SuspendLayout();
@@ -63,7 +64,7 @@ namespace BancoSangre.Windows.Documentos
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 38);
-            this.toolStrip1.TabIndex = 4;
+            this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // btnNuevo
@@ -84,6 +85,7 @@ namespace BancoSangre.Windows.Documentos
             this.btnEditar.Size = new System.Drawing.Size(41, 35);
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnBorrar
             // 
@@ -93,6 +95,7 @@ namespace BancoSangre.Windows.Documentos
             this.btnBorrar.Size = new System.Drawing.Size(43, 35);
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
             // toolStripSeparator1
             // 
@@ -152,7 +155,8 @@ namespace BancoSangre.Windows.Documentos
             this.dgbDatos.AllowUserToDeleteRows = false;
             this.dgbDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgbDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cmnDocumentos});
+            this.cmnLocalidad,
+            this.cmnProvincia});
             this.dgbDatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgbDatos.Location = new System.Drawing.Point(0, 38);
             this.dgbDatos.MultiSelect = false;
@@ -161,25 +165,32 @@ namespace BancoSangre.Windows.Documentos
             this.dgbDatos.RowHeadersVisible = false;
             this.dgbDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgbDatos.Size = new System.Drawing.Size(800, 412);
-            this.dgbDatos.TabIndex = 5;
+            this.dgbDatos.TabIndex = 2;
             // 
-            // cmnDocumentos
+            // cmnLocalidad
             // 
-            this.cmnDocumentos.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cmnDocumentos.HeaderText = "Documentos";
-            this.cmnDocumentos.Name = "cmnDocumentos";
-            this.cmnDocumentos.ReadOnly = true;
+            this.cmnLocalidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnLocalidad.HeaderText = "Localidad";
+            this.cmnLocalidad.Name = "cmnLocalidad";
+            this.cmnLocalidad.ReadOnly = true;
             // 
-            // FrmDocumentos
+            // cmnProvincia
+            // 
+            this.cmnProvincia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnProvincia.HeaderText = "Provincia";
+            this.cmnProvincia.Name = "cmnProvincia";
+            this.cmnProvincia.ReadOnly = true;
+            // 
+            // FrmLocalidades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dgbDatos);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "FrmDocumentos";
-            this.Text = "FrmDocumentos";
-            this.Load += new System.EventHandler(this.FrmDocumentos_Load);
+            this.Name = "FrmLocalidades";
+            this.Text = "FrmLocalidades";
+            this.Load += new System.EventHandler(this.FrmLocalidades_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgbDatos)).EndInit();
@@ -202,6 +213,7 @@ namespace BancoSangre.Windows.Documentos
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton btnCerrar;
         private System.Windows.Forms.DataGridView dgbDatos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cmnDocumentos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnLocalidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnProvincia;
     }
 }

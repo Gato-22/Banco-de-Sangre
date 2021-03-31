@@ -89,7 +89,7 @@ namespace BancoSangre.Windows.Provincias
             this.Controls.Add(this.txtProvincias);
             this.Controls.Add(this.label1);
             this.Name = "FrmProvinciasAE";
-            this.Text = "FrmProvinciasAE";
+            this.Text = "e";
             this.Load += new System.EventHandler(this.FrmProvinciasAE_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);

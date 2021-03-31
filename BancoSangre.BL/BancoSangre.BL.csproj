@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="Entidades\Documento.cs" />
     <Compile Include="Entidades\Donante.cs" />
+    <Compile Include="Entidades\DTO\Localidad\LocalidadListDto.cs" />
     <Compile Include="Entidades\Genero.cs" />
+    <Compile Include="Entidades\Localidad.cs" />
     <Compile Include="Entidades\Provincia.cs" />
     <Compile Include="Entidades\TipoDonacion.cs" />
     <Compile Include="Entidades\TipoSangre.cs" />

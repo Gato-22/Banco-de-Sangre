@@ -71,5 +71,36 @@ namespace BancoSangre.Windows.Documentos
             r.CreateCells(dgbDatos);
             return r;
         }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            FrmDocumentosAE frm = new FrmDocumentosAE();
+            frm.Text = "Agregar nuevo tipo de documento";
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.OK)
+            {
+                try
+                {
+                    Documento documento = frm.GetDocumento();
+                    if (!_servicio.existe(documento))
+                    {
+                        _servicio.Guardar(documento);
+                        DataGridViewRow r = construirfila();
+                        setearfila(r, documento);
+                        agregarfila(r);
+                        MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Registro ya existente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception exception)
+                {
+
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }

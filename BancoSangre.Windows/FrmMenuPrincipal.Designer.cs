@@ -36,6 +36,7 @@ namespace BancoSangre.Windows
             this.btnDocumentos = new System.Windows.Forms.Button();
             this.btnTipoDonaciones = new System.Windows.Forms.Button();
             this.btnTipoSangre = new System.Windows.Forms.Button();
+            this.btnLocalidades = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProvincia
@@ -107,6 +108,16 @@ namespace BancoSangre.Windows
             this.btnTipoSangre.UseVisualStyleBackColor = true;
             this.btnTipoSangre.Click += new System.EventHandler(this.btnTipoSangre_Click);
             // 
+            // btnLocalidades
+            // 
+            this.btnLocalidades.Location = new System.Drawing.Point(12, 169);
+            this.btnLocalidades.Name = "btnLocalidades";
+            this.btnLocalidades.Size = new System.Drawing.Size(96, 62);
+            this.btnLocalidades.TabIndex = 0;
+            this.btnLocalidades.Text = "Localidades";
+            this.btnLocalidades.UseVisualStyleBackColor = true;
+            this.btnLocalidades.Click += new System.EventHandler(this.btnLocalidades_Click);
+            // 
             // FrmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -118,6 +129,7 @@ namespace BancoSangre.Windows
             this.Controls.Add(this.btnGeneros);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCerrarTodo);
+            this.Controls.Add(this.btnLocalidades);
             this.Controls.Add(this.btnProvincia);
             this.Name = "FrmMenuPrincipal";
             this.Text = "Menu Principal";
@@ -135,6 +147,7 @@ namespace BancoSangre.Windows
         private System.Windows.Forms.Button btnDocumentos;
         private System.Windows.Forms.Button btnTipoDonaciones;
         private System.Windows.Forms.Button btnTipoSangre;
+        private System.Windows.Forms.Button btnLocalidades;
     }
 }
 

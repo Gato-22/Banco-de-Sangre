@@ -1,5 +1,6 @@
 ﻿using BancoSangre.Windows.Documentos;
 using BancoSangre.Windows.Donaciones;
+using BancoSangre.Windows.Localidades;
 using BancoSangre.Windows.Sangre;
 using System;
 using System.Collections.Generic;
@@ -52,6 +53,12 @@ namespace BancoSangre.Windows
         private void btnTipoSangre_Click(object sender, EventArgs e)
         {
             FrmTipoSangre frm = new FrmTipoSangre();
+            frm.ShowDialog(this);
+        }
+
+        private void btnLocalidades_Click(object sender, EventArgs e)
+        {
+            FrmLocalidades frm = new FrmLocalidades();
             frm.ShowDialog(this);
         }
     }

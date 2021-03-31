@@ -82,6 +82,24 @@
     <Compile Include="FrmMenuPrincipal.Designer.cs">
       <DependentUpon>FrmMenuPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generos\FrmGenerosAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generos\FrmGenerosAE.Designer.cs">
+      <DependentUpon>FrmGenerosAE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Localidades\FrmLocalidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Localidades\FrmLocalidades.Designer.cs">
+      <DependentUpon>FrmLocalidades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Localidades\FrmLocalidadesAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Localidades\FrmLocalidadesAE.Designer.cs">
+      <DependentUpon>FrmLocalidadesAE.cs</DependentUpon>
+    </Compile>
     <Compile Include="Provincias\FrmProvincias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +120,12 @@
     <Compile Include="Sangre\FrmTipoSangre.Designer.cs">
       <DependentUpon>FrmTipoSangre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sangre\FrmTipoSangreAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sangre\FrmTipoSangreAE.Designer.cs">
+      <DependentUpon>FrmTipoSangreAE.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Documentos\FrmDocumentos.resx">
       <DependentUpon>FrmDocumentos.cs</DependentUpon>
     </EmbeddedResource>
@@ -120,6 +144,15 @@
     <EmbeddedResource Include="FrmMenuPrincipal.resx">
       <DependentUpon>FrmMenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Generos\FrmGenerosAE.resx">
+      <DependentUpon>FrmGenerosAE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localidades\FrmLocalidades.resx">
+      <DependentUpon>FrmLocalidades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localidades\FrmLocalidadesAE.resx">
+      <DependentUpon>FrmLocalidadesAE.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Provincias\FrmProvincias.resx">
       <DependentUpon>FrmProvincias.cs</DependentUpon>
     </EmbeddedResource>
@@ -137,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sangre\FrmTipoSangre.resx">
       <DependentUpon>FrmTipoSangre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sangre\FrmTipoSangreAE.resx">
+      <DependentUpon>FrmTipoSangreAE.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

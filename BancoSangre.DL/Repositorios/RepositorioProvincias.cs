@@ -59,7 +59,26 @@ namespace BancoSangre.DL.Repositorios
 
         public Provincia GetProvinciaPorID(int id)
         {
-            throw new NotImplementedException();
+            Provincia provincia = null;
+            try
+            {
+                string cadenaComando =
+                    "SELECT provinciaID, nombreprovincia FROM provincias WHERE localidadId=@id";
+                SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                comando.Parameters.AddWithValue("@id", id);
+                SqlDataReader reader = comando.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    provincia = ConstruirProvincia(reader);
+                }
+                reader.Close();
+                return provincia;
+            }
+            catch (Exception )
+            {
+                throw new Exception("Error al intentar leer las ciudades");
+            }
         }
 
         public List<Provincia> GetProvincias()
@@ -111,10 +130,10 @@ namespace BancoSangre.DL.Repositorios
                     comando = new SqlCommand(cadenaComando, _conexion);
                     provincia.ProvinciaID = (int)(decimal)comando.ExecuteScalar();
                 }
-                catch (Exception e)
+                catch (Exception) 
                 {
                     
-                    throw new Exception("ojo llamar al programador (error guardar registro)");
+                    throw new Exception( "ojo llamar al programador (error guardar registro)");
                 }
 
             }
