@@ -18,17 +18,69 @@ namespace BancoSangre.DL.Repositorios
         }
         public void borrar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string cadenaComando = "DELETe from GruposSanguineos where GrupoSanguineoID=@ID";
+                SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                comando.Parameters.AddWithValue("@ID", id);
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("REFERENCE"))
+                {
+                    throw new Exception("registro con vinculos, eliminacion denega3");
+                }
+                throw new Exception(e.Message);
+
+            }
         }
 
         public bool existe(TipoSangre tipoSangre)
         {
-            throw new NotImplementedException();
+            if (tipoSangre.GrupoSanguineoID == 0)
+            {
+                string cadenaComando = "SELECT GrupoSanguineoID, Grupo, Factor FROM GruposSanguineos WHERE Grupo=@nom and factor=@nomb";
+                SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                comando.Parameters.AddWithValue("@nom", tipoSangre.Grupo);
+                comando.Parameters.AddWithValue("@nomb", tipoSangre.Factor);
+                SqlDataReader reader = comando.ExecuteReader();
+                return reader.HasRows;
+            }
+            else
+            {
+                string cadenaComando = "SELECT GrupoSanguineoID, Grupo, Factor FROM GruposSanguineos WHERE Grupo=@nom and factor=@nomb AND GrupoSanguineoID<>@id";
+                SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                comando.Parameters.AddWithValue("@nom", tipoSangre.Grupo);
+                comando.Parameters.AddWithValue("@nomb", tipoSangre.Factor);
+                comando.Parameters.AddWithValue("@id", tipoSangre.GrupoSanguineoID);
+                SqlDataReader reader = comando.ExecuteReader();
+                return reader.HasRows;
+            }
         }
 
         public TipoSangre GetTipoSangrePorID(int id)
         {
-            throw new NotImplementedException();
+           TipoSangre tipoSangre = null;
+            try
+            {
+                string cadenaComando =
+                    "SELECT GrupoSanguineoID, Grupo, Factor FROM GruposSanguineos WHERE GrupoSanguineoID=@id";
+                SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                comando.Parameters.AddWithValue("@id", id);
+                SqlDataReader reader = comando.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    tipoSangre = ConstruirTipoSangre(reader);
+                }
+                reader.Close();
+                return tipoSangre;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al intentar leer las ciudades");
+            }
         }
 
         public List<TipoSangre> GetTipoSangres()
@@ -68,7 +120,44 @@ namespace BancoSangre.DL.Repositorios
 
         public void guardar(TipoSangre tipoSangre)
         {
-            throw new NotImplementedException();
+            if (tipoSangre.GrupoSanguineoID == 0)
+            {
+                try
+                {
+                    string cadenaComando = "Insert Into GruposSanguineos Values(@Nombre, @nom)";
+                    SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                    comando.Parameters.AddWithValue("@Nombre", tipoSangre.Grupo);
+                    comando.Parameters.AddWithValue("@nom", tipoSangre.Factor);
+                    comando.ExecuteNonQuery();
+                    cadenaComando = "select @@IDENTITY";
+                    comando = new SqlCommand(cadenaComando, _conexion);
+                    tipoSangre.GrupoSanguineoID = (int)(decimal)comando.ExecuteScalar();
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception("ojo llamar al programador (error guardar registro)");
+                }
+
+            }
+            else
+            {
+                try
+                {
+                    string cadenacomando = "UPDATE GruposSanguineos SET Grupo=@grupo, Factor=@factor where GrupoSanguineoID=@ID";
+                    SqlCommand comando = new SqlCommand(cadenacomando, _conexion);
+                    comando.Parameters.AddWithValue("@grupo", tipoSangre.Grupo);
+                    comando.Parameters.AddWithValue("@factor", tipoSangre.Factor);
+                    comando.Parameters.AddWithValue("@ID", tipoSangre.GrupoSanguineoID);
+                    comando.ExecuteNonQuery();
+
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception("ojo llamar al programador (error al modificar registro)");
+                }
+            }
         }
     }
 }

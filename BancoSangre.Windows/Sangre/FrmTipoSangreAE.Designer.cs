@@ -35,7 +35,7 @@ namespace BancoSangre.Windows.Sangre
             this.btnAceptar = new System.Windows.Forms.Button();
             this.txtGrupo = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.textFactor = new System.Windows.Forms.TextBox();
+            this.txtFactor = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -58,6 +58,7 @@ namespace BancoSangre.Windows.Sangre
             this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
@@ -67,6 +68,7 @@ namespace BancoSangre.Windows.Sangre
             this.btnAceptar.TabIndex = 9;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // txtGrupo
             // 
@@ -79,12 +81,12 @@ namespace BancoSangre.Windows.Sangre
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // textFactor
+            // txtFactor
             // 
-            this.textFactor.Location = new System.Drawing.Point(279, 91);
-            this.textFactor.Name = "textFactor";
-            this.textFactor.Size = new System.Drawing.Size(133, 20);
-            this.textFactor.TabIndex = 7;
+            this.txtFactor.Location = new System.Drawing.Point(279, 91);
+            this.txtFactor.Name = "txtFactor";
+            this.txtFactor.Size = new System.Drawing.Size(133, 20);
+            this.txtFactor.TabIndex = 7;
             // 
             // label2
             // 
@@ -114,7 +116,7 @@ namespace BancoSangre.Windows.Sangre
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.textFactor);
+            this.Controls.Add(this.txtFactor);
             this.Controls.Add(this.txtGrupo);
             this.Name = "FrmTipoSangreAE";
             this.Text = "FrmTipoSangreAE";
@@ -133,6 +135,6 @@ namespace BancoSangre.Windows.Sangre
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textFactor;
+        private System.Windows.Forms.TextBox txtFactor;
     }
 }
