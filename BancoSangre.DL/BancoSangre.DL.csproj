@@ -45,6 +45,8 @@
     <Compile Include="ConexionBd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioDocumentos.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioDonacion.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioDonacionAutomatizada.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioGeneros.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioLocalidades.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioPacientes.cs" />
@@ -52,6 +54,8 @@
     <Compile Include="Repositorios\Facades\IRepositorioTipoDonaciones.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioTipoSangre.cs" />
     <Compile Include="Repositorios\RepositorioDocumentos.cs" />
+    <Compile Include="Repositorios\RepositorioDonacion.cs" />
+    <Compile Include="Repositorios\RepositorioDonacionAutomatizada.cs" />
     <Compile Include="Repositorios\RepositorioGeneros.cs" />
     <Compile Include="Repositorios\RepositorioLocalidad.cs" />
     <Compile Include="Repositorios\RepositorioPacientes.cs" />

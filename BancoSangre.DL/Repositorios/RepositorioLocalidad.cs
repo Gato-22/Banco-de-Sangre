@@ -99,9 +99,9 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        public Localidad GetlocalidadPorId(int id)
+        public LocalidadEditDto GetlocalidadPorId(int id)
         {
-            Localidad localidad = null;
+            LocalidadEditDto localidad = null;
             try
             {
                 string cadenaComando =
@@ -123,12 +123,12 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        private Localidad construirLocalidad(SqlDataReader reader)
+        private LocalidadEditDto construirLocalidad(SqlDataReader reader)
                     {
-            Localidad localidad = new Localidad();
+            var localidad = new LocalidadEditDto();
             localidad.LocalidadID = reader.GetInt32(0);
             localidad.NombreLocalidad = reader.GetString(1);
-            localidad.provincia =_repositorioProvincias.GetProvinciaPorID(reader.GetInt32(2));
+            localidad.Provinciaid = reader.GetInt32(2);
             return localidad;
         }
 

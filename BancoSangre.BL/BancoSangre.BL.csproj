@@ -42,7 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\Documento.cs" />
+    <Compile Include="Entidades\Donacion.cs" />
+    <Compile Include="Entidades\DonacionAutomatizada.cs" />
     <Compile Include="Entidades\Donante.cs" />
+    <Compile Include="Entidades\DTO\Localidad\LocalidadEditDto.cs" />
     <Compile Include="Entidades\DTO\Localidad\LocalidadListDto.cs" />
     <Compile Include="Entidades\Genero.cs" />
     <Compile Include="Entidades\Localidad.cs" />

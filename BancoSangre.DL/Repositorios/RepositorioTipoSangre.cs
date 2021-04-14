@@ -79,7 +79,7 @@ namespace BancoSangre.DL.Repositorios
             }
             catch (Exception)
             {
-                throw new Exception("Error al intentar leer las ciudades");
+                throw new Exception("Error al intentar leer los tipos de sangre");
             }
         }
 

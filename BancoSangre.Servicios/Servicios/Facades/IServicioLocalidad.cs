@@ -11,9 +11,9 @@ namespace BancoSangre.Servicios.Servicios.Facades
     public interface IServicioLocalidad
     {
         List<LocalidadListDto> GetLista();
-        void guardar(Localidad localidad);
-        bool existe(Localidad localidad);
+        void guardar(LocalidadEditDto localidadEditDto);
+        bool existe(LocalidadEditDto localidad);
         void Borrar(int id);
-        Localidad getLocalidadPorID(int id);
+        LocalidadEditDto getLocalidadPorID(int id);
     }
 }

@@ -38,12 +38,19 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public bool existe(Localidad localidad)
+        public bool existe(LocalidadEditDto localidadDto)
         {
             try
             {
                 _conexionBd = new ConexionBd();
                 _repositorio = new RepositorioLocalidad(_conexionBd.AbrirConexion());
+                _repositorioprovincias = new RepositorioProvincias(_conexionBd.AbrirConexion());
+                var localidad = new Localidad
+                {
+                    LocalidadID = localidadDto.LocalidadID,
+                    NombreLocalidad = localidadDto.NombreLocalidad,
+                    provincia = _repositorioprovincias.GetProvinciaPorID(localidadDto.Provinciaid)
+                };
                 var existe = _repositorio.existe(localidad);
                 _conexionBd.CerrarConexion();
                 return existe;
@@ -71,7 +78,7 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public Localidad getLocalidadPorID(int id)
+        public LocalidadEditDto getLocalidadPorID(int id)
         {
             try
             {
@@ -89,12 +96,19 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public void guardar(Localidad localidad)
+        public void guardar(LocalidadEditDto localidadDto)
         {
             try
             {
                 _conexionBd = new ConexionBd();
                 _repositorio = new RepositorioLocalidad(_conexionBd.AbrirConexion());
+                _repositorioprovincias = new RepositorioProvincias(_conexionBd.AbrirConexion());
+                var localidad = new Localidad
+                {
+                    LocalidadID = localidadDto.LocalidadID,
+                    NombreLocalidad = localidadDto.NombreLocalidad,
+                    provincia = _repositorioprovincias.GetProvinciaPorID(localidadDto.Provinciaid)
+                };
                 _repositorio.guardar(localidad);
                 _conexionBd.CerrarConexion();
             }

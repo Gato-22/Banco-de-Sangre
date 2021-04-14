@@ -21,6 +21,7 @@ namespace BancoSangre.Windows.Localidades
             InitializeComponent();
         }
         private IServicioLocalidad _servicio;
+        private iServiciosProvincia _servicioProvincia;
         private List<LocalidadListDto> lista;
         
         private void FrmLocalidades_Load(object sender, EventArgs e)
@@ -28,6 +29,7 @@ namespace BancoSangre.Windows.Localidades
             try
             {
                 _servicio = new ServicioLocalidad();
+                _servicioProvincia = new ServicioProvincias();
                 lista = _servicio.GetLista();
                 MostrarDatosEnGrilla();
             }
@@ -82,20 +84,20 @@ namespace BancoSangre.Windows.Localidades
             {
                 try
                 {
-                    Localidad localidad = frm.GetLocalidad();
+                    LocalidadEditDto localidadEditdto = frm.GetLocalidad();
                     
 
-                    if (!_servicio.existe(localidad))
+                    if (!_servicio.existe(localidadEditdto))
                     {
-                        _servicio.guardar(localidad);
-                        LocalidadListDto ciudadDto = new LocalidadListDto
+                        _servicio.guardar(localidadEditdto);
+                        LocalidadListDto localidadListDto = new LocalidadListDto
                         {
-                            LocalidadID = localidad.LocalidadID,
-                            NombreLocalidad = localidad.NombreLocalidad,
-                           NombreProvincia = localidad.provincia.NombreProvincia
+                            LocalidadID = localidadEditdto.LocalidadID,
+                            NombreLocalidad = localidadEditdto.NombreLocalidad,
+                            NombreProvincia = (_servicioProvincia.GetProvinciaPorId(localidadEditdto.Provinciaid)).NombreProvincia,
                         };
                         DataGridViewRow r = ConstruirFila();
-                        SetearFila(r, ciudadDto);
+                        SetearFila(r, localidadListDto);
                         AgregarFila(r);
                         MessageBox.Show("localidad Agrega3", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -155,12 +157,12 @@ namespace BancoSangre.Windows.Localidades
             }
 
             DataGridViewRow r = dgbDatos.SelectedRows[0];
-            LocalidadListDto localidaddto = (LocalidadListDto)r.Tag;
-            LocalidadListDto localidadListDtoAuxiliar = localidaddto.Clone() as LocalidadListDto;
+            LocalidadListDto LocalidadListDto = (LocalidadListDto)r.Tag;
+            LocalidadListDto localidadListDtoAuxiliar = LocalidadListDto.Clone() as LocalidadListDto;
             FrmLocalidadesAE frm = new FrmLocalidadesAE();
-            Localidad localidad = _servicio.getLocalidadPorID(localidaddto.LocalidadID);
+            LocalidadEditDto localidadEditDto = _servicio.getLocalidadPorID(LocalidadListDto.LocalidadID);
             frm.Text = "Editar Localidad";
-            frm.SetLocalidad(localidad);
+            frm.SetLocalidad(localidadEditDto);
             DialogResult dr = frm.ShowDialog(this);
             if (dr == DialogResult.Cancel)
             {
@@ -169,19 +171,18 @@ namespace BancoSangre.Windows.Localidades
 
             try
             {
-                localidad = frm.GetLocalidad();
+            
+                localidadEditDto = frm.GetLocalidad();
                 
 
-                if (!_servicio.existe(localidad))
+                if (!_servicio.existe(localidadEditDto))
                 {
-                    _servicio.guardar(localidad);
-                    localidaddto = new LocalidadListDto
-                    {
-                        LocalidadID = localidad.LocalidadID,
-                        NombreLocalidad = localidad.NombreLocalidad,
-                        NombreProvincia = localidad.provincia.NombreProvincia
-                    };
-                    SetearFila(r, localidaddto);
+                    _servicio.guardar(localidadEditDto);
+                    LocalidadListDto.LocalidadID = localidadEditDto.LocalidadID;
+                    LocalidadListDto.NombreLocalidad = localidadEditDto.NombreLocalidad;
+                    LocalidadListDto.NombreProvincia = (_servicioProvincia.GetProvinciaPorId(localidadEditDto.Provinciaid)).NombreProvincia;
+                    
+                    SetearFila(r, LocalidadListDto);
                     MessageBox.Show("registro modifica3", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }

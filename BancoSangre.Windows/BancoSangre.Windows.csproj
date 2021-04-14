@@ -58,6 +58,30 @@
     <Compile Include="Documentos\FrmDocumentosAE.Designer.cs">
       <DependentUpon>FrmDocumentosAE.cs</DependentUpon>
     </Compile>
+    <Compile Include="Donaciones\FrmDonacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Donaciones\FrmDonacion.Designer.cs">
+      <DependentUpon>FrmDonacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Donaciones\FrmDonacionAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Donaciones\FrmDonacionAE.Designer.cs">
+      <DependentUpon>FrmDonacionAE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Donaciones\FrmDonacionAuto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Donaciones\FrmDonacionAuto.Designer.cs">
+      <DependentUpon>FrmDonacionAuto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Donaciones\FrmDonacionAutoAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Donaciones\FrmDonacionAutoAE.Designer.cs">
+      <DependentUpon>FrmDonacionAutoAE.cs</DependentUpon>
+    </Compile>
     <Compile Include="Donaciones\FrmTipoDonaciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +155,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Documentos\FrmDocumentosAE.resx">
       <DependentUpon>FrmDocumentosAE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Donaciones\FrmDonacion.resx">
+      <DependentUpon>FrmDonacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Donaciones\FrmDonacionAE.resx">
+      <DependentUpon>FrmDonacionAE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Donaciones\FrmDonacionAuto.resx">
+      <DependentUpon>FrmDonacionAuto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Donaciones\FrmDonacionAutoAE.resx">
+      <DependentUpon>FrmDonacionAutoAE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Donaciones\FrmTipoDonaciones.resx">
       <DependentUpon>FrmTipoDonaciones.cs</DependentUpon>

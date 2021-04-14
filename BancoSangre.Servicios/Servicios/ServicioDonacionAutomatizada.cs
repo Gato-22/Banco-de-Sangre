@@ -11,19 +11,17 @@ using System.Threading.Tasks;
 
 namespace BancoSangre.Servicios.Servicios
 {
-    public class ServicioProvincias : iServiciosProvincia
+    public class ServicioDonacionAutomatizada : IServicioDonacionAutomatizada
     {
-        private IRepositorioProvincias _Repositorio;
+        private IRepositorioDonacionAutomatizada _repo;
         private ConexionBd _conexionBd;
-
-        
-        public void Borrar(int id)
+        public void borrar(int id)
         {
             try
             {
                 _conexionBd = new ConexionBd();
-                _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
-                _Repositorio.borrar(id);
+                _repo = new RepositorioDonacionAutomatizada(_conexionBd.AbrirConexion());
+                _repo.borrar(id);
                 _conexionBd.CerrarConexion();
             }
             catch (Exception)
@@ -32,14 +30,13 @@ namespace BancoSangre.Servicios.Servicios
                 throw;
             }
         }
-
-        public bool Existe(Provincia provincia)
+        public bool existe(DonacionAutomatizada donacion)
         {
             try
             {
                 _conexionBd = new ConexionBd();
-                _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
-                var existe = _Repositorio.existe(provincia);
+                _repo = new RepositorioDonacionAutomatizada(_conexionBd.AbrirConexion());
+                var existe = _repo.existe(donacion);
                 _conexionBd.CerrarConexion();
                 return existe;
             }
@@ -48,28 +45,18 @@ namespace BancoSangre.Servicios.Servicios
 
                 throw new Exception(e.Message);
             }
-            
         }
 
-        public Provincia GetProvinciaPorId(int id)
-        {
-            _conexionBd = new ConexionBd();
-            _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
-            var provincia = _Repositorio.GetProvinciaPorID(id);
-            _conexionBd.CerrarConexion();
-            return provincia;
-        }
-
-        public List<Provincia> GetProvincias()
+        public List<DonacionAutomatizada> GetDonacions()
         {
             try
             {
                 _conexionBd = new ConexionBd();
-                _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
-                var lista = _Repositorio.GetProvincias();
+                _repo = new RepositorioDonacionAutomatizada(_conexionBd.AbrirConexion());
+                var lista = _repo.GetDonacions();
                 _conexionBd.CerrarConexion();
                 return lista;
-                
+
             }
             catch (Exception e)
             {
@@ -77,14 +64,19 @@ namespace BancoSangre.Servicios.Servicios
                 throw new Exception(e.Message);
             }
         }
-        
-        public void Guardar(Provincia provincia)
+
+        public DonacionAutomatizada GetTipoDonacionAutoID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void guardar(DonacionAutomatizada dona)
         {
             try
             {
                 _conexionBd = new ConexionBd();
-                _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
-                _Repositorio.Guardar(provincia);
+                _repo = new RepositorioDonacionAutomatizada(_conexionBd.AbrirConexion());
+                _repo.guardar(dona);
                 _conexionBd.CerrarConexion();
             }
             catch (Exception e)

@@ -14,6 +14,6 @@ namespace BancoSangre.DL.Repositorios.Facades
         void guardar(Localidad localidad);
         bool existe(Localidad localidad);
         void borrar(int id);
-        Localidad GetlocalidadPorId(int id);
+        LocalidadEditDto GetlocalidadPorId(int id);
     }
 }

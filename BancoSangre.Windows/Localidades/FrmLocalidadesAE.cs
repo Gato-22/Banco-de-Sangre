@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Localidad;
 using BancoSangre.Servicios.Servicios;
 using BancoSangre.Servicios.Servicios.Facades;
 using System;
@@ -19,7 +20,7 @@ namespace BancoSangre.Windows.Localidades
         {
             InitializeComponent();
         }
-        private Localidad localidad;
+        private LocalidadEditDto localidad;
         
 
         protected override void OnLoad(EventArgs e)
@@ -29,7 +30,7 @@ namespace BancoSangre.Windows.Localidades
             if (localidad != null)
             {
                 txtLocalidad.Text = localidad.NombreLocalidad;
-                comboBoxProvincia.SelectedValue = localidad.provincia.ProvinciaID;
+                comboBoxProvincia.SelectedValue = localidad.Provinciaid;
             }
         }
 
@@ -49,11 +50,11 @@ namespace BancoSangre.Windows.Localidades
             comboBoxProvincia.SelectedIndex = 0;
         }
 
-        public Localidad GetLocalidad()
+        public LocalidadEditDto GetLocalidad()
         {
             return localidad;
         }
-        public void SetLocalidad(Localidad localidad)
+        public void SetLocalidad(LocalidadEditDto localidad)
         {
             this.localidad = localidad;
         }
@@ -75,10 +76,10 @@ namespace BancoSangre.Windows.Localidades
             {
                 if (localidad==null)
                 {
-                    localidad = new Localidad();
+                    localidad = new LocalidadEditDto();
                 }
                 localidad.NombreLocalidad = txtLocalidad.Text;
-                localidad.provincia = (Provincia)comboBoxProvincia.SelectedItem;
+                localidad.Provinciaid = ((Provincia)comboBoxProvincia.SelectedItem).ProvinciaID;
                 DialogResult = DialogResult.OK;
             }
         }

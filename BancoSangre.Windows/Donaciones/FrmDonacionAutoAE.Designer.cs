@@ -1,7 +1,7 @@
 ﻿
-namespace BancoSangre.Windows.Sangre
+namespace BancoSangre.Windows.Donaciones
 {
-    partial class FrmTipoSangreAE
+    partial class FrmDonacionAutoAE
     {
         /// <summary>
         /// Required designer variable.
@@ -30,102 +30,96 @@ namespace BancoSangre.Windows.Sangre
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.txtGrupo = new System.Windows.Forms.TextBox();
+            this.txtIntervalo = new System.Windows.Forms.TextBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtFactor = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(170, 95);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(87, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Intervalo en Dias";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(170, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Descripcion";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(147, 40);
+            this.label1.Location = new System.Drawing.Point(170, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Tipo De Sangre";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Size = new System.Drawing.Size(159, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Tipo de Donacion Automatizada";
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(304, 140);
+            this.btnCancelar.Location = new System.Drawing.Point(327, 144);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 8;
+            this.btnCancelar.TabIndex = 13;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(150, 140);
+            this.btnAceptar.Location = new System.Drawing.Point(173, 144);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 9;
+            this.btnAceptar.TabIndex = 14;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // txtGrupo
+            // txtIntervalo
             // 
-            this.txtGrupo.Location = new System.Drawing.Point(279, 65);
-            this.txtGrupo.Name = "txtGrupo";
-            this.txtGrupo.Size = new System.Drawing.Size(133, 20);
-            this.txtGrupo.TabIndex = 7;
-            this.txtGrupo.TextChanged += new System.EventHandler(this.txtGrupo_TextChanged);
+            this.txtIntervalo.Location = new System.Drawing.Point(302, 95);
+            this.txtIntervalo.Name = "txtIntervalo";
+            this.txtIntervalo.Size = new System.Drawing.Size(133, 20);
+            this.txtIntervalo.TabIndex = 11;
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Location = new System.Drawing.Point(302, 69);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(133, 20);
+            this.txtDescripcion.TabIndex = 12;
             // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // txtFactor
-            // 
-            this.txtFactor.Location = new System.Drawing.Point(279, 91);
-            this.txtFactor.Name = "txtFactor";
-            this.txtFactor.Size = new System.Drawing.Size(133, 20);
-            this.txtFactor.TabIndex = 7;
-            this.txtFactor.TextChanged += new System.EventHandler(this.txtFactor_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(147, 68);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Grupo";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(147, 91);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Factor";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // FrmTipoSangreAE
+            // FrmDonacionAutoAE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 175);
+            this.ClientSize = new System.Drawing.Size(605, 211);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.txtFactor);
-            this.Controls.Add(this.txtGrupo);
-            this.Name = "FrmTipoSangreAE";
-            this.Text = "FrmTipoSangreAE";
-            this.Load += new System.EventHandler(this.FrmTipoSangreAE_Load);
+            this.Controls.Add(this.txtIntervalo);
+            this.Controls.Add(this.txtDescripcion);
+            this.Name = "FrmDonacionAutoAE";
+            this.Text = "FrmDonacionAutoAE";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -134,13 +128,13 @@ namespace BancoSangre.Windows.Sangre
 
         #endregion
 
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.TextBox txtGrupo;
+        private System.Windows.Forms.TextBox txtIntervalo;
+        private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtFactor;
     }
 }

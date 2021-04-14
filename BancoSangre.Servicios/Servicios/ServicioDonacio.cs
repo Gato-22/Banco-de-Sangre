@@ -11,19 +11,17 @@ using System.Threading.Tasks;
 
 namespace BancoSangre.Servicios.Servicios
 {
-    public class ServicioProvincias : iServiciosProvincia
+    public class ServicioDonacio : IServicioDonacion
     {
-        private IRepositorioProvincias _Repositorio;
-        private ConexionBd _conexionBd;
-
-        
-        public void Borrar(int id)
+        IRepositorioDonacion _repo;
+        ConexionBd _conexionBd;
+        public void borrar(int id)
         {
             try
             {
                 _conexionBd = new ConexionBd();
-                _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
-                _Repositorio.borrar(id);
+                _repo = new RepositorioDonacion(_conexionBd.AbrirConexion());
+                _repo.borrar(id);
                 _conexionBd.CerrarConexion();
             }
             catch (Exception)
@@ -33,13 +31,13 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public bool Existe(Provincia provincia)
+        public bool existe(Donacion donacion)
         {
             try
             {
                 _conexionBd = new ConexionBd();
-                _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
-                var existe = _Repositorio.existe(provincia);
+                _repo = new RepositorioDonacion(_conexionBd.AbrirConexion());
+                var existe = _repo.existe(donacion);
                 _conexionBd.CerrarConexion();
                 return existe;
             }
@@ -48,43 +46,38 @@ namespace BancoSangre.Servicios.Servicios
 
                 throw new Exception(e.Message);
             }
-            
         }
 
-        public Provincia GetProvinciaPorId(int id)
-        {
-            _conexionBd = new ConexionBd();
-            _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
-            var provincia = _Repositorio.GetProvinciaPorID(id);
-            _conexionBd.CerrarConexion();
-            return provincia;
-        }
-
-        public List<Provincia> GetProvincias()
+        public List<Donacion> GetDonacion()
         {
             try
             {
                 _conexionBd = new ConexionBd();
-                _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
-                var lista = _Repositorio.GetProvincias();
+                _repo = new RepositorioDonacion(_conexionBd.AbrirConexion());
+                var lista = _repo.GetDonacion();
                 _conexionBd.CerrarConexion();
                 return lista;
-                
+
             }
             catch (Exception e)
             {
 
                 throw new Exception(e.Message);
-            }
+            };
         }
-        
-        public void Guardar(Provincia provincia)
+
+        public Donacion GetDonacionID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void guardar(Donacion donacion)
         {
             try
             {
                 _conexionBd = new ConexionBd();
-                _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
-                _Repositorio.Guardar(provincia);
+                _repo = new RepositorioDonacion(_conexionBd.AbrirConexion());
+                _repo.guardar(donacion);
                 _conexionBd.CerrarConexion();
             }
             catch (Exception e)

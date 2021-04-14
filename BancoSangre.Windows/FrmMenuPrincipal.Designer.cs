@@ -37,6 +37,8 @@ namespace BancoSangre.Windows
             this.btnTipoDonaciones = new System.Windows.Forms.Button();
             this.btnTipoSangre = new System.Windows.Forms.Button();
             this.btnLocalidades = new System.Windows.Forms.Button();
+            this.btnDonacionAuto = new System.Windows.Forms.Button();
+            this.btnDonacion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProvincia
@@ -118,6 +120,26 @@ namespace BancoSangre.Windows
             this.btnLocalidades.UseVisualStyleBackColor = true;
             this.btnLocalidades.Click += new System.EventHandler(this.btnLocalidades_Click);
             // 
+            // btnDonacionAuto
+            // 
+            this.btnDonacionAuto.Location = new System.Drawing.Point(318, 169);
+            this.btnDonacionAuto.Name = "btnDonacionAuto";
+            this.btnDonacionAuto.Size = new System.Drawing.Size(254, 62);
+            this.btnDonacionAuto.TabIndex = 0;
+            this.btnDonacionAuto.Text = "Tipo De Donaciones Automatizadas";
+            this.btnDonacionAuto.UseVisualStyleBackColor = true;
+            this.btnDonacionAuto.Click += new System.EventHandler(this.btnDonacionAuto_Click);
+            // 
+            // btnDonacion
+            // 
+            this.btnDonacion.Location = new System.Drawing.Point(114, 169);
+            this.btnDonacion.Name = "btnDonacion";
+            this.btnDonacion.Size = new System.Drawing.Size(96, 62);
+            this.btnDonacion.TabIndex = 3;
+            this.btnDonacion.Text = "Donaciones";
+            this.btnDonacion.UseVisualStyleBackColor = true;
+            this.btnDonacion.Click += new System.EventHandler(this.btnDonacion_Click);
+            // 
             // FrmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -125,10 +147,12 @@ namespace BancoSangre.Windows
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnTipoSangre);
             this.Controls.Add(this.btnTipoDonaciones);
+            this.Controls.Add(this.btnDonacion);
             this.Controls.Add(this.btnDocumentos);
             this.Controls.Add(this.btnGeneros);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCerrarTodo);
+            this.Controls.Add(this.btnDonacionAuto);
             this.Controls.Add(this.btnLocalidades);
             this.Controls.Add(this.btnProvincia);
             this.Name = "FrmMenuPrincipal";
@@ -148,6 +172,8 @@ namespace BancoSangre.Windows
         private System.Windows.Forms.Button btnTipoDonaciones;
         private System.Windows.Forms.Button btnTipoSangre;
         private System.Windows.Forms.Button btnLocalidades;
+        private System.Windows.Forms.Button btnDonacionAuto;
+        private System.Windows.Forms.Button btnDonacion;
     }
 }
 
