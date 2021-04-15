@@ -1,7 +1,9 @@
 ﻿using BancoSangre.BL.Entidades;
 using BancoSangre.BL.Entidades.DTO.Localidad;
+using BancoSangre.BL.Entidades.DTO.Provincia;
 using BancoSangre.Servicios.Servicios;
 using BancoSangre.Servicios.Servicios.Facades;
+using BancoSangre.Windows.Ahelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,29 +28,15 @@ namespace BancoSangre.Windows.Localidades
         protected override void OnLoad(EventArgs e)
         {
             base.OnActivated(e);
-            CargarDatosComboProvincias();
+            Helper.CargarDatosComboProvincias(ref comboBoxProvincia);
             if (localidad != null)
             {
                 txtLocalidad.Text = localidad.NombreLocalidad;
-                comboBoxProvincia.SelectedValue = localidad.Provinciaid;
+                comboBoxProvincia.SelectedValue = localidad.ProvinciaID.NombreProvincia;
             }
         }
 
-        private void CargarDatosComboProvincias()
-        {
-            iServiciosProvincia _sericioprovincia = new ServicioProvincias();
-            var lista = _sericioprovincia.GetProvincias();
-            var defaultprovincia = new Provincia
-            {
-                ProvinciaID = 0,
-                NombreProvincia = "Seleccione una provincia"
-            };
-            lista.Insert(0, defaultprovincia);
-            comboBoxProvincia.DataSource = lista;
-            comboBoxProvincia.ValueMember = "ProvinciaId";
-            comboBoxProvincia.DisplayMember = "NombreProvincia";
-            comboBoxProvincia.SelectedIndex = 0;
-        }
+        
 
         public LocalidadEditDto GetLocalidad()
         {
@@ -79,7 +67,7 @@ namespace BancoSangre.Windows.Localidades
                     localidad = new LocalidadEditDto();
                 }
                 localidad.NombreLocalidad = txtLocalidad.Text;
-                localidad.Provinciaid = ((Provincia)comboBoxProvincia.SelectedItem).ProvinciaID;
+                localidad.ProvinciaID = (ProvinciaListDto)comboBoxProvincia.SelectedItem;
                 DialogResult = DialogResult.OK;
             }
         }

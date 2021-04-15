@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Provincia;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace BancoSangre.DL.Repositorios.Facades
 {
     public interface IRepositorioProvincias
     {
-        List<Provincia> GetProvincias();
-        Provincia GetProvinciaPorID(int id);
+        List<ProvinciaListDto> GetProvincias();
+        ProvinciaEditDto GetProvinciaPorID(int id);
         void Guardar(Provincia provincia);
         void borrar(int id);
         bool existe(Provincia provincia);

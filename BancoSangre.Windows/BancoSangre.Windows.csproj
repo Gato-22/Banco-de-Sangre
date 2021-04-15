@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ahelper\Helper.cs" />
     <Compile Include="Documentos\FrmDocumentos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +83,12 @@
     <Compile Include="Donaciones\FrmDonacionAutoAE.Designer.cs">
       <DependentUpon>FrmDonacionAutoAE.cs</DependentUpon>
     </Compile>
+    <Compile Include="Donaciones\FrmDonante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Donaciones\FrmDonante.Designer.cs">
+      <DependentUpon>FrmDonante.cs</DependentUpon>
+    </Compile>
     <Compile Include="Donaciones\FrmTipoDonaciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +119,18 @@
     <Compile Include="Generos\FrmGenerosAE.Designer.cs">
       <DependentUpon>FrmGenerosAE.cs</DependentUpon>
     </Compile>
+    <Compile Include="Instituciones\FrmInstitucion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instituciones\FrmInstitucion.Designer.cs">
+      <DependentUpon>FrmInstitucion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Localidades\FrmBuscarLocalidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Localidades\FrmBuscarLocalidad.Designer.cs">
+      <DependentUpon>FrmBuscarLocalidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Localidades\FrmLocalidades.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +142,12 @@
     </Compile>
     <Compile Include="Localidades\FrmLocalidadesAE.Designer.cs">
       <DependentUpon>FrmLocalidadesAE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pacientes\FrmPaciente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pacientes\FrmPaciente.Designer.cs">
+      <DependentUpon>FrmPaciente.cs</DependentUpon>
     </Compile>
     <Compile Include="Provincias\FrmProvincias.cs">
       <SubType>Form</SubType>
@@ -168,6 +193,9 @@
     <EmbeddedResource Include="Donaciones\FrmDonacionAutoAE.resx">
       <DependentUpon>FrmDonacionAutoAE.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Donaciones\FrmDonante.resx">
+      <DependentUpon>FrmDonante.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Donaciones\FrmTipoDonaciones.resx">
       <DependentUpon>FrmTipoDonaciones.cs</DependentUpon>
     </EmbeddedResource>
@@ -183,11 +211,20 @@
     <EmbeddedResource Include="Generos\FrmGenerosAE.resx">
       <DependentUpon>FrmGenerosAE.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Instituciones\FrmInstitucion.resx">
+      <DependentUpon>FrmInstitucion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localidades\FrmBuscarLocalidad.resx">
+      <DependentUpon>FrmBuscarLocalidad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Localidades\FrmLocalidades.resx">
       <DependentUpon>FrmLocalidades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Localidades\FrmLocalidadesAE.resx">
       <DependentUpon>FrmLocalidadesAE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pacientes\FrmPaciente.resx">
+      <DependentUpon>FrmPaciente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Provincias\FrmProvincias.resx">
       <DependentUpon>FrmProvincias.cs</DependentUpon>
@@ -233,5 +270,6 @@
       <Name>BancoSangre.Servicios</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

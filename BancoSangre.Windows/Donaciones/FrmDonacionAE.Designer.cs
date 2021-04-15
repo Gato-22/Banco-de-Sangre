@@ -44,12 +44,14 @@ namespace BancoSangre.Windows.Donaciones
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(164, 69);
+            this.label3.Location = new System.Drawing.Point(90, 69);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 13);
             this.label3.TabIndex = 22;
@@ -58,7 +60,7 @@ namespace BancoSangre.Windows.Donaciones
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(164, 46);
+            this.label2.Location = new System.Drawing.Point(90, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 13);
             this.label2.TabIndex = 23;
@@ -67,7 +69,7 @@ namespace BancoSangre.Windows.Donaciones
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(164, 18);
+            this.label1.Location = new System.Drawing.Point(90, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 24;
@@ -75,7 +77,7 @@ namespace BancoSangre.Windows.Donaciones
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(321, 206);
+            this.btnCancelar.Location = new System.Drawing.Point(247, 206);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(84, 43);
             this.btnCancelar.TabIndex = 20;
@@ -85,7 +87,7 @@ namespace BancoSangre.Windows.Donaciones
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(167, 206);
+            this.btnAceptar.Location = new System.Drawing.Point(93, 206);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(84, 43);
             this.btnAceptar.TabIndex = 21;
@@ -95,21 +97,21 @@ namespace BancoSangre.Windows.Donaciones
             // 
             // txtident
             // 
-            this.txtident.Location = new System.Drawing.Point(296, 69);
+            this.txtident.Location = new System.Drawing.Point(222, 69);
             this.txtident.Name = "txtident";
             this.txtident.Size = new System.Drawing.Size(133, 20);
             this.txtident.TabIndex = 18;
             // 
             // txtfechadon
             // 
-            this.txtfechadon.Location = new System.Drawing.Point(296, 43);
+            this.txtfechadon.Location = new System.Drawing.Point(222, 43);
             this.txtfechadon.Name = "txtfechadon";
             this.txtfechadon.Size = new System.Drawing.Size(133, 20);
             this.txtfechadon.TabIndex = 19;
             // 
             // txtfechaingr
             // 
-            this.txtfechaingr.Location = new System.Drawing.Point(296, 95);
+            this.txtfechaingr.Location = new System.Drawing.Point(222, 95);
             this.txtfechaingr.Name = "txtfechaingr";
             this.txtfechaingr.Size = new System.Drawing.Size(133, 20);
             this.txtfechaingr.TabIndex = 18;
@@ -117,7 +119,7 @@ namespace BancoSangre.Windows.Donaciones
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(164, 95);
+            this.label4.Location = new System.Drawing.Point(90, 95);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(90, 13);
             this.label4.TabIndex = 22;
@@ -125,7 +127,7 @@ namespace BancoSangre.Windows.Donaciones
             // 
             // txtvenc
             // 
-            this.txtvenc.Location = new System.Drawing.Point(296, 121);
+            this.txtvenc.Location = new System.Drawing.Point(222, 121);
             this.txtvenc.Name = "txtvenc";
             this.txtvenc.Size = new System.Drawing.Size(133, 20);
             this.txtvenc.TabIndex = 18;
@@ -133,7 +135,7 @@ namespace BancoSangre.Windows.Donaciones
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(164, 121);
+            this.label5.Location = new System.Drawing.Point(90, 121);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 13);
             this.label5.TabIndex = 22;
@@ -141,7 +143,7 @@ namespace BancoSangre.Windows.Donaciones
             // 
             // txtcaNT
             // 
-            this.txtcaNT.Location = new System.Drawing.Point(296, 147);
+            this.txtcaNT.Location = new System.Drawing.Point(222, 147);
             this.txtcaNT.Name = "txtcaNT";
             this.txtcaNT.Size = new System.Drawing.Size(133, 20);
             this.txtcaNT.TabIndex = 18;
@@ -149,7 +151,7 @@ namespace BancoSangre.Windows.Donaciones
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(164, 147);
+            this.label6.Location = new System.Drawing.Point(90, 147);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 13);
             this.label6.TabIndex = 22;
@@ -158,7 +160,7 @@ namespace BancoSangre.Windows.Donaciones
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(435, 124);
+            this.label7.Location = new System.Drawing.Point(361, 124);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(93, 13);
             this.label7.TabIndex = 22;
@@ -167,11 +169,29 @@ namespace BancoSangre.Windows.Donaciones
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(435, 76);
+            this.label8.Location = new System.Drawing.Point(361, 76);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(103, 13);
             this.label8.TabIndex = 22;
             this.label8.Text = "10 Letras o numeros";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(361, 18);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(38, 13);
+            this.label9.TabIndex = 22;
+            this.label9.Text = "Notas:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(361, 46);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(200, 13);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Formato de hora \"12/12/2012 00:00:00\"";
             // 
             // FrmDonacionAE
             // 
@@ -182,6 +202,8 @@ namespace BancoSangre.Windows.Donaciones
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -217,5 +239,7 @@ namespace BancoSangre.Windows.Donaciones
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }

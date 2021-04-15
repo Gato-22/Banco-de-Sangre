@@ -1,5 +1,6 @@
 ﻿using BancoSangre.BL.Entidades;
 using BancoSangre.BL.Entidades.DTO.Localidad;
+using BancoSangre.BL.Entidades.DTO.Provincia;
 using BancoSangre.Servicios.Servicios;
 using BancoSangre.Servicios.Servicios.Facades;
 using System;
@@ -21,16 +22,20 @@ namespace BancoSangre.Windows.Localidades
             InitializeComponent();
         }
         private IServicioLocalidad _servicio;
-        private iServiciosProvincia _servicioProvincia;
+
         private List<LocalidadListDto> lista;
         
         private void FrmLocalidades_Load(object sender, EventArgs e)
         {
+            _servicio = new ServicioLocalidad();
+            ActualizarGrilla();
+        }
+
+        private void ActualizarGrilla()
+        {
             try
             {
-                _servicio = new ServicioLocalidad();
-                _servicioProvincia = new ServicioProvincias();
-                lista = _servicio.GetLista();
+                lista = _servicio.GetLista(null);
                 MostrarDatosEnGrilla();
             }
             catch (Exception ex)
@@ -90,12 +95,12 @@ namespace BancoSangre.Windows.Localidades
                     if (!_servicio.existe(localidadEditdto))
                     {
                         _servicio.guardar(localidadEditdto);
-                        LocalidadListDto localidadListDto = new LocalidadListDto
-                        {
-                            LocalidadID = localidadEditdto.LocalidadID,
-                            NombreLocalidad = localidadEditdto.NombreLocalidad,
-                            NombreProvincia = (_servicioProvincia.GetProvinciaPorId(localidadEditdto.Provinciaid)).NombreProvincia,
-                        };
+                        LocalidadListDto localidadListDto = new LocalidadListDto();
+                        localidadListDto.LocalidadID = localidadEditdto.LocalidadID;
+                        localidadListDto.NombreLocalidad = localidadEditdto.NombreLocalidad;
+                        localidadListDto.NombreProvincia = localidadEditdto.ProvinciaID.NombreProvincia;
+
+
                         DataGridViewRow r = ConstruirFila();
                         SetearFila(r, localidadListDto);
                         AgregarFila(r);
@@ -180,8 +185,9 @@ namespace BancoSangre.Windows.Localidades
                     _servicio.guardar(localidadEditDto);
                     LocalidadListDto.LocalidadID = localidadEditDto.LocalidadID;
                     LocalidadListDto.NombreLocalidad = localidadEditDto.NombreLocalidad;
-                    LocalidadListDto.NombreProvincia = (_servicioProvincia.GetProvinciaPorId(localidadEditDto.Provinciaid)).NombreProvincia;
-                    
+                    LocalidadListDto.NombreProvincia = localidadEditDto.ProvinciaID.NombreProvincia;
+
+
                     SetearFila(r, LocalidadListDto);
                     MessageBox.Show("registro modifica3", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -199,6 +205,34 @@ namespace BancoSangre.Windows.Localidades
 
                 MessageBox.Show(exception.Message, "Errorr, contate al programador nuevamente", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            FrmBuscarLocalidad frm = new FrmBuscarLocalidad();
+            frm.Text = "Seleccionar Provincia";
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr==DialogResult.Cancel)
+            {
+                return;
+            }
+            
+            try
+            {
+                ProvinciaListDto providto = frm.GetProvincia();
+                lista = _servicio.GetLista(providto);
+                MostrarDatosEnGrilla();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            ActualizarGrilla();
         }
     }
 }

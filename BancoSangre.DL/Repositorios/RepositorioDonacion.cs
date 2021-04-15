@@ -40,7 +40,7 @@ namespace BancoSangre.DL.Repositorios
         {
             if (donacion.DonacionId == 0)
             {
-                string cadenaComando = "SELECT DonacionId, FechaDonacion,Identificacion,FechaIngreso,Vencimiento,Cantidad FROM Donaciones WHERE FechaDonacion=@nom and Identificacion=@N and FechaIngreso=@NO and"+
+                string cadenaComando = "SELECT DonacionId, FechaDonacion,Identificacion,FechaIngreso,Vencimiento,Cantidad FROM Donaciones WHERE FechaDonacion=@nom and Identificacion=@N and FechaIngreso=@NO and "+
                     "Vencimiento=@nomb and Cantidad=@Nombr";
                 SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
                 comando.Parameters.AddWithValue("@N", donacion.Identificacion);
@@ -53,7 +53,7 @@ namespace BancoSangre.DL.Repositorios
             }
             else
             {
-                string cadenaComando = "SELECT DonacionId, FechaDonacion,Identificacion,FechaIngreso,Vencimiento,Cantidad FROM Donaciones WHERE FechaDonacion=@nom and Identificacion=@N and FechaIngreso=@NO and" +
+                string cadenaComando = "SELECT DonacionId, FechaDonacion,Identificacion,FechaIngreso,Vencimiento,Cantidad FROM Donaciones WHERE FechaDonacion=@nom and Identificacion=@N and FechaIngreso=@NO and " +
                     "Vencimiento=@nomb and Cantidad=@Nombr AND DonacionId<>@id";
                 SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
                 comando.Parameters.AddWithValue("@N", donacion.Identificacion);
@@ -137,8 +137,8 @@ namespace BancoSangre.DL.Repositorios
                 {
                     string cadenaComando = "Insert Into Donaciones Values(@n, @no, @nom, @nomb, @Nombr)";
                     SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
-                    comando.Parameters.AddWithValue("@N", donacion.Identificacion);
-                    comando.Parameters.AddWithValue("@NO", donacion.FechaIngreso);
+                    comando.Parameters.AddWithValue("@n", donacion.FechaIngreso);
+                    comando.Parameters.AddWithValue("@no", donacion.Identificacion);
                     comando.Parameters.AddWithValue("@nom", donacion.FechaDonacion);
                     comando.Parameters.AddWithValue("@nomb", donacion.vencimiento);
                     comando.Parameters.AddWithValue("@Nombr", donacion.Cantidad);
@@ -146,6 +146,7 @@ namespace BancoSangre.DL.Repositorios
                     cadenaComando = "select @@IDENTITY";
                     comando = new SqlCommand(cadenaComando, _conexion);
                     donacion.DonacionId = (int)(decimal)comando.ExecuteScalar();
+
                 }
                 catch (Exception)
                 {
@@ -164,7 +165,8 @@ namespace BancoSangre.DL.Repositorios
                     comando.Parameters.AddWithValue("@Identificacion", donacion.Identificacion);               
                     comando.Parameters.AddWithValue("@FechaIngreso", donacion.FechaIngreso);
                     comando.Parameters.AddWithValue("@Vencimiento", donacion.vencimiento);
-                    comando.Parameters.AddWithValue("@FechaDonacion", donacion.Cantidad);
+                    comando.Parameters.AddWithValue("@Cantidad", donacion.Cantidad);
+
                     comando.Parameters.AddWithValue("@ID", donacion.DonacionId);
                     comando.ExecuteNonQuery();
 

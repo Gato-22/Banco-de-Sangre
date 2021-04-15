@@ -1,7 +1,9 @@
 ﻿using BancoSangre.Windows.Documentos;
 
 using BancoSangre.Windows.Donaciones;
+using BancoSangre.Windows.Instituciones;
 using BancoSangre.Windows.Localidades;
+using BancoSangre.Windows.Pacientes;
 using BancoSangre.Windows.Sangre;
 using System;
 using System.Collections.Generic;
@@ -73,6 +75,24 @@ namespace BancoSangre.Windows
         private void btnDonacion_Click(object sender, EventArgs e)
         {
             FrmDonacion frm = new FrmDonacion();
+            frm.ShowDialog(this);
+        }
+
+        private void btnDonantes_Click(object sender, EventArgs e)
+        {
+            FrmDonante frm = new FrmDonante();
+            frm.ShowDialog(this);
+        }
+
+        private void btnInstituciones_Click(object sender, EventArgs e)
+        {
+            FrmInstitucion frm = new FrmInstitucion();
+            frm.ShowDialog(this);
+        }
+
+        private void btnPaciente_Click(object sender, EventArgs e)
+        {
+            FrmPaciente frm = new FrmPaciente();
             frm.ShowDialog(this);
         }
     }

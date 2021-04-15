@@ -1,5 +1,6 @@
 ﻿using BancoSangre.BL.Entidades;
 using BancoSangre.BL.Entidades.DTO.Localidad;
+using BancoSangre.BL.Entidades.DTO.Provincia;
 using BancoSangre.DL;
 using BancoSangre.DL.Repositorios;
 using BancoSangre.DL.Repositorios.Facades;
@@ -37,19 +38,23 @@ namespace BancoSangre.Servicios.Servicios
                 throw new Exception(e.Message);
             }
         }
-
+        
         public bool existe(LocalidadEditDto localidadDto)
         {
             try
             {
                 _conexionBd = new ConexionBd();
                 _repositorio = new RepositorioLocalidad(_conexionBd.AbrirConexion());
-                _repositorioprovincias = new RepositorioProvincias(_conexionBd.AbrirConexion());
-                var localidad = new Localidad
+                //_repositorioprovincias = new RepositorioProvincias(_conexionBd.AbrirConexion());
+                Localidad localidad = new Localidad
                 {
                     LocalidadID = localidadDto.LocalidadID,
                     NombreLocalidad = localidadDto.NombreLocalidad,
-                    provincia = _repositorioprovincias.GetProvinciaPorID(localidadDto.Provinciaid)
+                    provincia = new Provincia
+                    {
+                        ProvinciaID= localidadDto.ProvinciaID.Provinciaid,
+                        NombreProvincia= localidadDto.ProvinciaID.NombreProvincia
+                    }
                 };
                 var existe = _repositorio.existe(localidad);
                 _conexionBd.CerrarConexion();
@@ -61,13 +66,13 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public List<LocalidadListDto> GetLista()
+        public List<LocalidadListDto> GetLista(ProvinciaListDto provinciaDto)
         {
             try
             {
                 _conexionBd = new ConexionBd();
                 _repositorio = new RepositorioLocalidad(_conexionBd.AbrirConexion());
-                var lista = _repositorio.GetLista();
+                var lista = _repositorio.GetLista(provinciaDto);
                 _conexionBd.CerrarConexion();
                 return lista;
             }
@@ -102,12 +107,16 @@ namespace BancoSangre.Servicios.Servicios
             {
                 _conexionBd = new ConexionBd();
                 _repositorio = new RepositorioLocalidad(_conexionBd.AbrirConexion());
-                _repositorioprovincias = new RepositorioProvincias(_conexionBd.AbrirConexion());
+                
                 var localidad = new Localidad
                 {
                     LocalidadID = localidadDto.LocalidadID,
                     NombreLocalidad = localidadDto.NombreLocalidad,
-                    provincia = _repositorioprovincias.GetProvinciaPorID(localidadDto.Provinciaid)
+                    provincia=new Provincia
+                    {
+                        ProvinciaID = localidadDto.ProvinciaID.Provinciaid,
+                        NombreProvincia = localidadDto.ProvinciaID.NombreProvincia
+                    }
                 };
                 _repositorio.guardar(localidad);
                 _conexionBd.CerrarConexion();

@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Provincia;
 using BancoSangre.DL.Repositorios.Facades;
 using System;
 using System.Collections.Generic;
@@ -57,9 +58,9 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        public Provincia GetProvinciaPorID(int id)
+        public ProvinciaEditDto GetProvinciaPorID(int id)
         {
-            Provincia provincia = null;
+            ProvinciaEditDto provincia = null;
             try
             {
                 string cadenaComando =
@@ -70,7 +71,7 @@ namespace BancoSangre.DL.Repositorios
                 if (reader.HasRows)
                 {
                     reader.Read();
-                    provincia = ConstruirProvincia(reader);
+                    provincia = ConstruirProvinciaEditDto(reader);
                 }
                 reader.Close();
                 return provincia;
@@ -81,9 +82,18 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        public List<Provincia> GetProvincias()
+        private ProvinciaEditDto ConstruirProvinciaEditDto(SqlDataReader reader)
         {
-            List<Provincia> lista = new List<Provincia>();
+            return new ProvinciaEditDto
+            {
+                ProvinciaId = reader.GetInt32(0),
+                NombreProvincia = reader.GetString(1)
+            };
+        }
+
+        public List<ProvinciaListDto> GetProvincias()
+        {
+            List<ProvinciaListDto> lista = new List<ProvinciaListDto>();
             try
             {
                 string cadenaComando= "select provinciaId, NombreProvincia from Provincias";
@@ -91,7 +101,7 @@ namespace BancoSangre.DL.Repositorios
                 SqlDataReader reader = comando.ExecuteReader();
                 while (reader.Read())
                 {
-                    Provincia provincia = ConstruirProvincia(reader);
+                    ProvinciaListDto provincia = ConstruirProvinciaListDto(reader);
                     lista.Add(provincia);
 
                 }
@@ -106,16 +116,15 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        private Provincia ConstruirProvincia(SqlDataReader reader)
+        private ProvinciaListDto ConstruirProvinciaListDto(SqlDataReader reader)
         {
-            return new Provincia
+            return new ProvinciaListDto
             {
-                ProvinciaID = reader.GetInt32(0),
+                Provinciaid = reader.GetInt32(0),
                 NombreProvincia = reader.GetString(1)
             };
-        }    
+        }
 
-        
         public void Guardar(Provincia provincia)
         {
             if (provincia.ProvinciaID==0)

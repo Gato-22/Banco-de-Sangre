@@ -110,6 +110,7 @@ namespace BancoSangre.Windows.Localidades
             this.btnBuscar.Size = new System.Drawing.Size(46, 35);
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnActualizar
             // 
@@ -119,6 +120,7 @@ namespace BancoSangre.Windows.Localidades
             this.btnActualizar.Size = new System.Drawing.Size(63, 35);
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // toolStripSeparator2
             // 

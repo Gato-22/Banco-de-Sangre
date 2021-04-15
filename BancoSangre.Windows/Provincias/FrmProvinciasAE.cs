@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Provincia;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,14 +18,14 @@ namespace BancoSangre.Windows.Provincias
         {
             InitializeComponent();
         }
-        private Provincia provincia;
-        public void SetProvincia(Provincia provincia)
+        private ProvinciaEditDto provincia;
+        public void SetProvincia(ProvinciaEditDto provincia)
         {
             this.provincia = provincia;
         }
        
 
-        public Provincia GetProvincia()
+        public ProvinciaEditDto GetProvincia()
         {
             return provincia;
         }
@@ -49,7 +50,7 @@ namespace BancoSangre.Windows.Provincias
             {
                 if (provincia == null)
                 {
-                    provincia = new Provincia();
+                    provincia = new ProvinciaEditDto();
                 }
 
                 provincia.NombreProvincia = txtProvincias.Text;

@@ -47,7 +47,9 @@
     <Compile Include="Repositorios\Facades\IRepositorioDocumentos.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioDonacion.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioDonacionAutomatizada.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioDonante.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioGeneros.cs" />
+    <Compile Include="Repositorios\Facades\IRepositorioInstituciones.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioLocalidades.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioPacientes.cs" />
     <Compile Include="Repositorios\Facades\IRepositorioProvincias.cs" />
@@ -56,7 +58,9 @@
     <Compile Include="Repositorios\RepositorioDocumentos.cs" />
     <Compile Include="Repositorios\RepositorioDonacion.cs" />
     <Compile Include="Repositorios\RepositorioDonacionAutomatizada.cs" />
+    <Compile Include="Repositorios\RepositorioDonante.cs" />
     <Compile Include="Repositorios\RepositorioGeneros.cs" />
+    <Compile Include="Repositorios\RepositorioInstituciones.cs" />
     <Compile Include="Repositorios\RepositorioLocalidad.cs" />
     <Compile Include="Repositorios\RepositorioPacientes.cs" />
     <Compile Include="Repositorios\RepositorioProvincias.cs" />

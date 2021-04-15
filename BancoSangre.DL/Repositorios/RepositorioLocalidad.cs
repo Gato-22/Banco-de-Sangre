@@ -1,5 +1,6 @@
 ﻿using BancoSangre.BL.Entidades;
 using BancoSangre.BL.Entidades.DTO.Localidad;
+using BancoSangre.BL.Entidades.DTO.Provincia;
 using BancoSangre.DL.Repositorios.Facades;
 using System;
 using System.Collections.Generic;
@@ -76,14 +77,28 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        public List<LocalidadListDto> GetLista()
+        public List<LocalidadListDto> GetLista(ProvinciaListDto provinciaDto)
         {
             List<LocalidadListDto> lista = new List<LocalidadListDto>();
             try
-            {   
-                string cadenacomando = "SELECT LocalidadID, NombreLocalidad, nombreProvincia From Localidades inner join Provincias ON Localidades.ProvinciaID=Provincias.ProvinciaID";
-                SqlCommand comando = new SqlCommand(cadenacomando, _sqlConnection);
-                SqlDataReader reader = comando.ExecuteReader();
+            {
+                string cadenacomando;
+                SqlCommand comando;
+                SqlDataReader reader;
+                if (provinciaDto==null)
+                {
+                    cadenacomando = "SELECT LocalidadID, NombreLocalidad, nombreProvincia From Localidades inner join Provincias ON Localidades.ProvinciaID=Provincias.ProvinciaID";
+                    comando = new SqlCommand(cadenacomando, _sqlConnection);
+                    reader = comando.ExecuteReader(); 
+                }
+                else
+                {
+                    cadenacomando = "SELECT LocalidadID, NombreLocalidad, nombreProvincia From Localidades inner join Provincias ON Localidades.ProvinciaID=Provincias.ProvinciaID where Localidades.ProvinciaID=@ProvinciaID";
+
+                    comando = new SqlCommand(cadenacomando, _sqlConnection);
+                    comando.Parameters.AddWithValue("@provinciaID", provinciaDto.Provinciaid);
+                    reader = comando.ExecuteReader();
+                }
                 while (reader.Read())
                 {
                     var localidadDto = ConstruirLocalidadDto(reader);
@@ -128,7 +143,12 @@ namespace BancoSangre.DL.Repositorios
             var localidad = new LocalidadEditDto();
             localidad.LocalidadID = reader.GetInt32(0);
             localidad.NombreLocalidad = reader.GetString(1);
-            localidad.Provinciaid = reader.GetInt32(2);
+            var provinciaEditDto = _repositorioProvincias.GetProvinciaPorID(reader.GetInt32(2));
+            localidad.ProvinciaID = new ProvinciaListDto
+            {
+                Provinciaid = provinciaEditDto.ProvinciaId,
+                NombreProvincia = provinciaEditDto.NombreProvincia
+            };
             return localidad;
         }
 

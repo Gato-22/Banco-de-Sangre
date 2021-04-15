@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Provincia;
 using BancoSangre.DL;
 using BancoSangre.DL.Repositorios;
 using BancoSangre.DL.Repositorios.Facades;
@@ -33,12 +34,17 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public bool Existe(Provincia provincia)
+        public bool Existe(ProvinciaEditDto provinciaDto)
         {
             try
             {
                 _conexionBd = new ConexionBd();
                 _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
+                var provincia = new Provincia
+                {
+                    ProvinciaID = provinciaDto.ProvinciaId,
+                    NombreProvincia = provinciaDto.NombreProvincia
+                };
                 var existe = _Repositorio.existe(provincia);
                 _conexionBd.CerrarConexion();
                 return existe;
@@ -51,7 +57,7 @@ namespace BancoSangre.Servicios.Servicios
             
         }
 
-        public Provincia GetProvinciaPorId(int id)
+        public ProvinciaEditDto GetProvinciaPorId(int id)
         {
             _conexionBd = new ConexionBd();
             _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
@@ -60,7 +66,7 @@ namespace BancoSangre.Servicios.Servicios
             return provincia;
         }
 
-        public List<Provincia> GetProvincias()
+        public List<ProvinciaListDto> GetProvincias()
         {
             try
             {
@@ -78,12 +84,17 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
         
-        public void Guardar(Provincia provincia)
+        public void Guardar(ProvinciaEditDto provinciaDto)
         {
             try
             {
                 _conexionBd = new ConexionBd();
                 _Repositorio = new RepositorioProvincias(_conexionBd.AbrirConexion());
+                var provincia = new Provincia
+                {
+                    ProvinciaID = provinciaDto.ProvinciaId,
+                    NombreProvincia=provinciaDto.NombreProvincia
+                };
                 _Repositorio.Guardar(provincia);
                 _conexionBd.CerrarConexion();
             }

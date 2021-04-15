@@ -100,5 +100,75 @@ namespace BancoSangre.Windows.Donaciones
                 }
             }
         }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            FrmDonacionAE frm = new FrmDonacionAE();
+            frm.Text = "Agregar una nueva Donacion";
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.OK)
+            {
+                try
+                {
+                    Donacion donacion = frm.GetTipoDonacion();
+                    if (!_servi.existe(donacion))
+                    {
+                        _servi.guardar(donacion);
+                        DataGridViewRow r = construirfila();
+                        setearfila(r, donacion);
+                        agregarfila(r);
+                        MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Registro ya existente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception exception)
+                {
+
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (dgbDatos.SelectedRows.Count > 0)
+            {
+                DataGridViewRow r = dgbDatos.SelectedRows[0];
+                Donacion donacion = (Donacion)r.Tag;
+                Donacion SanAux = (Donacion)donacion.Clone();
+                FrmDonacionAE frm = new FrmDonacionAE();
+                frm.Text = "editar Donacion Automatizada";
+                frm.SetDonacion(donacion);
+                DialogResult dr = frm.ShowDialog(this);
+                if (dr == DialogResult.OK)
+                {
+                    try
+                    {
+                        donacion = frm.GetTipoDonacion();
+                        if (!_servi.existe(donacion))
+                        {
+                            _servi.guardar(donacion);
+                            setearfila(r, donacion);
+                            MessageBox.Show("registro Modifica3", "mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                        else
+                        {
+                            setearfila(r, SanAux);
+                            MessageBox.Show("registro ya existente", "mensajee", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        setearfila(r, SanAux);
+                        MessageBox.Show(ex.Message, "error llamar al programador", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace BancoSangre.Windows.Donaciones
             InitializeComponent();
         }
         private DonacionAutomatizada donacion;
-        public void SetTipoSangre(DonacionAutomatizada donacion)
+        public void SetTipoDonacionAuto(DonacionAutomatizada donacion)
         {
             this.donacion = donacion;
         }
@@ -32,8 +32,8 @@ namespace BancoSangre.Windows.Donaciones
             base.OnLoad(e);
             if (donacion != null)
             {
-                txtDescripcion.Text = donacion.Descripcion;              
-                donacion.Intervalo= int.Parse(txtIntervalo.Text);
+                txtDescripcion.Text = donacion.Descripcion;
+                txtIntervalo.Text = donacion.Intervalo.ToString();
             }
         }
 

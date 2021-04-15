@@ -23,37 +23,45 @@ namespace BancoSangre.Windows.Donaciones
             this.donacion = donacion;
         }
 
-        internal Donacion GetTipoDonacionAuto()
+        internal Donacion GetTipoDonacion()
         {
             return donacion;
         }
         protected override void OnLoad(EventArgs e)
         {
-            //base.OnLoad(e);
-            //if (donacion != null)
-            //{
-            //    txtfechadon.Text = donacion.FechaDonacion;
-            //    donacion.Intervalo = int.Parse(txtident.Text);
-            //}
+            base.OnLoad(e);
+            if (donacion != null)
+            {
+                txtfechadon.Text = donacion.FechaDonacion.ToString();
+                txtident.Text = donacion.Identificacion;
+                txtfechaingr.Text = donacion.FechaIngreso.ToString();
+                txtvenc.Text = donacion.vencimiento;
+                txtcaNT.Text = donacion.Cantidad.ToString();
+                
+            }
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            //if (ValidarDatos())
-            //{
-            //    if (donacion == null)
-            //    {
-            //        donacion = new Donacion();
-            //    }
-
-            //    donacion.Descripcion = txtDescripcion.Text;
-            //    donacion.Intervalo = int.Parse(txtIntervalo.Text);
-            //    DialogResult = DialogResult.OK;
-            //}
+            if (ValidarDatos())
+            {
+                if (donacion == null)
+                {
+                    donacion = new Donacion();
+                }
+                //donacion.Intervalo = int.Parse(txtIntervalo.Text);
+                donacion.FechaDonacion = DateTime.Parse(txtfechadon.Text);
+                donacion.Identificacion = txtident.Text;
+                donacion.FechaIngreso = DateTime.Parse(txtfechaingr.Text);
+                donacion.vencimiento = txtvenc.Text;
+                donacion.Cantidad = int.Parse(txtcaNT.Text);
+                DialogResult = DialogResult.OK;
+            }
         }
 
         private bool ValidarDatos()
         {
-            throw new NotImplementedException();
+            bool valido = true;
+            return valido;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

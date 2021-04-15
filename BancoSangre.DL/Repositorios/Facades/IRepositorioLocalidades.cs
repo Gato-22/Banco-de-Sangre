@@ -10,7 +10,7 @@ namespace BancoSangre.DL.Repositorios.Facades
 {
     public interface IRepositorioLocalidades
     {
-        List<LocalidadListDto> GetLista();
+        List<LocalidadListDto> GetLista(BL.Entidades.DTO.Provincia.ProvinciaListDto provinciaDto);
         void guardar(Localidad localidad);
         bool existe(Localidad localidad);
         void borrar(int id);

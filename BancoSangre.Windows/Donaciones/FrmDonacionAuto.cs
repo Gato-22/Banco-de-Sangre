@@ -137,7 +137,7 @@ namespace BancoSangre.Windows.Donaciones
                 DonacionAutomatizada SanAux = (DonacionAutomatizada)donacion.Clone();
                 FrmDonacionAutoAE frm = new FrmDonacionAutoAE();
                 frm.Text = "editar Donacion Automatizada";
-                frm.SetTipoSangre(donacion);
+                frm.SetTipoDonacionAuto(donacion);
                 DialogResult dr = frm.ShowDialog(this);
                 if (dr == DialogResult.OK)
                 {
