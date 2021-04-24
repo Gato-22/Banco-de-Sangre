@@ -73,5 +73,77 @@ namespace BancoSangre.Windows.Instituciones
         {
             Close();
         }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            FrmInstitucionAE frm = new FrmInstitucionAE();
+            frm.Text = "Agregar Institucion";
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.Cancel)
+            {
+                return;
+            }
+            try
+            {
+                InstitucionEditdto institucionEditdto = frm.getInstitucion();
+                if (_servi.existe(institucionEditdto))
+                {
+                    MessageBox.Show("Registro Repetido", "Mensaje", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+                _servi.guardar(institucionEditdto);
+                DataGridViewRow r = ConstruirFila();
+                InstitucionListDto institucionListDto = new InstitucionListDto
+                {
+                    InstitucionID = institucionEditdto.InstitucionID,
+                    Direccion = institucionEditdto.Direccion,
+                    Denominacion = institucionEditdto.Denominacion,
+                    provincia = institucionEditdto.provincia.NombreProvincia,
+                    localidad = institucionEditdto.localidad.NombreLocalidad
+                };
+                SetearFila(r, institucionListDto);
+                AgregarFila(r);
+                MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            if (dgbDatos.SelectedRows.Count == 0)
+            {
+                return;
+            }
+            DataGridViewRow r = dgbDatos.SelectedRows[0];
+            InstitucionListDto institucionListDto = (InstitucionListDto)r.Tag;
+            InstitucionListDto institucionListDtoaux = (InstitucionListDto)institucionListDto.Clone();
+            DialogResult dr = MessageBox.Show($"¿Desea dar de baja ala Entidad Sanitaria {institucionListDto.Denominacion}?",
+                "Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (dr == DialogResult.No)
+            {
+                return;
+            }
+
+            try
+            {
+                _servi.borrar(institucionListDto.InstitucionID);
+                dgbDatos.Rows.Remove(r);
+                MessageBox.Show("Registro Borrado", "Mensaje", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
     }
 }

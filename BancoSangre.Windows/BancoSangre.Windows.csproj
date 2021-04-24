@@ -125,6 +125,12 @@
     <Compile Include="Instituciones\FrmInstitucion.Designer.cs">
       <DependentUpon>FrmInstitucion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Instituciones\FrmInstitucionAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Instituciones\FrmInstitucionAE.Designer.cs">
+      <DependentUpon>FrmInstitucionAE.cs</DependentUpon>
+    </Compile>
     <Compile Include="Localidades\FrmBuscarLocalidad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Instituciones\FrmInstitucion.resx">
       <DependentUpon>FrmInstitucion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Instituciones\FrmInstitucionAE.resx">
+      <DependentUpon>FrmInstitucionAE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Localidades\FrmBuscarLocalidad.resx">
       <DependentUpon>FrmBuscarLocalidad.cs</DependentUpon>

@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace BancoSangre.BL.Entidades.DTO.Institucion
 {
-    public class InstitucionListDto
+    public class InstitucionListDto:ICloneable
     {
         public int InstitucionID { get; set; }
         public string Denominacion { get; set; }
         public string Direccion { get; set; }
         public string localidad { get; set; }
         public string provincia { get; set; }
-        
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }
