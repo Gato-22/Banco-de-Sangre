@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Generos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,13 +18,13 @@ namespace BancoSangre.Windows.Generos
         {
             InitializeComponent();
         }
-        private Genero genero;
-        public void SetGenero(Genero genero)
+        private GeneroEditDto genero;
+        public void SetGenero(GeneroEditDto genero)
         {
             this.genero = genero;
         }
 
-        public Genero GetGenero()
+        public GeneroEditDto GetGenero()
         {
             return genero;
         }
@@ -34,7 +35,7 @@ namespace BancoSangre.Windows.Generos
             {
                 if (genero == null)
                 {
-                    genero = new Genero();
+                    genero = new GeneroEditDto();
                 }
 
                 genero.GeneroDescripcion = txtGenero.Text;

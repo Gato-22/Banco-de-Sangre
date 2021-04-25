@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Documentos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,7 @@ namespace BancoSangre.Windows.Documentos
         {
             InitializeComponent();
         }
-        private Documento documento;
+        private DocumentoEditDto documento;
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -32,7 +33,7 @@ namespace BancoSangre.Windows.Documentos
             
         }
 
-        public Documento GetDocumento()
+        public DocumentoEditDto GetDocumento()
         {
             return documento;
         }             
@@ -47,7 +48,7 @@ namespace BancoSangre.Windows.Documentos
             {
                 if (documento == null)
                 {
-                   documento = new Documento();
+                   documento = new DocumentoEditDto();
                 }
 
                 documento.Descripcion = txtDocumento.Text;
@@ -68,7 +69,7 @@ namespace BancoSangre.Windows.Documentos
             return valido;
         }
 
-        public void SetDocumento(Documento documento)
+        public void SetDocumento(DocumentoEditDto documento)
         {
             this.documento = documento;
         }

@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.TiposSangres;
 using BancoSangre.DL.Repositorios.Facades;
 using System;
 using System.Collections.Generic;
@@ -59,9 +60,9 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        public TipoSangre GetTipoSangrePorID(int id)
+        public TipoSangreEditDto GetTipoSangrePorID(int id)
         {
-           TipoSangre tipoSangre = null;
+           TipoSangreEditDto tipoSangre = null;
             try
             {
                 string cadenaComando =
@@ -83,9 +84,9 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        public List<TipoSangre> GetTipoSangres()
+        public List<TipoSangreListDto> GetTipoSangres()
         {
-            List<TipoSangre> lista = new List<TipoSangre>();
+            List<TipoSangreListDto> lista = new List<TipoSangreListDto>();
             try
             {
                 string cadenaComando = "select GrupoSanguineoID, Grupo, Factor from GruposSanguineos";
@@ -93,7 +94,7 @@ namespace BancoSangre.DL.Repositorios
                 SqlDataReader reader = comando.ExecuteReader();
                 while (reader.Read())
                 {
-                    TipoSangre tipoSangre = ConstruirTipoSangre(reader);
+                    TipoSangreListDto tipoSangre = ConstruirTipoSangreListDto(reader);
                     lista.Add(tipoSangre);
 
                 }
@@ -108,9 +109,19 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        private TipoSangre ConstruirTipoSangre(SqlDataReader reader)
+        private TipoSangreListDto ConstruirTipoSangreListDto(SqlDataReader reader)
         {
-            return new TipoSangre
+            return new TipoSangreListDto
+            {
+                GrupoSanguineoID = reader.GetInt32(0),
+                Grupo = reader.GetString(1),
+                Factor = reader.GetString(2)
+            };
+        }
+
+        private TipoSangreEditDto ConstruirTipoSangre(SqlDataReader reader)
+        {
+            return new TipoSangreEditDto
             {
                 GrupoSanguineoID = reader.GetInt32(0),
                 Grupo = reader.GetString(1),

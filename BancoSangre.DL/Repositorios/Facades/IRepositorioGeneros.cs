@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Generos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace BancoSangre.DL.Repositorios.Facades
 {
     public interface IRepositorioGeneros
     {
-        List<Genero> GetGeneros();
-        Genero GetGeneroPorID(int id);
+        List<GeneroListDto> GetGeneros();
+        GeneroEditDto GetGeneroPorID(int id);
         void Guardar(Genero genero);
         void Borar(int id);
         bool existe(Genero genero);

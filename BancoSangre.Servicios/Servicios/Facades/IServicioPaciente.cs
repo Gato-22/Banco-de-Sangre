@@ -10,6 +10,9 @@ namespace BancoSangre.Servicios.Servicios.Facades
     public interface IServicioPaciente
     {
         List<PacienteListDto> GetLista();
-        
+        void guardar(PacienteEditDto pacienteEditDto);
+        bool existe(PacienteEditDto pacienteEditDto);
+        void borrar(int id);
+        PacienteEditDto getInstitucionPorID(int id);
     }
 }

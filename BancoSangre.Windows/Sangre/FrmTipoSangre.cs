@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.TiposSangres;
 using BancoSangre.Servicios.Servicios;
 using BancoSangre.Servicios.Servicios.Facades;
 using System;
@@ -25,7 +26,7 @@ namespace BancoSangre.Windows.Sangre
             Close();
         }
         private IServicioTipoSangre _Servicio;
-        private List<TipoSangre> _lista;
+        private List<TipoSangreListDto> _lista;
         private void FrmTipoSangre_Load(object sender, EventArgs e)
         {
             _Servicio = new ServicioTipoSangre();
@@ -57,7 +58,7 @@ namespace BancoSangre.Windows.Sangre
             dgbDatos.Rows.Add(r);
         }
 
-        private void setearfila(DataGridViewRow r, TipoSangre tipoSangre)
+        private void setearfila(DataGridViewRow r, TipoSangreListDto tipoSangre)
         {
             r.Cells[cmnGrupo.Index].Value = tipoSangre.Grupo;
             r.Cells[cmnFactor.Index].Value = tipoSangre.Factor;
@@ -80,12 +81,18 @@ namespace BancoSangre.Windows.Sangre
             {
                 try
                 {
-                    TipoSangre tipoSangre = frm.GetTipoSangre();
-                    if (!_Servicio.existe(tipoSangre))
+                    TipoSangreEditDto tipoSangreEditDto = frm.GetTipoSangre();
+                    if (!_Servicio.existe(tipoSangreEditDto))
                     {
-                        _Servicio.guardar(tipoSangre);
+                        _Servicio.guardar(tipoSangreEditDto);
+                        TipoSangreListDto tipoSangreListDto = new TipoSangreListDto
+                        {
+                            GrupoSanguineoID= tipoSangreEditDto.GrupoSanguineoID,
+                            Grupo= tipoSangreEditDto.Grupo,
+                            Factor= tipoSangreEditDto.Factor
+                        };
                         DataGridViewRow r = construirFila();
-                        setearfila(r, tipoSangre);
+                        setearfila(r, tipoSangreListDto);
                         agregarfila(r);
                         MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -133,20 +140,28 @@ namespace BancoSangre.Windows.Sangre
             if (dgbDatos.SelectedRows.Count > 0)
             {
                 DataGridViewRow r = dgbDatos.SelectedRows[0];
-                TipoSangre tipoSangre = (TipoSangre)r.Tag;
-                TipoSangre SanAux = (TipoSangre)tipoSangre.Clone();
+                TipoSangreListDto tipoSangre = (TipoSangreListDto)r.Tag;
+                TipoSangreListDto SanAux = (TipoSangreListDto)tipoSangre.Clone();
+                TipoSangreEditDto tipoSangreEditDto = new TipoSangreEditDto
+                {
+                    GrupoSanguineoID = tipoSangre.GrupoSanguineoID,
+                    Grupo = tipoSangre.Grupo,
+                    Factor = tipoSangre.Factor
+                };
                 FrmTipoSangreAE frm = new FrmTipoSangreAE();
                 frm.Text = "editar Grupo Sanguineo";
-                frm.SetTipoSangre(tipoSangre);
+                frm.SetTipoSangre(tipoSangreEditDto);
                 DialogResult dr = frm.ShowDialog(this);
                 if (dr == DialogResult.OK)
                 {
                     try
                     {
-                        tipoSangre = frm.GetTipoSangre();
-                        if (!_Servicio.existe(tipoSangre))
+                        tipoSangreEditDto = frm.GetTipoSangre();
+                        if (!_Servicio.existe(tipoSangreEditDto))
                         {
-                            _Servicio.guardar(tipoSangre);
+                            _Servicio.guardar(tipoSangreEditDto);
+                            tipoSangre.Grupo = tipoSangreEditDto.Grupo;
+                            tipoSangre.Factor = tipoSangreEditDto.Factor;
                             setearfila(r, tipoSangre);
                             MessageBox.Show("registro Modifica3", "mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

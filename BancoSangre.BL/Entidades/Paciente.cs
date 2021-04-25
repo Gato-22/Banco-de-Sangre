@@ -8,9 +8,9 @@ namespace BancoSangre.BL.Entidades
 {
     public class Paciente
     {
-        public int DonanteID { get; set; }
-        public string NombreDonante { get; set; }
-        public string ApellidoDonante { get; set; }
+        public int PacienteID { get; set; }
+        public string NombrePaciente { get; set; }
+        public string ApellidoPaciente { get; set; }
         public Genero genero { get; set; }
         public Documento documento { get; set; }
         public string NroDocumento { get; set; }

@@ -179,5 +179,15 @@ namespace BancoSangre.Windows
                 }                                                  
             }
         }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            ActualizarGrilla();
+        }
+
+        private void ActualizarGrilla()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

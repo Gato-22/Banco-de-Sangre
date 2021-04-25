@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BancoSangre.BL.Entidades
+namespace BancoSangre.BL.Entidades.DTO.Generos
 {
-    public class Genero 
+    public class GeneroEditDto
     {
         public int GeneroID { get; set; }
 
         public string GeneroDescripcion { get; set; }
 
-     
+
     }
 }

@@ -21,6 +21,8 @@ namespace BancoSangre.DL.Repositorios
         public RepositorioInstituciones(SqlConnection sqlConnection,IRepositorioProvincias repositorioProvincias, IRepositorioLocalidades epositorioLocalidades)
         {
             this._sqlConnection = sqlConnection ;
+            _repositorioProvincias = repositorioProvincias;
+            _repositorioLocalidades = epositorioLocalidades;
         }
         public RepositorioInstituciones(SqlConnection sqlConnection)
         {
@@ -103,8 +105,8 @@ namespace BancoSangre.DL.Repositorios
 
         private InstitucionEditdto construirInstitucionEditdto(SqlDataReader reader)
         {
-            var provinciaEditDto = _repositorioProvincias.GetProvinciaPorID(reader.GetInt32(4));
-            var localidadEditDto = _repositorioLocalidades.GetlocalidadPorId(reader.GetInt32(3));
+            var provinciaEditDto = _repositorioProvincias.GetProvinciaPorID(reader.GetInt32(3));
+            var localidadEditDto = _repositorioLocalidades.GetlocalidadPorId(reader.GetInt32(4));
             return new InstitucionEditdto
             {
                 InstitucionID = reader.GetInt32(0),

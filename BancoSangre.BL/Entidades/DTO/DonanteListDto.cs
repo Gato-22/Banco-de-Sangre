@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BancoSangre.BL.Entidades.DTO
 {
-    public class DonanteListDto
+    public class DonanteListDto:ICloneable
     {
         public int DonanteID { get; set; }
         public string NombreDonante { get; set; }
@@ -14,5 +14,10 @@ namespace BancoSangre.BL.Entidades.DTO
         public string localidad { get; set; }
         public string provincia { get; set; }
         public string tipoSangre { get; set; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

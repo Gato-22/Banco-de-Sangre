@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.TiposSangres;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace BancoSangre.DL.Repositorios.Facades
 {
     public interface IRepositorioTipoSangre
     {
-        List<TipoSangre>GetTipoSangres();
-        TipoSangre GetTipoSangrePorID(int id);
+        List<TipoSangreListDto>GetTipoSangres();
+        TipoSangreEditDto GetTipoSangrePorID(int id);
         void guardar(TipoSangre tipoSangre);
         void borrar(int id);
         bool existe(TipoSangre tipoSangre);

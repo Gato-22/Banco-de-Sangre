@@ -9,8 +9,8 @@ namespace BancoSangre.DL.Repositorios.Facades
         List<PacienteListDto> GetLista();
         void guardar(Paciente paciente);
         bool existe(Paciente paciente);
-        void borrar(int clienteid);
-        PacienteEditDto GetclientePorId(int PacienteID);
+        void borrar(int pacienteid);
+        PacienteEditDto getPacientePorID(int PacienteID);
        
     }
 }

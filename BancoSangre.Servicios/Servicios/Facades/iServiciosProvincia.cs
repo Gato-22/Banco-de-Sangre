@@ -12,6 +12,7 @@ namespace BancoSangre.Servicios.Servicios.Facades
     public interface iServiciosProvincia
     {
         List<ProvinciaListDto> GetProvincias();
+        //BL.Entidades.DTO.Provincia.ProvinciaListDto providto
         ProvinciaEditDto GetProvinciaPorId(int id);
         void Guardar(ProvinciaEditDto provincia);
         void Borrar(int id);

@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Generos;
 using BancoSangre.DL.Repositorios.Facades;
 using System;
 using System.Collections.Generic;
@@ -57,9 +58,9 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        public Genero GetGeneroPorID(int id)
+        public GeneroEditDto GetGeneroPorID(int id)
         {
-            Genero genero = null;
+            GeneroEditDto genero = null;
             try
             {
                 string cadenaComando =
@@ -70,7 +71,7 @@ namespace BancoSangre.DL.Repositorios
                 if (reader.HasRows)
                 {
                     reader.Read();
-                    genero = ConstruirGenero(reader);
+                    genero = ConstruirGeneroEditDto(reader);
                 }
                 reader.Close();
                 return genero;
@@ -81,9 +82,9 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        public List<Genero> GetGeneros()
+        public List<GeneroListDto> GetGeneros()
         {
-            List<Genero> lista = new List<Genero>();
+            List<GeneroListDto> lista = new List<GeneroListDto>();
             try
             {
                 string cadenaComando = "select GeneroId, Descripcion from Generos";
@@ -91,7 +92,7 @@ namespace BancoSangre.DL.Repositorios
                 SqlDataReader reader = comando.ExecuteReader();
                 while (reader.Read())
                 {
-                    Genero genero = ConstruirGenero(reader);
+                    GeneroListDto genero = ConstruirGeneroListDto(reader);
                     lista.Add(genero);
 
                 }
@@ -105,9 +106,18 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        private Genero ConstruirGenero(SqlDataReader reader)
+        private GeneroListDto ConstruirGeneroListDto(SqlDataReader reader)
         {
-            return new Genero
+            return new GeneroListDto
+            {
+                GeneroID = reader.GetInt32(0),
+                GeneroDescripcion = reader.GetString(1)
+            };
+        }
+
+        private GeneroEditDto ConstruirGeneroEditDto(SqlDataReader reader)
+        {
+            return new GeneroEditDto
             {
                 GeneroID = reader.GetInt32(0),
                 GeneroDescripcion = reader.GetString(1)

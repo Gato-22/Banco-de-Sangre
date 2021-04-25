@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Documentos;
 using BancoSangre.DL;
 using BancoSangre.DL.Repositorios;
 using BancoSangre.DL.Repositorios.Facades;
@@ -31,12 +32,17 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public bool existe(Documento documento)
+        public bool existe(DocumentoEditDto documentoDto)
         {
             try
             {
                 _conexionBd = new ConexionBd();
                 _Repositorio = new RepositorioDocumentos(_conexionBd.AbrirConexion());
+                var documento = new Documento
+                {
+                    TipoDocumentoID=documentoDto.TipoDocumentoID,
+                    Descripcion=documentoDto.Descripcion
+                };
                 var existe = _Repositorio.existe(documento);
                 _conexionBd.CerrarConexion();
                 return existe;
@@ -48,12 +54,16 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public Documento GetDocumentoID(int id)
+        public DocumentoEditDto GetDocumentoID(int id)
         {
-            throw new NotImplementedException();
+            _conexionBd = new ConexionBd();
+            _Repositorio = new RepositorioDocumentos(_conexionBd.AbrirConexion());
+            var documento = _Repositorio.GetDocumentoPorID(id);
+            _conexionBd.CerrarConexion();
+            return documento;
         }
 
-        public List<Documento> GetDocumentos()
+        public List<DocumentoListDto> GetDocumentos()
         {
             try
             {
@@ -71,12 +81,17 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public void Guardar(Documento documento)
+        public void Guardar(DocumentoEditDto documentoDto)
         {
             try
             {
                 _conexionBd = new ConexionBd();
                 _Repositorio = new RepositorioDocumentos(_conexionBd.AbrirConexion());
+                var documento = new Documento
+                {
+                    TipoDocumentoID = documentoDto.TipoDocumentoID,
+                    Descripcion = documentoDto.Descripcion
+                };
                 _Repositorio.Guardar(documento);
                 _conexionBd.CerrarConexion();
             }

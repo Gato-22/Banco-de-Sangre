@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Generos;
 using BancoSangre.Servicios.Servicios;
 using BancoSangre.Servicios.Servicios.Facades;
 using BancoSangre.Windows.Generos;
@@ -21,7 +22,7 @@ namespace BancoSangre.Windows
             InitializeComponent();
         }
         private IServicioGenero _servicio;
-        private List<Genero> _genero;
+        private List<GeneroListDto> _genero;
 
         private void FrmGeneros_Load(object sender, EventArgs e)
         {
@@ -56,7 +57,7 @@ namespace BancoSangre.Windows
             dgbDatos.Rows.Add(r);
         }
 
-        private void SetearFila(DataGridViewRow r, Genero genero)
+        private void SetearFila(DataGridViewRow r, GeneroListDto genero)
         {
             r.Cells[cmnGeneros.Index].Value = genero.GeneroDescripcion;
             r.Tag = genero;
@@ -83,12 +84,17 @@ namespace BancoSangre.Windows
             {
                 try
                 {
-                    Genero genero = frm.GetGenero();
+                    GeneroEditDto genero = frm.GetGenero();
                     if (!_servicio.existe(genero))
                     {
                         _servicio.Guardar(genero);
                         DataGridViewRow r = ConstruirFila();
-                        SetearFila(r, genero);
+                        GeneroListDto generoListdto = new GeneroListDto
+                        {
+                            GeneroID=genero.GeneroID,
+                            GeneroDescripcion=genero.GeneroDescripcion
+                        };
+                        SetearFila(r, generoListdto);
                         AgregarFila(r);
                         MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -110,7 +116,7 @@ namespace BancoSangre.Windows
             if (dgbDatos.SelectedRows.Count > 0)
             {
                 DataGridViewRow r = dgbDatos.SelectedRows[0];
-                Genero genero = (Genero)r.Tag;
+                GeneroListDto genero = (GeneroListDto)r.Tag;
                 DialogResult dr = MessageBox.Show($@"vas a dar de baja el registro que seleccionaste recien: {genero.GeneroDescripcion}",
                     @"Confirmar baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (dr == DialogResult.Yes)
@@ -136,20 +142,28 @@ namespace BancoSangre.Windows
             if (dgbDatos.SelectedRows.Count > 0)
             {
                 DataGridViewRow r = dgbDatos.SelectedRows[0];
-                Genero genero = (Genero)r.Tag;
-                Genero GeneroAUX = (Genero)genero.Clone();
+                GeneroListDto genero = (GeneroListDto)r.Tag;
+                GeneroListDto GeneroAUX = (GeneroListDto)genero.Clone();
+                GeneroEditDto generoEditDto = new GeneroEditDto
+                {
+
+                    GeneroID = genero.GeneroID,
+                    GeneroDescripcion = genero.GeneroDescripcion
+
+                };
                 FrmGenerosAE frm = new FrmGenerosAE();
                 frm.Text = "editar Genero";
-                frm.SetGenero(genero);
+                frm.SetGenero(generoEditDto);
                 DialogResult dr = frm.ShowDialog(this);
                 if (dr == DialogResult.OK)
                 {
                     try
                     {
-                        genero = frm.GetGenero();
-                        if (!_servicio.existe(genero))
+                        generoEditDto = frm.GetGenero();
+                        if (!_servicio.existe(generoEditDto))
                         {
-                            _servicio.Guardar(genero);
+                            _servicio.Guardar(generoEditDto);
+                            genero.GeneroDescripcion = generoEditDto.GeneroDescripcion;
                             SetearFila(r, genero);
                             MessageBox.Show("registro Modifica3", "mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

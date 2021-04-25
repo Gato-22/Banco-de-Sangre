@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.TiposSangres;
 using BancoSangre.DL;
 using BancoSangre.DL.Repositorios;
 using BancoSangre.DL.Repositorios.Facades;
@@ -31,13 +32,20 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public bool existe(TipoSangre tipoSangre)
+        public bool existe(TipoSangreEditDto tipoSangre)
         {
             try
             {
                 _conexionBd = new ConexionBd();
                 _repo = new RepositorioTipoSangre(_conexionBd.AbrirConexion());
-                var existe = _repo.existe(tipoSangre);
+                var tiposangree = new TipoSangre
+                {
+                    GrupoSanguineoID = tipoSangre.GrupoSanguineoID,
+                    Grupo = tipoSangre.Grupo,
+                    Factor=tipoSangre.Factor
+
+                };
+                var existe = _repo.existe(tiposangree);
                 _conexionBd.CerrarConexion();
                 return existe;
             }
@@ -48,12 +56,16 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public TipoSangre GetTipoSangreID(int id)
+        public TipoSangreEditDto GetTipoSangreID(int id)
         {
-            throw new NotImplementedException();
+            _conexionBd = new ConexionBd();
+            _repo = new RepositorioTipoSangre(_conexionBd.AbrirConexion());
+            var tipoSangre = _repo.GetTipoSangrePorID(id);
+            _conexionBd.CerrarConexion();
+            return tipoSangre;
         }
 
-        public List<TipoSangre> GetTipoSangres()
+        public List<TipoSangreListDto> GetTipoSangres()
         {
             try
             {
@@ -71,13 +83,20 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public void guardar(TipoSangre tipoSangre)
+        public void guardar(TipoSangreEditDto tipoSangre)
         {
             try
             {
                 _conexionBd = new ConexionBd();
                 _repo = new RepositorioTipoSangre(_conexionBd.AbrirConexion());
-                _repo.guardar(tipoSangre);
+                var tiposangree = new TipoSangre
+                {
+                    GrupoSanguineoID = tipoSangre.GrupoSanguineoID,
+                    Grupo = tipoSangre.Grupo,
+                    Factor = tipoSangre.Factor
+
+                };
+                _repo.guardar(tiposangree);
                 _conexionBd.CerrarConexion();
             }
             catch (Exception e)

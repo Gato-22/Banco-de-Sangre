@@ -15,6 +15,24 @@ namespace BancoSangre.Servicios.Servicios
     {
         private ConexionBd _conexionBd;
         private IRepositorioPacientes _repo;
+        public ServicioPaciente()
+        {
+
+        }
+        public void borrar(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool existe(PacienteEditDto pacienteEditDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PacienteEditDto getInstitucionPorID(int id)
+        {
+            throw new NotImplementedException();
+        }
 
         public List<PacienteListDto> GetLista()
         {
@@ -31,6 +49,11 @@ namespace BancoSangre.Servicios.Servicios
 
                 throw new Exception(e.Message);
             }
+        }
+
+        public void guardar(PacienteEditDto pacienteEditDto)
+        {
+            throw new NotImplementedException();
         }
     }
 }

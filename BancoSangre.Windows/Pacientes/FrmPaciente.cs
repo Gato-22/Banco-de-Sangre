@@ -54,8 +54,8 @@ namespace BancoSangre.Windows.Pacientes
 
         private void SetearFila(DataGridViewRow r, PacienteListDto pacienteListDto)
         {
-            r.Cells[CmnNombre.Index].Value = pacienteListDto.NombreDonante;
-            r.Cells[cmnApellido.Index].Value = pacienteListDto.ApellidoDonante;
+            r.Cells[CmnNombre.Index].Value = pacienteListDto.NombrePaciente;
+            r.Cells[cmnApellido.Index].Value = pacienteListDto.ApellidoPaciente;
             r.Cells[cmnLoca.Index].Value = pacienteListDto.localidad;
             r.Cells[cmnProv.Index].Value = pacienteListDto.provincia;
             r.Cells[cmnGrupo.Index].Value = pacienteListDto.tipoSangre;

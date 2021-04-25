@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Generos;
 using BancoSangre.DL;
 using BancoSangre.DL.Repositorios;
 using BancoSangre.DL.Repositorios.Facades;
@@ -32,13 +33,18 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public bool existe(Genero genero)
+        public bool existe(GeneroEditDto genero)
         {
             try
             {
                 _conexionBd = new ConexionBd();
                 _Repositorio = new RepositorioGeneros(_conexionBd.AbrirConexion());
-                var existe = _Repositorio.existe(genero);
+                var generoo = new Genero
+                {
+                    GeneroID = genero.GeneroID,
+                    GeneroDescripcion = genero.GeneroDescripcion
+                };
+                var existe = _Repositorio.existe(generoo);
                 _conexionBd.CerrarConexion();
                 return existe;
             }
@@ -49,12 +55,12 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public Genero GetGeneroID(int id)
+        public GeneroEditDto GetGeneroID(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Genero> GetGeneros()
+        public List<GeneroListDto> GetGeneros()
         {
             try
             {
@@ -72,13 +78,18 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public void Guardar(Genero genero)
+        public void Guardar(GeneroEditDto genero)
         {
             try
             {
                 _conexionBd = new ConexionBd();
                 _Repositorio = new RepositorioGeneros(_conexionBd.AbrirConexion());
-                _Repositorio.Guardar(genero);
+                var generoo = new Genero
+                {
+                    GeneroID = genero.GeneroID,
+                    GeneroDescripcion = genero.GeneroDescripcion
+                };
+                _Repositorio.Guardar(generoo);
                 _conexionBd.CerrarConexion();
             }
             catch (Exception e)

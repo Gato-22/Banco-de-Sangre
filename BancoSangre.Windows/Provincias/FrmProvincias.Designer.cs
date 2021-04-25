@@ -118,6 +118,7 @@ namespace BancoSangre.Windows
             this.btnActualizar.Size = new System.Drawing.Size(63, 35);
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // toolStripSeparator2
             // 

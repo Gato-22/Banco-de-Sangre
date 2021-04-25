@@ -145,5 +145,57 @@ namespace BancoSangre.Windows.Instituciones
                     MessageBoxIcon.Error);
             }
         }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (dgbDatos.SelectedRows.Count == 0)
+            {
+                return;
+            }
+            DataGridViewRow r = dgbDatos.SelectedRows[0];
+            InstitucionListDto institucionListDto = (InstitucionListDto)r.Tag;
+            InstitucionListDto InstitucionListDtoAuxiliar = (InstitucionListDto)institucionListDto.Clone();
+            FrmInstitucionAE frm = new FrmInstitucionAE();
+            InstitucionEditdto institucionEditdto = _servi.GetInstitucionPorId(institucionListDto.InstitucionID);
+            frm.Text = "Editar Cliente";
+            frm.setInstitucion(institucionEditdto);
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            try
+            {
+                institucionEditdto = frm.getInstitucion();
+                //Controlar repitencia
+
+                if (!_servi.existe(institucionEditdto))
+                {
+                    _servi.guardar(institucionEditdto);
+                    institucionListDto.InstitucionID = institucionEditdto.InstitucionID;
+                    institucionListDto.Denominacion = institucionEditdto.Denominacion;
+                    institucionListDto.Direccion = institucionEditdto.Direccion;
+                    institucionListDto.provincia = institucionEditdto.provincia.NombreProvincia;
+                    institucionListDto.localidad = institucionEditdto.localidad.NombreLocalidad;
+
+                    SetearFila(r, institucionListDto);
+                    MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    SetearFila(r, InstitucionListDtoAuxiliar);
+                    MessageBox.Show("Registro ya existente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            catch (Exception exception)
+            {
+                SetearFila(r, InstitucionListDtoAuxiliar);
+
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

@@ -8,9 +8,9 @@ namespace BancoSangre.BL.Entidades.DTO.Pacientes
 {
     public class PacienteListDto:ICloneable
     {
-        public int DonanteID { get; set; }
-        public string NombreDonante { get; set; }
-        public string ApellidoDonante { get; set; }
+        public int PacienteID { get; set; }
+        public string NombrePaciente { get; set; }
+        public string ApellidoPaciente { get; set; }
         public string localidad { get; set; }
         public string provincia { get; set; }
         public string tipoSangre { get; set; }

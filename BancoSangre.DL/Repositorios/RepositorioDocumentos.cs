@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Documentos;
 using BancoSangre.DL.Repositorios.Facades;
 using System;
 using System.Collections.Generic;
@@ -58,9 +59,9 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        public Documento GetDocumentoPorID(int id)
+        public DocumentoEditDto GetDocumentoPorID(int id)
         {
-            Documento documento = null;
+            DocumentoEditDto documento = null;
             try
             {
                 string cadenaComando =
@@ -71,7 +72,7 @@ namespace BancoSangre.DL.Repositorios
                 if (reader.HasRows)
                 {
                     reader.Read();
-                    documento = COnstruirDocumento(reader);
+                    documento = COnstruirDocumentoEditDto(reader);
                 }
                 reader.Close();
                 return documento;
@@ -81,10 +82,17 @@ namespace BancoSangre.DL.Repositorios
                 throw new Exception("Error al intentar leer las ciudades");
             }
         }
-
-        public List<Documento> GetDocumentos()
+        private DocumentoEditDto COnstruirDocumentoEditDto(SqlDataReader reader)
         {
-            List<Documento> lista = new List<Documento>();
+            return new DocumentoEditDto
+            {
+                TipoDocumentoID = reader.GetInt32(0),
+                Descripcion = reader.GetString(1)
+            };
+        }
+        public List<DocumentoListDto> GetDocumentos()
+        {
+            List<DocumentoListDto> lista = new List<DocumentoListDto>();
             try
             {
                 string cadenaComando = "select TipoDeDocumentoID, Descripcion from TiposDeDocumento";
@@ -92,7 +100,7 @@ namespace BancoSangre.DL.Repositorios
                 SqlDataReader reader = comando.ExecuteReader();
                 while (reader.Read())
                 {
-                    Documento documento = COnstruirDocumento(reader);
+                    DocumentoListDto documento = ConstruirDocumentoListDto(reader);
                     lista.Add(documento);
 
                 }
@@ -106,9 +114,9 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        private Documento COnstruirDocumento(SqlDataReader reader)
+        private DocumentoListDto ConstruirDocumentoListDto(SqlDataReader reader)
         {
-            return new Documento
+            return new DocumentoListDto
             {
                 TipoDocumentoID = reader.GetInt32(0),
                 Descripcion = reader.GetString(1)

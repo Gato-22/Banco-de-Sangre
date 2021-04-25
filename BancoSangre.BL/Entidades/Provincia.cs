@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace BancoSangre.BL.Entidades
 {
-    public class Provincia:ICloneable
+    public class Provincia
     {
         public int ProvinciaID { get; set; }
         public string NombreProvincia { get; set; }
-        public object Clone()
-        {
-            return this.MemberwiseClone();
-        }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Documentos;
 using BancoSangre.Servicios.Servicios;
 using BancoSangre.Servicios.Servicios.Facades;
 using System;
@@ -20,7 +21,7 @@ namespace BancoSangre.Windows.Documentos
             InitializeComponent();
         }
         private IServicioDocumento _servicio;
-        private List<Documento> _list;
+        private List<DocumentoListDto> _list;
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
@@ -60,7 +61,7 @@ namespace BancoSangre.Windows.Documentos
             dgbDatos.Rows.Add(r);
         }
 
-        private void setearfila(DataGridViewRow r, Documento documento)
+        private void setearfila(DataGridViewRow r, DocumentoListDto documento)
         {
             r.Cells[cmnDocumentos.Index].Value = documento.Descripcion;
             r.Tag = documento;
@@ -82,12 +83,17 @@ namespace BancoSangre.Windows.Documentos
             {
                 try
                 {
-                    Documento documento = frm.GetDocumento();
-                    if (!_servicio.existe(documento))
+                    DocumentoEditDto documentoEditDto = frm.GetDocumento();
+                    if (!_servicio.existe(documentoEditDto))
                     {
-                        _servicio.Guardar(documento);
+                        _servicio.Guardar(documentoEditDto);
                         DataGridViewRow r = construirfila();
-                        setearfila(r, documento);
+                        DocumentoListDto documentoListDto = new DocumentoListDto
+                        {
+                            TipoDocumentoID=documentoEditDto.TipoDocumentoID,
+                            Descripcion=documentoEditDto.Descripcion
+                        };
+                        setearfila(r, documentoListDto);
                         agregarfila(r);
                         MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -109,20 +115,26 @@ namespace BancoSangre.Windows.Documentos
             if (dgbDatos.SelectedRows.Count > 0)
             {
                 DataGridViewRow r = dgbDatos.SelectedRows[0];
-                Documento documento = (Documento)r.Tag;
-                Documento DocAux =(Documento) documento.Clone();
+                DocumentoListDto documento = (DocumentoListDto)r.Tag;
+                DocumentoListDto DocAux =(DocumentoListDto) documento.Clone();
+                DocumentoEditDto documentoEditDto = new DocumentoEditDto
+                {
+                    TipoDocumentoID = documento.TipoDocumentoID,
+                    Descripcion = documento.Descripcion
+                };
                 FrmDocumentosAE frm = new FrmDocumentosAE();
                 frm.Text = "editar Documento";
-                frm.SetDocumento(documento);
+                frm.SetDocumento(documentoEditDto);
                 DialogResult dr = frm.ShowDialog(this);
                 if (dr == DialogResult.OK)
                 {
                     try
                     {
-                        documento = frm.GetDocumento();
-                        if (!_servicio.existe(documento))
+                        documentoEditDto = frm.GetDocumento();
+                        if (!_servicio.existe(documentoEditDto))
                         {
-                            _servicio.Guardar(documento);
+                            _servicio.Guardar(documentoEditDto);
+                            documento.Descripcion = documentoEditDto.Descripcion;
                             setearfila(r, documento);
                             MessageBox.Show("registro Modifica3", "mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -148,14 +160,12 @@ namespace BancoSangre.Windows.Documentos
             if (dgbDatos.SelectedRows.Count > 0)
             {
                 DataGridViewRow r = dgbDatos.SelectedRows[0];
-                Documento documento = (Documento)r.Tag;
-
+                DocumentoListDto documento = (DocumentoListDto)r.Tag;
                 DialogResult dr = MessageBox.Show($@"vas a dar de baja el registro que seleccionaste recien: {documento.Descripcion}",
                    @"Confirmar baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
                 if (dr == DialogResult.Yes)
-                {
-                    
+                {                  
                     try
                     {
                         _servicio.borrar(documento.TipoDocumentoID);
@@ -167,29 +177,7 @@ namespace BancoSangre.Windows.Documentos
                         MessageBox.Show(exception.Message, @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-            }
-            //if (dgbDatos.SelectedRows.Count > 0)
-            //{
-            //    DataGridViewRow r = dgbDatos.SelectedRows[0];
-            //    Provincia provincia = (Provincia)r.Tag;
-            //    DialogResult dr = MessageBox.Show($@"vas a dar de baja el registro que seleccionaste recien: {provincia.NombreProvincia}",
-            //        @"Confirmar baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            //    if (dr == DialogResult.Yes)
-            //    {
-            //        try
-            //        {
-            //            _servicio.Borrar(provincia.ProvinciaID);
-            //            dgbDatos.Rows.Remove(r);
-            //            MessageBox.Show(@"Registro borra3", @"message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        }
-            //        catch (Exception ex)
-            //        {
-
-            //            MessageBox.Show(ex.Message, @"error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            //        }
-            //    }
-            //}
+            }          
         }
     }
 }

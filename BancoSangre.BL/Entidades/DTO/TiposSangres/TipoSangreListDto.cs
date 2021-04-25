@@ -4,14 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BancoSangre.BL.Entidades
+namespace BancoSangre.BL.Entidades.DTO.TiposSangres
 {
-    public class TipoSangre 
+    public class TipoSangreListDto: ICloneable
     {
         public int GrupoSanguineoID { get; set; }
         public string Grupo { get; set; }
         public string Factor { get; set; }
 
-
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Documentos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace BancoSangre.DL.Repositorios.Facades
 {
     public interface IRepositorioDocumentos
     {
-        List<Documento>GetDocumentos();
-        Documento GetDocumentoPorID(int id);
+        List<DocumentoListDto>GetDocumentos();
+        DocumentoEditDto GetDocumentoPorID(int id);
         void Guardar(Documento documento);
         void borrar(int id);
         bool existe(Documento documento);

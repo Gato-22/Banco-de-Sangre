@@ -1,4 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.TiposSangres;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,14 +18,14 @@ namespace BancoSangre.Windows.Sangre
         {
             InitializeComponent();
         }
-        private TipoSangre tipoSangre;
-        public void SetTipoSangre(TipoSangre tipoSangre)
+        private TipoSangreEditDto tipoSangre;
+        public void SetTipoSangre(TipoSangreEditDto tipoSangre)
         {
             this.tipoSangre = tipoSangre;
         }
 
 
-        public TipoSangre GetTipoSangre()
+        public TipoSangreEditDto GetTipoSangre()
         {
             return tipoSangre;
         }
@@ -50,7 +51,7 @@ namespace BancoSangre.Windows.Sangre
             {
                 if (tipoSangre == null)
                 {
-                    tipoSangre = new TipoSangre();
+                    tipoSangre = new TipoSangreEditDto();
                 }
 
                 tipoSangre.Grupo = txtGrupo.Text;
