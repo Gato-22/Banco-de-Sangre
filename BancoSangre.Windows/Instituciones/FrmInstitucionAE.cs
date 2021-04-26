@@ -98,6 +98,11 @@ namespace BancoSangre.Windows.Instituciones
                 valido = false;
                 errorProvider1.SetError(DenominacionTxt, "el nombre de al institucion es requerido");
             }
+            if (string.IsNullOrEmpty(direcciontxt.Text) || string.IsNullOrWhiteSpace(direcciontxt.Text))
+            {
+                valido = false;
+                errorProvider1.SetError(direcciontxt, "Direccion de la institucion es requerida");
+            }
             if (provinciasComboBox.SelectedIndex == 0)
             {
                 valido = false;

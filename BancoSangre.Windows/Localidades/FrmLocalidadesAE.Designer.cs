@@ -42,21 +42,25 @@ namespace BancoSangre.Windows.Localidades
             // 
             // btnAceptar
             // 
+            this.btnAceptar.Image = global::BancoSangre.Windows.Properties.Resources.in_progress_64px;
             this.btnAceptar.Location = new System.Drawing.Point(128, 111);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 0;
+            this.btnAceptar.Size = new System.Drawing.Size(85, 80);
+            this.btnAceptar.TabIndex = 2;
             this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(264, 111);
+            this.btnCancelar.Image = global::BancoSangre.Windows.Properties.Resources.cancel_64px;
+            this.btnCancelar.Location = new System.Drawing.Point(242, 111);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 0;
+            this.btnCancelar.Size = new System.Drawing.Size(85, 80);
+            this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
@@ -75,7 +79,7 @@ namespace BancoSangre.Windows.Localidades
             this.txtLocalidad.MaxLength = 100;
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(191, 20);
-            this.txtLocalidad.TabIndex = 2;
+            this.txtLocalidad.TabIndex = 0;
             // 
             // label2
             // 
@@ -93,7 +97,7 @@ namespace BancoSangre.Windows.Localidades
             this.comboBoxProvincia.Location = new System.Drawing.Point(206, 68);
             this.comboBoxProvincia.Name = "comboBoxProvincia";
             this.comboBoxProvincia.Size = new System.Drawing.Size(205, 21);
-            this.comboBoxProvincia.TabIndex = 4;
+            this.comboBoxProvincia.TabIndex = 1;
             // 
             // errorProvider1
             // 
@@ -103,7 +107,7 @@ namespace BancoSangre.Windows.Localidades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(502, 155);
+            this.ClientSize = new System.Drawing.Size(451, 204);
             this.Controls.Add(this.comboBoxProvincia);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtLocalidad);

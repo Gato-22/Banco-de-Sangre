@@ -49,21 +49,25 @@ namespace BancoSangre.Windows.Generos
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(289, 105);
+            this.btnCancelar.Image = global::BancoSangre.Windows.Properties.Resources.cancel_64px;
+            this.btnCancelar.Location = new System.Drawing.Point(267, 69);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 8;
+            this.btnCancelar.Size = new System.Drawing.Size(94, 80);
+            this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(165, 105);
+            this.btnAceptar.Image = global::BancoSangre.Windows.Properties.Resources.in_progress_64px;
+            this.btnAceptar.Location = new System.Drawing.Point(145, 69);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 9;
+            this.btnAceptar.Size = new System.Drawing.Size(95, 80);
+            this.btnAceptar.TabIndex = 1;
             this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
@@ -73,7 +77,7 @@ namespace BancoSangre.Windows.Generos
             this.txtGenero.MaxLength = 50;
             this.txtGenero.Name = "txtGenero";
             this.txtGenero.Size = new System.Drawing.Size(133, 20);
-            this.txtGenero.TabIndex = 7;
+            this.txtGenero.TabIndex = 0;
             // 
             // errorProvider1
             // 

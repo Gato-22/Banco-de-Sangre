@@ -53,25 +53,29 @@ namespace BancoSangre.Windows.Provincias
             this.txtProvincias.MaxLength = 100;
             this.txtProvincias.Name = "txtProvincias";
             this.txtProvincias.Size = new System.Drawing.Size(139, 20);
-            this.txtProvincias.TabIndex = 1;
+            this.txtProvincias.TabIndex = 0;
             // 
             // btnAceptar
             // 
+            this.btnAceptar.Image = global::BancoSangre.Windows.Properties.Resources.in_progress_64px;
             this.btnAceptar.Location = new System.Drawing.Point(67, 73);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(84, 45);
-            this.btnAceptar.TabIndex = 2;
+            this.btnAceptar.Size = new System.Drawing.Size(98, 81);
+            this.btnAceptar.TabIndex = 1;
             this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(209, 73);
+            this.btnCancelar.Image = global::BancoSangre.Windows.Properties.Resources.cancel_64px;
+            this.btnCancelar.Location = new System.Drawing.Point(194, 73);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(98, 45);
+            this.btnCancelar.Size = new System.Drawing.Size(98, 81);
             this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
@@ -83,7 +87,7 @@ namespace BancoSangre.Windows.Provincias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(408, 140);
+            this.ClientSize = new System.Drawing.Size(408, 164);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.txtProvincias);

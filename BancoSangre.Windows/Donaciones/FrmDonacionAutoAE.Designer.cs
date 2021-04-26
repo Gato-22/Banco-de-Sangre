@@ -46,9 +46,9 @@ namespace BancoSangre.Windows.Donaciones
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(170, 95);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 13);
+            this.label3.Size = new System.Drawing.Size(89, 13);
             this.label3.TabIndex = 15;
-            this.label3.Text = "Intervalo en Dias";
+            this.label3.Text = "Intervalo en Días";
             // 
             // label2
             // 
@@ -57,7 +57,7 @@ namespace BancoSangre.Windows.Donaciones
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 16;
-            this.label2.Text = "Descripcion";
+            this.label2.Text = "Descripción";
             // 
             // label1
             // 
@@ -70,21 +70,25 @@ namespace BancoSangre.Windows.Donaciones
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(327, 144);
+            this.btnCancelar.Image = global::BancoSangre.Windows.Properties.Resources.cancel_64px;
+            this.btnCancelar.Location = new System.Drawing.Point(315, 121);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 13;
+            this.btnCancelar.Size = new System.Drawing.Size(87, 78);
+            this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(173, 144);
+            this.btnAceptar.Image = global::BancoSangre.Windows.Properties.Resources.in_progress_64px;
+            this.btnAceptar.Location = new System.Drawing.Point(202, 119);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 14;
+            this.btnAceptar.Size = new System.Drawing.Size(84, 80);
+            this.btnAceptar.TabIndex = 2;
             this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
@@ -93,14 +97,14 @@ namespace BancoSangre.Windows.Donaciones
             this.txtIntervalo.Location = new System.Drawing.Point(302, 95);
             this.txtIntervalo.Name = "txtIntervalo";
             this.txtIntervalo.Size = new System.Drawing.Size(133, 20);
-            this.txtIntervalo.TabIndex = 11;
+            this.txtIntervalo.TabIndex = 1;
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(302, 69);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(133, 20);
-            this.txtDescripcion.TabIndex = 12;
+            this.txtDescripcion.TabIndex = 0;
             // 
             // errorProvider1
             // 

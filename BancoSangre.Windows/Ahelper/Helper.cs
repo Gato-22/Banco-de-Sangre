@@ -1,6 +1,12 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO;
+using BancoSangre.BL.Entidades.DTO.Documentos;
+using BancoSangre.BL.Entidades.DTO.Generos;
+using BancoSangre.BL.Entidades.DTO.Institucion;
 using BancoSangre.BL.Entidades.DTO.Localidad;
+using BancoSangre.BL.Entidades.DTO.Pacientes;
 using BancoSangre.BL.Entidades.DTO.Provincia;
+using BancoSangre.BL.Entidades.DTO.TiposSangres;
 using BancoSangre.Servicios.Servicios;
 using BancoSangre.Servicios.Servicios.Facades;
 using System;
@@ -44,6 +50,94 @@ namespace BancoSangre.Windows.Ahelper
             combo.DisplayMember = "NombreLocalidad";
             combo.SelectedIndex = 0;
 
+        }
+        public static void CargarDatosComboGenero(ref ComboBox combo)
+        {
+            IServicioGenero servicioGenero = new ServicioGeneros();
+            var lista = servicioGenero.GetGeneros();
+            var defaultGenero = new GeneroListDto { GeneroID = 0, GeneroDescripcion = "Seleccione genero" };
+            lista.Insert(0, defaultGenero);
+            combo.DataSource = lista;
+            combo.ValueMember = "GeneroId";
+            combo.DisplayMember = "GeneroDescripcion";
+            combo.SelectedIndex = 0;
+        }
+        public static void CargarDatosComboDocumento(ref ComboBox combo)
+        {
+            IServicioDocumento servicioDocumento = new ServicioDocumentos();
+            var lista = servicioDocumento.GetDocumentos();
+            var defaultt = new DocumentoListDto { TipoDocumentoID=0, Descripcion="seleccione Documento" };
+            lista.Insert(0, defaultt);
+            combo.DataSource = lista;
+            combo.ValueMember = "TipoDocumentoID";
+            combo.DisplayMember = "Descripcion";
+            combo.SelectedIndex = 0;
+        }
+        public static void CargarDatosComboTipoSangre(ref ComboBox combo)
+        {
+            IServicioTipoSangre servicioTipoSangre = new ServicioTipoSangre();
+            var lista = servicioTipoSangre.GetTipoSangres();
+            var defaultt = new TipoSangreListDto { GrupoSanguineoID = 0, Grupo = "Seleccione Grupo" };
+            lista.Insert(0, defaultt);
+            combo.DataSource = lista;
+            combo.ValueMember = "GrupoSanguineoID";
+            combo.DisplayMember = "Grupo";
+            combo.SelectedIndex = 0;
+        }
+        public static void CargarDatosComboInstitucion(ref ComboBox combo)
+        {
+            IServicioIntitucion servicioIntitucion = new ServicioInstitucion();
+            var lista = servicioIntitucion.GetLista();
+            var defaultt = new InstitucionListDto { InstitucionID = 0, Denominacion = "Seleccione Denominacion" };
+            lista.Insert(0, defaultt);
+            combo.DataSource = lista;
+            combo.ValueMember = "InstitucionID";
+            combo.DisplayMember = "Denominacion";
+            combo.SelectedIndex = 0;
+        }
+        public static void CargarDatosComboDonantes(ref ComboBox combo)
+        {
+            IServicioDonante servicioDonante = new ServicioDonante();
+            var lista = servicioDonante.GetLista();
+            var defaultt = new DonanteListDto { DonanteID = 0, NombreDonante = "Seleccione Donante" };
+            lista.Insert(0, defaultt);
+            combo.DataSource = lista;
+            combo.ValueMember = "DonanteID";
+            combo.DisplayMember = "NombreDonante";
+            combo.SelectedIndex = 0;
+        }
+        public static void CargarDatosComboPaciente(ref ComboBox combo)
+        {
+            IServicioPaciente servicioPaciente = new ServicioPaciente();
+            var lista = servicioPaciente.GetLista();
+            var defaultt = new PacienteListDto { PacienteID = 0, NombrePaciente = "Seleccione Paciente" };
+            lista.Insert(0, defaultt);
+            combo.DataSource = lista;
+            combo.ValueMember = "PacienteID";
+            combo.DisplayMember = "NombrePaciente";
+            combo.SelectedIndex = 0;
+        }
+        public static void CargarDatosComboTipoDonacion(ref ComboBox combo)
+        {
+            IServicioTipoDonacion servicioTipo = new ServicioTipoDonacion();
+            var lista = servicioTipo.GetTipoDonacions();
+            var defaultt = new TipoDonacion { TipoDonacionID = 0, Descripcion = "Seleccione Tipo de Donacion" };
+            lista.Insert(0, defaultt);
+            combo.DataSource = lista;
+            combo.ValueMember = "TipoDonacionID";
+            combo.DisplayMember = "Descripcion";
+            combo.SelectedIndex = 0;
+        }
+        public static void CargarDatosComboTipoDonacionAutomatizada(ref ComboBox combo)
+        {
+            IServicioDonacionAutomatizada servicioDonacionAutomatizada = new ServicioDonacionAutomatizada();
+            var lista = servicioDonacionAutomatizada.GetDonacions();
+            var defaultt = new DonacionAutomatizada { DonacionAutoID = 0, Descripcion = "Seleccione Donacion automatizada" };
+            lista.Insert(0, defaultt);
+            combo.DataSource = lista;
+            combo.ValueMember = "DonacionAutoID";
+            combo.DisplayMember = "Descripcion";
+            combo.SelectedIndex = 0;
         }
     }
 }

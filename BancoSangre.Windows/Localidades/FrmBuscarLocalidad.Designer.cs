@@ -45,7 +45,7 @@ namespace BancoSangre.Windows.Localidades
             this.comboBoxProvincia.Location = new System.Drawing.Point(200, 45);
             this.comboBoxProvincia.Name = "comboBoxProvincia";
             this.comboBoxProvincia.Size = new System.Drawing.Size(226, 21);
-            this.comboBoxProvincia.TabIndex = 10;
+            this.comboBoxProvincia.TabIndex = 0;
             // 
             // label2
             // 
@@ -58,21 +58,25 @@ namespace BancoSangre.Windows.Localidades
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(351, 88);
+            this.btnCancelar.Image = global::BancoSangre.Windows.Properties.Resources.cancel_64px;
+            this.btnCancelar.Location = new System.Drawing.Point(343, 88);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 5;
+            this.btnCancelar.Size = new System.Drawing.Size(83, 80);
+            this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnBuscar
             // 
+            this.btnBuscar.Image = global::BancoSangre.Windows.Properties.Resources.google_web_search_64px;
             this.btnBuscar.Location = new System.Drawing.Point(200, 88);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscar.TabIndex = 6;
+            this.btnBuscar.Size = new System.Drawing.Size(91, 80);
+            this.btnBuscar.TabIndex = 1;
             this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
@@ -84,7 +88,7 @@ namespace BancoSangre.Windows.Localidades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(571, 139);
+            this.ClientSize = new System.Drawing.Size(571, 176);
             this.Controls.Add(this.comboBoxProvincia);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCancelar);

@@ -13,6 +13,6 @@ namespace BancoSangre.Servicios.Servicios.Facades
         void guardar(PacienteEditDto pacienteEditDto);
         bool existe(PacienteEditDto pacienteEditDto);
         void borrar(int id);
-        PacienteEditDto getInstitucionPorID(int id);
+        PacienteEditDto getPacientePorID(int id);
     }
 }

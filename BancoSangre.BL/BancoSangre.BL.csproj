@@ -44,6 +44,7 @@
     <Compile Include="Entidades\Documento.cs" />
     <Compile Include="Entidades\Donacion.cs" />
     <Compile Include="Entidades\DonacionAutomatizada.cs" />
+    <Compile Include="Entidades\DonacionesDonacionesAutomatizadas.cs" />
     <Compile Include="Entidades\Donante.cs" />
     <Compile Include="Entidades\DTO\Documentos\DocumentoEditDto.cs" />
     <Compile Include="Entidades\DTO\Documentos\DocumentoListDto.cs" />

@@ -44,25 +44,29 @@ namespace BancoSangre.Windows.Donaciones
             this.txtTipoDonacion.MaxLength = 30;
             this.txtTipoDonacion.Name = "txtTipoDonacion";
             this.txtTipoDonacion.Size = new System.Drawing.Size(133, 20);
-            this.txtTipoDonacion.TabIndex = 3;
+            this.txtTipoDonacion.TabIndex = 0;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(255, 113);
+            this.btnCancelar.Image = global::BancoSangre.Windows.Properties.Resources.cancel_64px;
+            this.btnCancelar.Location = new System.Drawing.Point(247, 83);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 4;
+            this.btnCancelar.Size = new System.Drawing.Size(83, 81);
+            this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(131, 113);
+            this.btnAceptar.Image = global::BancoSangre.Windows.Properties.Resources.in_progress_64px;
+            this.btnAceptar.Location = new System.Drawing.Point(131, 83);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 5;
+            this.btnAceptar.Size = new System.Drawing.Size(86, 81);
+            this.btnAceptar.TabIndex = 1;
             this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
@@ -73,7 +77,7 @@ namespace BancoSangre.Windows.Donaciones
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 13);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Tipo De Donacion";
+            this.label1.Text = "Tipo De Donación";
             // 
             // errorProvider1
             // 

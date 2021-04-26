@@ -53,21 +53,25 @@ namespace BancoSangre.Windows.Sangre
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(304, 140);
+            this.btnCancelar.Image = global::BancoSangre.Windows.Properties.Resources.cancel_64px;
+            this.btnCancelar.Location = new System.Drawing.Point(304, 133);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 8;
+            this.btnCancelar.Size = new System.Drawing.Size(75, 80);
+            this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(150, 140);
+            this.btnAceptar.Image = global::BancoSangre.Windows.Properties.Resources.in_progress_64px;
+            this.btnAceptar.Location = new System.Drawing.Point(150, 133);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 9;
+            this.btnAceptar.Size = new System.Drawing.Size(75, 80);
+            this.btnAceptar.TabIndex = 2;
             this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
@@ -76,7 +80,7 @@ namespace BancoSangre.Windows.Sangre
             this.txtGrupo.Location = new System.Drawing.Point(279, 65);
             this.txtGrupo.Name = "txtGrupo";
             this.txtGrupo.Size = new System.Drawing.Size(133, 20);
-            this.txtGrupo.TabIndex = 7;
+            this.txtGrupo.TabIndex = 0;
             this.txtGrupo.TextChanged += new System.EventHandler(this.txtGrupo_TextChanged);
             // 
             // errorProvider1
@@ -88,7 +92,7 @@ namespace BancoSangre.Windows.Sangre
             this.txtFactor.Location = new System.Drawing.Point(279, 91);
             this.txtFactor.Name = "txtFactor";
             this.txtFactor.Size = new System.Drawing.Size(133, 20);
-            this.txtFactor.TabIndex = 7;
+            this.txtFactor.TabIndex = 1;
             this.txtFactor.TextChanged += new System.EventHandler(this.txtFactor_TextChanged);
             // 
             // label2
@@ -96,9 +100,9 @@ namespace BancoSangre.Windows.Sangre
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(147, 68);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 13);
+            this.label2.Size = new System.Drawing.Size(95, 13);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Grupo";
+            this.label2.Text = "Grupo Sanguíneo:";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
@@ -106,16 +110,16 @@ namespace BancoSangre.Windows.Sangre
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(147, 91);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.Size = new System.Drawing.Size(40, 13);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Factor";
+            this.label3.Text = "Factor:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // FrmTipoSangreAE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 175);
+            this.ClientSize = new System.Drawing.Size(555, 225);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

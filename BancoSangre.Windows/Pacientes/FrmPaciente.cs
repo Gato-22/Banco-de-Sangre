@@ -74,6 +74,142 @@ namespace BancoSangre.Windows.Pacientes
         {
             Close();
         }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            FrmPacienteAE frm = new FrmPacienteAE();
+            frm.Text = "Agregar Paciente";
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.Cancel)
+            {
+                return;
+            }
+            try
+            {
+                PacienteEditDto pacienteEditDto = frm.getPaciente();
+                if (_servi.existe(pacienteEditDto))
+                {
+                    MessageBox.Show("Registro Repetido", "Mensaje", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+                _servi.guardar(pacienteEditDto);
+                DataGridViewRow r = ConstruirFila();
+                PacienteListDto pacienteListDto = new PacienteListDto
+                {
+                    PacienteID = pacienteEditDto.PacienteID,
+                    NombrePaciente= pacienteEditDto.NombrePaciente,
+                    ApellidoPaciente= pacienteEditDto.ApellidoPaciente,
+                    institucion=pacienteEditDto.institucion.Denominacion,
+                    localidad=pacienteEditDto.localidad.NombreLocalidad,
+                    provincia=pacienteEditDto.provincia.NombreProvincia,
+                    tipoSangre=pacienteEditDto.tipoSangre.Grupo
+                };
+                SetearFila(r, pacienteListDto);
+                AgregarFila(r);
+                MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            if (dgbDatos.SelectedRows.Count == 0)
+            {
+                return;
+            }
+            DataGridViewRow r = dgbDatos.SelectedRows[0];
+            PacienteListDto pacienteListDto = (PacienteListDto)r.Tag;
+            PacienteListDto institucionListDtoaux = (PacienteListDto)pacienteListDto.Clone();
+            DialogResult dr = MessageBox.Show($"¿Desea dar de baja al registro seleccionado {pacienteListDto.NroDocumento}?",
+                "Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (dr == DialogResult.No)
+            {
+                return;
+            }
+
+            try
+            {
+                _servi.borrar(pacienteListDto.PacienteID);
+                dgbDatos.Rows.Remove(r);
+                MessageBox.Show("Registro Borrado", "Mensaje", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (dgbDatos.SelectedRows.Count == 0)
+            {
+                return;
+            }
+            DataGridViewRow r = dgbDatos.SelectedRows[0];
+            PacienteListDto pacienteListDto = (PacienteListDto)r.Tag;
+            PacienteListDto InstitucionListDtoAuxiliar = (PacienteListDto)pacienteListDto.Clone();
+            FrmPacienteAE frm = new FrmPacienteAE();
+            PacienteEditDto pacienteEditDto = _servi.getPacientePorID(pacienteListDto.PacienteID);
+            frm.Text = "Editar Paciente";
+            frm.SetPaciente(pacienteEditDto);
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            try
+            {
+                pacienteEditDto = frm.getPaciente();
+                //Controlar repitencia
+
+                if (!_servi.existe(pacienteEditDto))
+                {
+                    _servi.guardar(pacienteEditDto);
+                    pacienteListDto.PacienteID = pacienteEditDto.PacienteID;
+                    pacienteListDto.NombrePaciente = pacienteEditDto.NombrePaciente;
+                    pacienteListDto.ApellidoPaciente = pacienteEditDto.ApellidoPaciente;
+                    pacienteListDto.Genero = pacienteEditDto.genero.GeneroDescripcion;
+                    pacienteListDto.TipoDocumento = pacienteEditDto.documento.Descripcion;
+                    pacienteListDto.NroDocumento = pacienteEditDto.NroDocumento;
+                    pacienteListDto.direccion = pacienteEditDto.Direccion;
+                    pacienteListDto.provincia = pacienteEditDto.provincia.NombreProvincia;
+                    pacienteListDto.localidad = pacienteEditDto.localidad.NombreLocalidad;
+                    pacienteListDto.TelefonoFijo = pacienteEditDto.TelefonoFijo;
+                    pacienteListDto.TelefonoMovil = pacienteEditDto.TelefonoMovil;
+                    pacienteListDto.Email = pacienteEditDto.Email;
+                    pacienteListDto.fechaNacimiento = pacienteEditDto.FechaNac;
+                    pacienteListDto.tipoSangre = pacienteEditDto.tipoSangre.Grupo;
+                    pacienteListDto.institucion = pacienteEditDto.institucion.Denominacion;
+
+                    SetearFila(r, pacienteListDto);
+                    MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    SetearFila(r, InstitucionListDtoAuxiliar);
+                    MessageBox.Show("Registro ya existente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            catch (Exception exception)
+            {
+                SetearFila(r, InstitucionListDtoAuxiliar);
+
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 
 }

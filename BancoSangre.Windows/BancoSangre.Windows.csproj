@@ -89,6 +89,12 @@
     <Compile Include="Donaciones\FrmDonante.Designer.cs">
       <DependentUpon>FrmDonante.cs</DependentUpon>
     </Compile>
+    <Compile Include="Donaciones\FrmDonanteAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Donaciones\FrmDonanteAE.Designer.cs">
+      <DependentUpon>FrmDonanteAE.cs</DependentUpon>
+    </Compile>
     <Compile Include="Donaciones\FrmTipoDonaciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,17 @@
     <Compile Include="Pacientes\FrmPaciente.Designer.cs">
       <DependentUpon>FrmPaciente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pacientes\FrmPacienteAE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pacientes\FrmPacienteAE.Designer.cs">
+      <DependentUpon>FrmPacienteAE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Provincias\FrmProvincias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +219,9 @@
     <EmbeddedResource Include="Donaciones\FrmDonante.resx">
       <DependentUpon>FrmDonante.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Donaciones\FrmDonanteAE.resx">
+      <DependentUpon>FrmDonanteAE.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Donaciones\FrmTipoDonaciones.resx">
       <DependentUpon>FrmTipoDonaciones.cs</DependentUpon>
     </EmbeddedResource>
@@ -235,18 +255,17 @@
     <EmbeddedResource Include="Pacientes\FrmPaciente.resx">
       <DependentUpon>FrmPaciente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pacientes\FrmPacienteAE.resx">
+      <DependentUpon>FrmPacienteAE.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Provincias\FrmProvincias.resx">
       <DependentUpon>FrmProvincias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Provincias\FrmProvinciasAE.resx">
       <DependentUpon>FrmProvinciasAE.cs</DependentUpon>
     </EmbeddedResource>
@@ -279,6 +298,137 @@
       <Name>BancoSangre.Servicios</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\cancel_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\city_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\contact_details_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\country_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart_with_pulse_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\in_progress_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rh+_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_as_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shutdown_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\syringe_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gender_equality_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\identification_documents_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marker_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\automatic_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\automatic_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\automatic_64px2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\city_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\contact_details_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\country_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gender_equality_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart_with_pulse_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\identification_documents_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\in_progress_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\marker_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rh+_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_as_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shutdown_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\syringe_64px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\welfare_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\health_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\protection_mask_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_pane_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\restart_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\google_web_search_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_delete_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new_copy_64px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,6 +1,9 @@
-﻿using BancoSangre.BL.Entidades.DTO.Institucion;
+﻿using BancoSangre.BL.Entidades.DTO.Documentos;
+using BancoSangre.BL.Entidades.DTO.Generos;
+using BancoSangre.BL.Entidades.DTO.Institucion;
 using BancoSangre.BL.Entidades.DTO.Localidad;
 using BancoSangre.BL.Entidades.DTO.Provincia;
+using BancoSangre.BL.Entidades.DTO.TiposSangres;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +17,8 @@ namespace BancoSangre.BL.Entidades.DTO.Pacientes
         public int PacienteID { get; set; }
         public string NombrePaciente { get; set; }
         public string ApellidoPaciente { get; set; }
-        public Genero genero { get; set; }
-        public Documento documento { get; set; }
+        public GeneroListDto genero { get; set; }
+        public DocumentoListDto documento { get; set; }
         public string NroDocumento { get; set; }
         public string Direccion { get; set; }
         public LocalidadListDto localidad { get; set; }
@@ -24,7 +27,7 @@ namespace BancoSangre.BL.Entidades.DTO.Pacientes
         public string TelefonoMovil { get; set; }
         public string Email { get; set; }
         public DateTime FechaNac { get; set; }
-        public TipoSangre tipoSangre { get; set; }
+        public TipoSangreListDto tipoSangre { get; set; }
         public InstitucionListDto institucion { get; set; }
     }
 }

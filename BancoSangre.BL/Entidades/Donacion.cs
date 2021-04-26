@@ -14,6 +14,14 @@ namespace BancoSangre.BL.Entidades
         public DateTime FechaIngreso { get; set; }
         public string vencimiento { get; set; }
         public int Cantidad { get; set; }
+
+        public Paciente Paciente { get; set; }
+
+        public Donante Donante { get; set; }
+
+        public TipoDonacion TipoDonacion { get; set; }
+
+        public DonacionesDonacionesAutomatizadas DonacionesDonacionesAutomatizadas { get; set; }
         public object Clone()
         {
             return this.MemberwiseClone();

@@ -60,7 +60,7 @@ namespace BancoSangre.Windows.Instituciones
             this.DenominacionTxt.MaxLength = 150;
             this.DenominacionTxt.Name = "DenominacionTxt";
             this.DenominacionTxt.Size = new System.Drawing.Size(505, 20);
-            this.DenominacionTxt.TabIndex = 132;
+            this.DenominacionTxt.TabIndex = 0;
             // 
             // label1
             // 
@@ -93,7 +93,7 @@ namespace BancoSangre.Windows.Instituciones
             this.LocalidadComboBox.Location = new System.Drawing.Point(101, 106);
             this.LocalidadComboBox.Name = "LocalidadComboBox";
             this.LocalidadComboBox.Size = new System.Drawing.Size(259, 21);
-            this.LocalidadComboBox.TabIndex = 129;
+            this.LocalidadComboBox.TabIndex = 2;
             // 
             // label7
             // 
@@ -111,7 +111,7 @@ namespace BancoSangre.Windows.Instituciones
             this.provinciasComboBox.Location = new System.Drawing.Point(101, 64);
             this.provinciasComboBox.Name = "provinciasComboBox";
             this.provinciasComboBox.Size = new System.Drawing.Size(259, 21);
-            this.provinciasComboBox.TabIndex = 127;
+            this.provinciasComboBox.TabIndex = 1;
             this.provinciasComboBox.SelectedIndexChanged += new System.EventHandler(this.provinciasComboBox_SelectedIndexChanged);
             // 
             // label6
@@ -129,7 +129,7 @@ namespace BancoSangre.Windows.Instituciones
             this.direcciontxt.MaxLength = 150;
             this.direcciontxt.Name = "direcciontxt";
             this.direcciontxt.Size = new System.Drawing.Size(565, 20);
-            this.direcciontxt.TabIndex = 124;
+            this.direcciontxt.TabIndex = 0;
             // 
             // label2
             // 
@@ -148,32 +148,33 @@ namespace BancoSangre.Windows.Instituciones
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(39, 278);
+            this.groupBox2.Location = new System.Drawing.Point(39, 265);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(706, 104);
             this.groupBox2.TabIndex = 135;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Contacto";
             // 
             // TelefonoMoviltxt
             // 
             this.TelefonoMoviltxt.Location = new System.Drawing.Point(101, 63);
             this.TelefonoMoviltxt.Name = "TelefonoMoviltxt";
             this.TelefonoMoviltxt.Size = new System.Drawing.Size(234, 20);
-            this.TelefonoMoviltxt.TabIndex = 129;
+            this.TelefonoMoviltxt.TabIndex = 1;
             // 
             // CorreoElectronicoTxt
             // 
             this.CorreoElectronicoTxt.Location = new System.Drawing.Point(444, 47);
             this.CorreoElectronicoTxt.Name = "CorreoElectronicoTxt";
             this.CorreoElectronicoTxt.Size = new System.Drawing.Size(222, 20);
-            this.CorreoElectronicoTxt.TabIndex = 129;
+            this.CorreoElectronicoTxt.TabIndex = 2;
             // 
             // TelefonoFijoTxt
             // 
             this.TelefonoFijoTxt.Location = new System.Drawing.Point(101, 29);
             this.TelefonoFijoTxt.Name = "TelefonoFijoTxt";
             this.TelefonoFijoTxt.Size = new System.Drawing.Size(234, 20);
-            this.TelefonoFijoTxt.TabIndex = 129;
+            this.TelefonoFijoTxt.TabIndex = 0;
             // 
             // label5
             // 
@@ -204,21 +205,25 @@ namespace BancoSangre.Windows.Instituciones
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(223, 388);
+            this.btnAceptar.Image = global::BancoSangre.Windows.Properties.Resources.in_progress_64px;
+            this.btnAceptar.Location = new System.Drawing.Point(223, 375);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(101, 50);
-            this.btnAceptar.TabIndex = 136;
+            this.btnAceptar.Size = new System.Drawing.Size(101, 86);
+            this.btnAceptar.TabIndex = 1;
             this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(383, 388);
+            this.btnCancelar.Image = global::BancoSangre.Windows.Properties.Resources.cancel_64px;
+            this.btnCancelar.Location = new System.Drawing.Point(383, 375);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(94, 50);
-            this.btnCancelar.TabIndex = 136;
+            this.btnCancelar.Size = new System.Drawing.Size(94, 86);
+            this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
@@ -230,7 +235,7 @@ namespace BancoSangre.Windows.Instituciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 473);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.groupBox2);

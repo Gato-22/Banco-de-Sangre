@@ -1,4 +1,10 @@
-﻿using BancoSangre.BL.Entidades.DTO;
+﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO;
+using BancoSangre.BL.Entidades.DTO.Documentos;
+using BancoSangre.BL.Entidades.DTO.Generos;
+using BancoSangre.BL.Entidades.DTO.Localidad;
+using BancoSangre.BL.Entidades.DTO.Provincia;
+using BancoSangre.BL.Entidades.DTO.TiposSangres;
 using BancoSangre.DL.Repositorios.Facades;
 using System;
 using System.Collections.Generic;
@@ -11,18 +17,149 @@ namespace BancoSangre.DL.Repositorios
 {
     public class RepositorioDonante : IRepositorioDonante
     {
-        private readonly SqlConnection _sqlConnection;
-        public RepositorioDonante(SqlConnection sqlConnection)
+        private readonly SqlConnection _conexion;
+        private readonly IRepositorioLocalidades _loca;
+        private readonly IRepositorioProvincias _provi;
+        private readonly IRepositorioGeneros _genero;
+        private readonly IRepositorioDocumentos _documento;
+        private readonly IRepositorioTipoSangre _tipoSangre;
+        public RepositorioDonante(SqlConnection sqlConnection, IRepositorioProvincias repositorioProvincias,
+            IRepositorioLocalidades epositorioLocalidades, IRepositorioGeneros repositorioGeneros, IRepositorioDocumentos repositorioDocumentos, IRepositorioTipoSangre repositorioTipoSangre)
         {
-            this._sqlConnection = sqlConnection;
+            this._conexion = sqlConnection;
+            _provi = repositorioProvincias;
+            _loca = epositorioLocalidades;        
+            _genero = repositorioGeneros;
+            _documento = repositorioDocumentos;
+            _tipoSangre = repositorioTipoSangre;
         }
+        public RepositorioDonante(SqlConnection conexion)
+        {
+            this._conexion = conexion;
+        }
+
+        public void borrar(int donanteid)
+        {
+            try
+            {
+                string cadenaComando = "DELETE FROM Donantes WHERE DonanteID=@id";
+                SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                comando.Parameters.AddWithValue("@id", donanteid);
+                comando.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("REFERENCE"))
+                {
+                    throw new Exception("Registro con datos asociados... Baja denega2");
+                }
+                throw new Exception(e.Message);
+            }
+        }
+
+        public bool existe(Donante donante)
+        {
+            try
+            {
+                if (donante.DonanteID == 0)
+                {
+                    
+                    string cadenaComando = "SELECT * FROM Donantes WHERE TipoDeDocumentoId=@doc and NroDocumento=@nro";
+                    SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                    comando.Parameters.AddWithValue("@doc", donante.documento.TipoDocumentoID);
+                    comando.Parameters.AddWithValue("@nro", donante.NroDocumento);
+
+                    SqlDataReader reader = comando.ExecuteReader();
+                    return reader.HasRows;
+                }
+                else
+                {
+                    string cadenaComando = "SELECT * FROM Donantes WHERE TipoDeDocumentoId=@doc and NroDocumento=@nro AND DonanteID<>@DonanteID";
+                    SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                    comando.Parameters.AddWithValue("@doc", donante.documento.TipoDocumentoID);
+                    comando.Parameters.AddWithValue("@nro", donante.NroDocumento);
+                    comando.Parameters.AddWithValue("@DonanteID", donante.DonanteID);
+                    SqlDataReader reader = comando.ExecuteReader();
+                    return reader.HasRows;
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public DonanteEditDto getDonantePorId(int donanteID)
+        {
+            DonanteEditDto donante = null;
+            try
+            {
+                string cadenacomando = "select DonanteID,Nombre,Apellido,GeneroID,TipoDeDocumentoID,NroDocumento,Direccion,LocalidadID,ProvinciaID,TelefonoFijo," +
+                    "TelefonoMovil,CorreoElectronico,FechaNacimiento, GrupoSanguineoID from Donantes where DonanteID=@id";
+                SqlCommand comando = new SqlCommand(cadenacomando, _conexion);
+                comando.Parameters.AddWithValue("@id", donanteID);
+                SqlDataReader reader = comando.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    donante = ConstruirDonanteEditDto(reader);
+                }
+                reader.Close();
+                return donante;
+            }
+            catch (Exception hj)
+            {
+
+                throw new Exception("Error al intentar leer Los Pacientes");
+            }
+        }
+
+        private DonanteEditDto ConstruirDonanteEditDto(SqlDataReader reader)
+        {
+            var generoEditDto = _genero.GetGeneroPorID(reader.GetInt32(3));
+            var documentoEditDto = _documento.GetDocumentoPorID(reader.GetInt32(4));
+            var localidadEditDto = _loca.GetlocalidadPorId(reader.GetInt32(7));
+            var provinciaEditDto = _provi.GetProvinciaPorID(reader.GetInt32(8));
+            var tipoSangreEditDto = _tipoSangre.GetTipoSangrePorID(reader.GetInt32(13));          
+            return new DonanteEditDto
+            {
+                DonanteID = reader.GetInt32(0),
+                NombreDonante = reader.GetString(1),
+                ApellidoDonante = reader.GetString(2),
+                genero = new GeneroListDto { GeneroID = generoEditDto.GeneroID, GeneroDescripcion = generoEditDto.GeneroDescripcion },
+                documento = new DocumentoListDto
+                {
+                    TipoDocumentoID = documentoEditDto.TipoDocumentoID,
+                    Descripcion = documentoEditDto.Descripcion
+                },
+                Direccion = reader.GetString(6),
+                localidad = new LocalidadListDto
+                {
+                    LocalidadID = localidadEditDto.LocalidadID,
+                    NombreLocalidad = localidadEditDto.NombreLocalidad,
+                    NombreProvincia = localidadEditDto.ProvinciaID.NombreProvincia
+                },
+                provincia = new ProvinciaListDto { Provinciaid = provinciaEditDto.ProvinciaId, NombreProvincia = provinciaEditDto.NombreProvincia },
+                TelefonoFijo = reader[9] != DBNull.Value ? reader.GetString(9) : string.Empty,
+                TelefonoMovil = reader[10] != DBNull.Value ? reader.GetString(10) : string.Empty,
+                Email = reader[11] != DBNull.Value ? reader.GetString(11) : string.Empty,
+
+                FechaNac = reader.GetDateTime(12),
+                tipoSangre = new TipoSangreListDto { GrupoSanguineoID = tipoSangreEditDto.GrupoSanguineoID, Grupo = tipoSangreEditDto.Grupo }
+                
+            };
+        }
+
         public List<DonanteListDto> GetLista()
         {
             List<DonanteListDto> lista = new List<DonanteListDto>();
             try
             {
                 string cadenacomando = "Select DonanteID,Nombre,Apellido,NombreLocalidad,NombreProvincia,Grupo from Donantes d inner join Localidades l on d.LocalidadID=l.LocalidadID inner join Provincias p on d.ProvinciaID=p.ProvinciaID inner join GruposSanguineos g on d.GrupoSanguineoID = g.GrupoSanguineoID";
-                SqlCommand comando = new SqlCommand(cadenacomando, _sqlConnection);
+                SqlCommand comando = new SqlCommand(cadenacomando, _conexion);
                 SqlDataReader reader = comando.ExecuteReader();
                 while (reader.Read())
                 {
@@ -36,6 +173,123 @@ namespace BancoSangre.DL.Repositorios
             {
 
                 throw new Exception("error al intentar leer donantes");
+            }
+        }
+
+        public void guardar(Donante donante)
+        {
+            if (donante.DonanteID == 0)
+            {
+                //Nuevo registro
+                try
+                {
+                    string cadenaComando = "INSERT INTO Donantes VALUES(@Nombre,@Apellido, @GeneroID,@TipoDeDocumentoID,@NroDocumento,@Direccion," +
+                        "@LocalidadID,@ProvinciaId,@TelefonoFijo,@TelefonoMovil,@CorreoElectronico,@FechaNacimiento,@GrupoSanguineoID)";
+                    SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                    comando.Parameters.AddWithValue("@Nombre", donante.NombreDonante);
+                    comando.Parameters.AddWithValue("@Apellido", donante.ApellidoDonante);
+                    comando.Parameters.AddWithValue("@GeneroID", donante.genero.GeneroID);
+                    comando.Parameters.AddWithValue("@TipoDeDocumentoID", donante.documento.TipoDocumentoID);
+                    comando.Parameters.AddWithValue("@NroDocumento", donante.NroDocumento);
+                    comando.Parameters.AddWithValue("@Direccion", donante.Direccion);
+                    comando.Parameters.AddWithValue("@LocalidadID", donante.localidad.LocalidadID);
+                    comando.Parameters.AddWithValue("@ProvinciaId", donante.provincia.ProvinciaID);
+                    if (donante.TelefonoFijo != string.Empty)
+                    {
+                        comando.Parameters.AddWithValue("@TelefonoFijo", donante.TelefonoFijo);
+                    }
+                    else
+                    {
+                        comando.Parameters.AddWithValue("@TelefonoFijo", DBNull.Value);
+                    }
+                    if (donante.TelefonoMovil != string.Empty)
+                    {
+                        comando.Parameters.AddWithValue("@TelefonoMovil", donante.TelefonoMovil);
+                    }
+                    else
+                    {
+                        comando.Parameters.AddWithValue("@TelefonoMovil", DBNull.Value);
+                    }
+                    if (donante.Email != string.Empty)
+                    {
+                        comando.Parameters.AddWithValue("@CorreoElectronico", donante.Email);
+
+                    }
+                    else
+                    {
+                        comando.Parameters.AddWithValue("@CorreoElectronico", DBNull.Value);
+                    }
+                    comando.Parameters.AddWithValue("@FechaNacimiento", donante.FechaNac);
+                    comando.Parameters.AddWithValue("@GrupoSanguineoID", donante.tipoSangre.GrupoSanguineoID);
+                 
+
+
+                    comando.ExecuteNonQuery();
+                    cadenaComando = "SELECT @@IDENTITY";
+                    comando = new SqlCommand(cadenaComando, _conexion);
+                    donante.DonanteID = (int)(decimal)comando.ExecuteScalar();
+
+                }
+                catch (Exception asd)
+                {
+                    throw new Exception("Error al intentar guardar del donante");
+                }
+
+
+            }
+            else
+            {
+                //Edición
+                try
+                {
+                    string cadenaComando = "UPDATE Donantes SET Nombre=@Nombre,Apellido=@Apellido,GeneroID=@GeneroID,TipoDeDocumentoID=@TipoDeDocumentoID," +
+                        "NroDocumento=@NroDocumento,Direccion=@Direccion, LocalidadID=@LocalidadID,ProvinciaId=@ProvinciaId,TelefonoFijo=@TelefonoFijo,TelefonoMovil=@TelefonoMovil," +
+                        "CorreoElectronico=@CorreoElectronico,FechaNacimiento=@FechaNacimiento,GrupoSanguineoID=@GrupoSanguineoID where DonanteID=@DonanteID";
+                    SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                    comando.Parameters.AddWithValue("@Nombre", donante.NombreDonante);
+                    comando.Parameters.AddWithValue("@Apellido", donante.ApellidoDonante);
+                    comando.Parameters.AddWithValue("@GeneroID", donante.genero.GeneroID);
+                    comando.Parameters.AddWithValue("@TipoDeDocumentoID", donante.documento.TipoDocumentoID);
+                    comando.Parameters.AddWithValue("@NroDocumento", donante.NroDocumento);
+                    comando.Parameters.AddWithValue("@Direccion", donante.Direccion);
+                    comando.Parameters.AddWithValue("@LocalidadID", donante.localidad.LocalidadID);
+                    comando.Parameters.AddWithValue("@ProvinciaId", donante.provincia.ProvinciaID);
+                    if (donante.TelefonoFijo != string.Empty)
+                    {
+                        comando.Parameters.AddWithValue("@TelefonoFijo", donante.TelefonoFijo);
+                    }
+                    else
+                    {
+                        comando.Parameters.AddWithValue("@TelefonoFijo", DBNull.Value);
+                    }
+                    if (donante.TelefonoMovil != string.Empty)
+                    {
+                        comando.Parameters.AddWithValue("@TelefonoMovil", donante.TelefonoMovil);
+                    }
+                    else
+                    {
+                        comando.Parameters.AddWithValue("@TelefonoMovil", DBNull.Value);
+                    }
+                    if (donante.Email != string.Empty)
+                    {
+                        comando.Parameters.AddWithValue("@CorreoElectronico", donante.Email);
+
+                    }
+                    else
+                    {
+                        comando.Parameters.AddWithValue("@CorreoElectronico", DBNull.Value);
+                    }
+                    comando.Parameters.AddWithValue("@FechaNacimiento", donante.FechaNac);
+                    comando.Parameters.AddWithValue("@GrupoSanguineoID", donante.tipoSangre.GrupoSanguineoID);
+                    
+                    comando.Parameters.AddWithValue("@DonanteID", donante.DonanteID);
+                    comando.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al intentar editar a un paciente");
+                }
+
             }
         }
 

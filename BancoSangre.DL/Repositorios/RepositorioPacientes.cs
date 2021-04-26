@@ -1,8 +1,11 @@
 ﻿using BancoSangre.BL.Entidades;
 using BancoSangre.BL.Entidades.DTO.Documentos;
 using BancoSangre.BL.Entidades.DTO.Generos;
+using BancoSangre.BL.Entidades.DTO.Institucion;
+using BancoSangre.BL.Entidades.DTO.Localidad;
 using BancoSangre.BL.Entidades.DTO.Pacientes;
 using BancoSangre.BL.Entidades.DTO.Provincia;
+using BancoSangre.BL.Entidades.DTO.TiposSangres;
 using BancoSangre.DL.Repositorios.Facades;
 using System;
 using System.Collections.Generic;
@@ -65,17 +68,20 @@ namespace BancoSangre.DL.Repositorios
                 if (paciente.PacienteID == 0)
                 {
                     //editar esto
-                    string cadenaComando = "SELECT * FROM Pacientes WHERE Nombre=@nomb";
+                    string cadenaComando = "SELECT * FROM Pacientes WHERE TipoDeDocumentoId=@doc and NroDocumento=@nro";
                     SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
-                    comando.Parameters.AddWithValue("@nomb", paciente.NombrePaciente);
+                    comando.Parameters.AddWithValue("@doc", paciente.documento.TipoDocumentoID);
+                    comando.Parameters.AddWithValue("@nro", paciente.NroDocumento);
+
                     SqlDataReader reader = comando.ExecuteReader();
                     return reader.HasRows;
                 }
                 else
                 {
-                    string cadenaComando = "SELECT * FROM Pacientes WHERE Nombre=@nomb AND DonanteID<>@DonanteID";
+                    string cadenaComando = "SELECT * FROM Pacientes WHERE TipoDeDocumentoId=@doc and NroDocumento=@nro AND DonanteID<>@DonanteID";
                     SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
-                    comando.Parameters.AddWithValue("@nomb", paciente.NombrePaciente);
+                    comando.Parameters.AddWithValue("@doc", paciente.documento.TipoDocumentoID);
+                    comando.Parameters.AddWithValue("@nro", paciente.NroDocumento);
                     comando.Parameters.AddWithValue("@DonanteID", paciente.PacienteID);
                     SqlDataReader reader = comando.ExecuteReader();
                     return reader.HasRows;
@@ -94,7 +100,8 @@ namespace BancoSangre.DL.Repositorios
             PacienteEditDto paciente = null;
             try
             {
-                string cadenacomando = "select DonanteID,Nombre,Apellido,GeneroID,TipoDeDocumentoID,NroDocumento,Direccion,LocalidadID,ProvinciaID,TelefonoFijo,TelefonoMovil,CorreoElectronico,FechaNacimiento, GrupoSanguineoID, InstitucionID from Pacientes where DonanteID=@id";
+                string cadenacomando = "select DonanteID,Nombre,Apellido,GeneroID,TipoDeDocumentoID,NroDocumento,Direccion,LocalidadID,ProvinciaID,TelefonoFijo," +
+                    "TelefonoMovil,CorreoElectronico,FechaNacimiento, GrupoSanguineoID, InstitucionID from Pacientes where DonanteID=@id";
                 SqlCommand comando = new SqlCommand(cadenacomando, _conexion);
                 comando.Parameters.AddWithValue("@id", PacienteID);
                 SqlDataReader reader = comando.ExecuteReader();
@@ -106,7 +113,7 @@ namespace BancoSangre.DL.Repositorios
                 reader.Close();
                 return paciente;
             }
-            catch (Exception)
+            catch (Exception hj)
             {
 
                 throw new Exception("Error al intentar leer Los Pacientes");
@@ -119,31 +126,35 @@ namespace BancoSangre.DL.Repositorios
             var documentoEditDto = _documento.GetDocumentoPorID(reader.GetInt32(4));
             var localidadEditDto = _loca.GetlocalidadPorId(reader.GetInt32(7));
             var provinciaEditDto = _provi.GetProvinciaPorID(reader.GetInt32(8));
-            var tipoSangreEditDto = _tipoSangre.GetTipoSangrePorID(reader.GetInt32(14));
-            var institucionEditDto = _insti.GetInstitucionPorID(reader.GetInt32(15));
+            var tipoSangreEditDto = _tipoSangre.GetTipoSangrePorID(reader.GetInt32(13));
+            var institucionEditDto = _insti.GetInstitucionPorID(reader.GetInt32(14));
             return new PacienteEditDto
             {
                 PacienteID = reader.GetInt32(0),
                 NombrePaciente = reader.GetString(1),
                 ApellidoPaciente = reader.GetString(2),
-                //genero = new GeneroListDto { GeneroID = generoEditDto.GeneroID, GeneroDescripcion = generoEditDto.GeneroDescripcion },
-
-
+                genero = new GeneroListDto { GeneroID = generoEditDto.GeneroID, GeneroDescripcion = generoEditDto.GeneroDescripcion },
+                documento = new DocumentoListDto
+                {
+                    TipoDocumentoID = documentoEditDto.TipoDocumentoID,
+                    Descripcion = documentoEditDto.Descripcion
+                },
+                NroDocumento = reader.GetString(5),
+                Direccion = reader.GetString(6),
+                localidad = new LocalidadListDto
+                {
+                    LocalidadID = localidadEditDto.LocalidadID,
+                    NombreLocalidad = localidadEditDto.NombreLocalidad,
+                    NombreProvincia = localidadEditDto.ProvinciaID.NombreProvincia
+                },
                 provincia = new ProvinciaListDto { Provinciaid = provinciaEditDto.ProvinciaId, NombreProvincia = provinciaEditDto.NombreProvincia },
-                //documento = new DocumentoEditDto
-                //{
-                //    TipoDocumentoID = documentoEditDto.TipoDocumentoID, Descripcion = documentoEditDto.Descripcion
-                //}
-                //localidad = new localidadEditDto
-                //{
-                //    LocalidadID = localidadEditDto.LocalidadID,
-                //    NombreLocalidad = localidadEditDto.NombreLocalidad,
-                //    NombreProvincia = localidadEditDto.ProvinciaID.NombreProvincia
-                //},
-                //localidad = reader.GetString(3),
-                //provincia = reader.GetString(4),
-                //tipoSangre = reader.GetString(5),
-                //institucion = reader.GetString(6)
+                TelefonoFijo = reader[9] != DBNull.Value ? reader.GetString(9) : string.Empty,
+                TelefonoMovil = reader[10] != DBNull.Value ? reader.GetString(10) : string.Empty,
+                Email= reader[11] != DBNull.Value ? reader.GetString(11) : string.Empty,
+                
+                FechaNac=reader.GetDateTime(12),
+                tipoSangre= new TipoSangreListDto { GrupoSanguineoID=tipoSangreEditDto.GrupoSanguineoID, Grupo=tipoSangreEditDto.Grupo},
+                institucion=new InstitucionListDto { InstitucionID=institucionEditDto.InstitucionID, Denominacion=institucionEditDto.Denominacion}
             };
         }
 
@@ -177,7 +188,7 @@ namespace BancoSangre.DL.Repositorios
                 //Nuevo registro
                 try
                 {
-                    string cadenaComando = "INSERT INTO Pacientes VALUES(@Nombre,@Apellido, @GeneroID,@TipoDeDocumentoID,@NroDocumento,@Direccion,@LocalidadID,@ProvinciaId,@TelefonoFijo,@TelefonoMovil,@CorreoElectronico,@FechaNacimiento,GrupoSanguineoID,InstitucionID)";
+                    string cadenaComando = "INSERT INTO Pacientes VALUES(@Nombre,@Apellido, @GeneroID,@TipoDeDocumentoID,@NroDocumento,@Direccion,@LocalidadID,@ProvinciaId,@TelefonoFijo,@TelefonoMovil,@CorreoElectronico,@FechaNacimiento,@GrupoSanguineoID,@InstitucionID)";
                     SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
                     comando.Parameters.AddWithValue("@Nombre", paciente.NombrePaciente);
                     comando.Parameters.AddWithValue("@Apellido", paciente.ApellidoPaciente);
@@ -235,7 +246,9 @@ namespace BancoSangre.DL.Repositorios
                 //Edición
                 try
                 {
-                    string cadenaComando = "UPDATE Pacientes SET Nombre=@Nombre,Apellido=@Apellido,GeneroID=@GeneroID,TipoDeDocumentoID=@TipoDeDocumentoID,NroDocumento=@NroDocumento,Direccion=@Direccion, LocalidadID=@LocalidadID,ProvinciaId=@ProvinciaId,TelefonoFijo=@TelefonoFijo,TelefonoMovil=@TelefonoMovil,CorreoElectronico=@CorreoElectronico,FechaNacimiento=@FechaNacimiento,GrupoSanguineoID=@GrupoSanguineoID,InstitucionID=@InstitucionID where donateID=@DonanteID";
+                    string cadenaComando = "UPDATE Pacientes SET Nombre=@Nombre,Apellido=@Apellido,GeneroID=@GeneroID,TipoDeDocumentoID=@TipoDeDocumentoID," +
+                        "NroDocumento=@NroDocumento,Direccion=@Direccion, LocalidadID=@LocalidadID,ProvinciaId=@ProvinciaId,TelefonoFijo=@TelefonoFijo,TelefonoMovil=@TelefonoMovil," +
+                        "CorreoElectronico=@CorreoElectronico,FechaNacimiento=@FechaNacimiento,GrupoSanguineoID=@GrupoSanguineoID,InstitucionID=@InstitucionID where DonanteID=@DonanteID";
                     SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
                     comando.Parameters.AddWithValue("@Nombre", paciente.NombrePaciente);
                     comando.Parameters.AddWithValue("@Apellido", paciente.ApellidoPaciente);
@@ -276,7 +289,7 @@ namespace BancoSangre.DL.Repositorios
                     comando.Parameters.AddWithValue("@DonanteID", paciente.PacienteID);
                     comando.ExecuteNonQuery();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     throw new Exception("Error al intentar editar a un paciente");
                 }

@@ -40,11 +40,13 @@ namespace BancoSangre.Windows.Documentos
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(125, 81);
+            this.btnAceptar.Image = global::BancoSangre.Windows.Properties.Resources.in_progress_64px;
+            this.btnAceptar.Location = new System.Drawing.Point(125, 71);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 0;
+            this.btnAceptar.Size = new System.Drawing.Size(84, 81);
+            this.btnAceptar.TabIndex = 1;
             this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
@@ -63,15 +65,17 @@ namespace BancoSangre.Windows.Documentos
             this.txtDocumento.MaxLength = 30;
             this.txtDocumento.Name = "txtDocumento";
             this.txtDocumento.Size = new System.Drawing.Size(133, 20);
-            this.txtDocumento.TabIndex = 2;
+            this.txtDocumento.TabIndex = 0;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(249, 81);
+            this.btnCancelar.Image = global::BancoSangre.Windows.Properties.Resources.cancel_64px;
+            this.btnCancelar.Location = new System.Drawing.Point(251, 71);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 0;
+            this.btnCancelar.Size = new System.Drawing.Size(93, 81);
+            this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
@@ -83,7 +87,7 @@ namespace BancoSangre.Windows.Documentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(481, 116);
+            this.ClientSize = new System.Drawing.Size(481, 164);
             this.Controls.Add(this.txtDocumento);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelar);
