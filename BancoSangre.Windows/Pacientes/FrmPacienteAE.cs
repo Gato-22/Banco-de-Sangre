@@ -1,8 +1,9 @@
-﻿using BancoSangre.BL.Entidades.DTO.Documentos;
+﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO.Documentos;
 using BancoSangre.BL.Entidades.DTO.Generos;
 using BancoSangre.BL.Entidades.DTO.Institucion;
 using BancoSangre.BL.Entidades.DTO.Localidad;
-using BancoSangre.BL.Entidades.DTO.Pacientes;
+
 using BancoSangre.BL.Entidades.DTO.Provincia;
 using BancoSangre.BL.Entidades.DTO.TiposSangres;
 using BancoSangre.Windows.Ahelper;
@@ -24,15 +25,15 @@ namespace BancoSangre.Windows.Pacientes
         {
             InitializeComponent();
         }
-        private PacienteEditDto pacienteEditDto;
+        private Paciente pacienteEditDto;
         
 
-        internal PacienteEditDto getPaciente()
+        internal Paciente getPaciente()
         {
             return pacienteEditDto;
         }
         bool esedicion = false;
-        public void SetPaciente(PacienteEditDto pacienteEditDto)
+        public void SetPaciente(Paciente pacienteEditDto)
         {
             this.pacienteEditDto = pacienteEditDto;
         }
@@ -61,8 +62,8 @@ namespace BancoSangre.Windows.Pacientes
                 TelefonoFijoTxt.Text = pacienteEditDto.TelefonoFijo;
                 TelefonoMoviltxt.Text = pacienteEditDto.TelefonoMovil;
                 CorreoElectronicoTxt.Text = pacienteEditDto.Email;
-                provinciasComboBox.SelectedValue = pacienteEditDto.provincia.Provinciaid;
-                Helper.CargarDatosComboLocalidades(ref LocalidadComboBox, pacienteEditDto.provincia);
+                provinciasComboBox.SelectedValue = pacienteEditDto.provincia;
+                Helper.CargarDatosComboLocalidades(ref LocalidadComboBox,Helper.ConvertirProvinciaEnProvinciaListDto(pacienteEditDto.provincia));
                 LocalidadComboBox.SelectedValue = pacienteEditDto.localidad.LocalidadID;
                 GeneroComboBox.SelectedValue = pacienteEditDto.genero.GeneroID;
                 DocumentoComboBox.SelectedValue = pacienteEditDto.documento.TipoDocumentoID;
@@ -82,22 +83,22 @@ namespace BancoSangre.Windows.Pacientes
             {
                 if (pacienteEditDto==null)
                 {
-                    pacienteEditDto = new PacienteEditDto();
+                    pacienteEditDto = new Paciente();
                 }
                 pacienteEditDto.NombrePaciente = NombreTxt.Text;
                 pacienteEditDto.ApellidoPaciente = Apellidotxt.Text;
-                pacienteEditDto.genero = (GeneroListDto)GeneroComboBox.SelectedItem;
-                pacienteEditDto.documento = (DocumentoListDto)DocumentoComboBox.SelectedItem;         
+                pacienteEditDto.genero = Helper.ConvertirGeneroListDtoEnGenero((GeneroListDto)GeneroComboBox.SelectedItem);
+                pacienteEditDto.documento = Helper.ConvertirDocumentoListDtoEnDocumento((DocumentoListDto)DocumentoComboBox.SelectedItem);
                 pacienteEditDto.NroDocumento = NroDocumentoTxt.Text;
                 pacienteEditDto.Direccion = direcciontxt.Text;
-                pacienteEditDto.localidad = (LocalidadListDto)LocalidadComboBox.SelectedItem;
-                pacienteEditDto.provincia = (ProvinciaListDto)provinciasComboBox.SelectedItem;
+                pacienteEditDto.localidad = Helper.ConvertirLocalidadListDtoEnLocalidad((LocalidadListDto)LocalidadComboBox.SelectedItem);
+                pacienteEditDto.provincia = Helper.ConvertirProvinciaListDtoEnProvincia((ProvinciaListDto)provinciasComboBox.SelectedItem);
                 pacienteEditDto.TelefonoFijo = TelefonoFijoTxt.Text;
                 pacienteEditDto.TelefonoMovil = TelefonoMoviltxt.Text;
                 pacienteEditDto.Email = CorreoElectronicoTxt.Text;
                 pacienteEditDto.FechaNac = FechadateTimePicker1.Value;
-                pacienteEditDto.tipoSangre = (TipoSangreListDto)GrupoSanguineoComboBox.SelectedItem;
-                pacienteEditDto.institucion = (InstitucionListDto)InstitucionComboBox.SelectedItem;
+                pacienteEditDto.tipoSangre = Helper.ConvertirTipoSangreListDtoEnTipoSangre((TipoSangreListDto)GrupoSanguineoComboBox.SelectedItem);
+                pacienteEditDto.institucion = Helper.ConvertirInstitucionListDtoEnInstitucion((InstitucionListDto)InstitucionComboBox.SelectedItem);
                 DialogResult = DialogResult.OK;
             }
             

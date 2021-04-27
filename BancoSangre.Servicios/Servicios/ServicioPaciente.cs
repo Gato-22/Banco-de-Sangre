@@ -1,5 +1,5 @@
 ﻿using BancoSangre.BL.Entidades;
-using BancoSangre.BL.Entidades.DTO.Pacientes;
+
 using BancoSangre.DL;
 using BancoSangre.DL.Repositorios;
 using BancoSangre.DL.Repositorios.Facades;
@@ -41,7 +41,7 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public bool existe(PacienteEditDto pacienteEditDto)
+        public bool existe(Paciente pacienteEditDto)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace BancoSangre.Servicios.Servicios
                     Direccion = pacienteEditDto.Direccion,
                     provincia = new Provincia()
                     {
-                        ProvinciaID = pacienteEditDto.provincia.Provinciaid,
+                        ProvinciaID = pacienteEditDto.provincia.ProvinciaID,
                         NombreProvincia = pacienteEditDto.provincia.NombreProvincia
                     },
                     localidad = new Localidad
@@ -75,7 +75,7 @@ namespace BancoSangre.Servicios.Servicios
                         NombreLocalidad = pacienteEditDto.localidad.NombreLocalidad,
                         provincia = new Provincia()
                         {
-                            ProvinciaID = pacienteEditDto.provincia.Provinciaid,
+                            ProvinciaID = pacienteEditDto.provincia.ProvinciaID,
                             NombreProvincia = pacienteEditDto.provincia.NombreProvincia
                         },
                     },
@@ -96,7 +96,7 @@ namespace BancoSangre.Servicios.Servicios
                         Direccion = pacienteEditDto.Direccion,
                         provincia = new Provincia()
                         {
-                            ProvinciaID = pacienteEditDto.provincia.Provinciaid,
+                            ProvinciaID = pacienteEditDto.provincia.ProvinciaID,
                             NombreProvincia = pacienteEditDto.provincia.NombreProvincia
                         },
                         localidad = new Localidad
@@ -105,7 +105,7 @@ namespace BancoSangre.Servicios.Servicios
                             NombreLocalidad = pacienteEditDto.localidad.NombreLocalidad,
                             provincia = new Provincia()
                             {
-                                ProvinciaID = pacienteEditDto.provincia.Provinciaid,
+                                ProvinciaID = pacienteEditDto.provincia.ProvinciaID,
                                 NombreProvincia = pacienteEditDto.provincia.NombreProvincia
                             },
                         },
@@ -123,7 +123,7 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public PacienteEditDto getPacientePorID(int id)
+        public Paciente getPacientePorID(int id)
         {
             try
             {
@@ -145,12 +145,18 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public List<PacienteListDto> GetLista()
+        public List<Paciente> GetLista()
         {
             try
             {
                 _conexionBd = new ConexionBd();
-                _repo = new RepositorioPacientes(_conexionBd.AbrirConexion());
+                _repositorioGeneros = new RepositorioGeneros(_conexionBd.AbrirConexion());
+                _repositorioDocumentos = new RepositorioDocumentos(_conexionBd.AbrirConexion());
+                _repositorioProvincias = new RepositorioProvincias(_conexionBd.AbrirConexion());
+                _repositorioLocalidades = new RepositorioLocalidad(_conexionBd.AbrirConexion(), _repositorioProvincias);
+                _repositorioTipoSangre = new RepositorioTipoSangre(_conexionBd.AbrirConexion());
+                _repositorioInstituciones = new RepositorioInstituciones(_conexionBd.AbrirConexion(), _repositorioProvincias, _repositorioLocalidades);
+                _repo = new RepositorioPacientes(_conexionBd.AbrirConexion(), _repositorioProvincias, _repositorioLocalidades, _repositorioInstituciones, _repositorioGeneros, _repositorioDocumentos, _repositorioTipoSangre);
                 var lista = _repo.GetLista();
                 _conexionBd.CerrarConexion();
                 return lista;
@@ -162,7 +168,7 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public void guardar(PacienteEditDto pacienteEditDto)
+        public void guardar(Paciente pacienteEditDto)
         {
             try
             {
@@ -187,7 +193,7 @@ namespace BancoSangre.Servicios.Servicios
                     Direccion = pacienteEditDto.Direccion,
                     provincia = new Provincia()
                     {
-                        ProvinciaID = pacienteEditDto.provincia.Provinciaid,
+                        ProvinciaID = pacienteEditDto.provincia.ProvinciaID,
                         NombreProvincia = pacienteEditDto.provincia.NombreProvincia
                     },
                     localidad = new Localidad
@@ -196,7 +202,7 @@ namespace BancoSangre.Servicios.Servicios
                         NombreLocalidad = pacienteEditDto.localidad.NombreLocalidad,
                         provincia = new Provincia()
                         {
-                            ProvinciaID = pacienteEditDto.provincia.Provinciaid,
+                            ProvinciaID = pacienteEditDto.provincia.ProvinciaID,
                             NombreProvincia = pacienteEditDto.provincia.NombreProvincia
                         },
                     },
@@ -217,7 +223,7 @@ namespace BancoSangre.Servicios.Servicios
                         Direccion = pacienteEditDto.Direccion,
                         provincia = new Provincia()
                         {
-                            ProvinciaID = pacienteEditDto.provincia.Provinciaid,
+                            ProvinciaID = pacienteEditDto.provincia.ProvinciaID,
                             NombreProvincia = pacienteEditDto.provincia.NombreProvincia
                         },
                         localidad = new Localidad
@@ -226,7 +232,7 @@ namespace BancoSangre.Servicios.Servicios
                             NombreLocalidad = pacienteEditDto.localidad.NombreLocalidad,
                             provincia = new Provincia()
                             {
-                                ProvinciaID = pacienteEditDto.provincia.Provinciaid,
+                                ProvinciaID = pacienteEditDto.provincia.ProvinciaID,
                                 NombreProvincia = pacienteEditDto.provincia.NombreProvincia
                             },
                         },

@@ -10,15 +10,15 @@ namespace BancoSangre.DL.Repositorios.Facades
 {
     public interface IRepositorioDonante
     {
-        List<DonanteListDto> GetLista();
+        List<Donante> GetLista();
         void guardar(Donante donante);
         bool existe(Donante donante);
         void borrar(int donanteid);
-        DonanteEditDto getDonantePorId(int donanteID);
-        //List<PacienteListDto> GetLista();
+        Donante getDonantePorId(int donanteID);
+        //List<Paciente> GetLista();
         //void guardar(Paciente paciente);
         //bool existe(Paciente paciente);
         //void borrar(int pacienteid);
-        //PacienteEditDto getPacientePorID(int PacienteID);
+        //Paciente getPacientePorID(int PacienteID);
     }
 }

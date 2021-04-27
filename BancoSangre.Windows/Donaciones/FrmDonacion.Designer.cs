@@ -30,22 +30,15 @@ namespace BancoSangre.Windows.Donaciones
         private void InitializeComponent()
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.dgbDatos = new System.Windows.Forms.DataGridView();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
-            this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.btnBorrar = new System.Windows.Forms.ToolStripButton();
-            this.btnBuscar = new System.Windows.Forms.ToolStripButton();
-            this.btnActualizar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnCerrar = new System.Windows.Forms.ToolStripButton();
+            this.dgbDatos = new System.Windows.Forms.DataGridView();
             this.cmnFechaDonacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmnIdenti = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnDonante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnPaciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnTipoDonacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmnFechaingre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmnVenci = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnCanti = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgbDatos)).BeginInit();
@@ -55,52 +48,14 @@ namespace BancoSangre.Windows.Donaciones
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnNuevo,
-            this.btnEditar,
             this.btnBorrar,
             this.toolStripSeparator1,
-            this.btnBuscar,
-            this.btnActualizar,
-            this.toolStripSeparator3,
             this.btnCerrar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 86);
+            this.toolStrip1.Size = new System.Drawing.Size(896, 86);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 86);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 86);
-            // 
-            // dgbDatos
-            // 
-            this.dgbDatos.AllowUserToAddRows = false;
-            this.dgbDatos.AllowUserToDeleteRows = false;
-            this.dgbDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgbDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cmnFechaDonacion,
-            this.cmnIdenti,
-            this.cmnDonante,
-            this.cmnPaciente,
-            this.cmnTipoDonacion,
-            this.cmnFechaingre,
-            this.cmnVenci,
-            this.cmnCanti});
-            this.dgbDatos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgbDatos.Location = new System.Drawing.Point(0, 86);
-            this.dgbDatos.MultiSelect = false;
-            this.dgbDatos.Name = "dgbDatos";
-            this.dgbDatos.ReadOnly = true;
-            this.dgbDatos.RowHeadersVisible = false;
-            this.dgbDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgbDatos.Size = new System.Drawing.Size(800, 364);
-            this.dgbDatos.TabIndex = 4;
             // 
             // btnNuevo
             // 
@@ -113,17 +68,6 @@ namespace BancoSangre.Windows.Donaciones
             this.btnNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
-            // btnEditar
-            // 
-            this.btnEditar.Image = global::BancoSangre.Windows.Properties.Resources.pencil_64px;
-            this.btnEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(68, 83);
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
             // btnBorrar
             // 
             this.btnBorrar.Image = global::BancoSangre.Windows.Properties.Resources.delete_64px;
@@ -135,25 +79,10 @@ namespace BancoSangre.Windows.Donaciones
             this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
-            // btnBuscar
+            // toolStripSeparator1
             // 
-            this.btnBuscar.Image = global::BancoSangre.Windows.Properties.Resources.google_web_search_64px;
-            this.btnBuscar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnBuscar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(68, 83);
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // btnActualizar
-            // 
-            this.btnActualizar.Image = global::BancoSangre.Windows.Properties.Resources.restart_64px;
-            this.btnActualizar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnActualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(68, 83);
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 86);
             // 
             // btnCerrar
             // 
@@ -166,19 +95,33 @@ namespace BancoSangre.Windows.Donaciones
             this.btnCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // dgbDatos
+            // 
+            this.dgbDatos.AllowUserToAddRows = false;
+            this.dgbDatos.AllowUserToDeleteRows = false;
+            this.dgbDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgbDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cmnFechaDonacion,
+            this.cmnDonante,
+            this.cmnPaciente,
+            this.cmnTipoDonacion,
+            this.cmnCanti});
+            this.dgbDatos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgbDatos.Location = new System.Drawing.Point(0, 86);
+            this.dgbDatos.MultiSelect = false;
+            this.dgbDatos.Name = "dgbDatos";
+            this.dgbDatos.ReadOnly = true;
+            this.dgbDatos.RowHeadersVisible = false;
+            this.dgbDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgbDatos.Size = new System.Drawing.Size(896, 364);
+            this.dgbDatos.TabIndex = 4;
+            // 
             // cmnFechaDonacion
             // 
             this.cmnFechaDonacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.cmnFechaDonacion.HeaderText = "Fecha de Donacion";
             this.cmnFechaDonacion.Name = "cmnFechaDonacion";
             this.cmnFechaDonacion.ReadOnly = true;
-            // 
-            // cmnIdenti
-            // 
-            this.cmnIdenti.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cmnIdenti.HeaderText = "Identificacion";
-            this.cmnIdenti.Name = "cmnIdenti";
-            this.cmnIdenti.ReadOnly = true;
             // 
             // cmnDonante
             // 
@@ -201,20 +144,6 @@ namespace BancoSangre.Windows.Donaciones
             this.cmnTipoDonacion.Name = "cmnTipoDonacion";
             this.cmnTipoDonacion.ReadOnly = true;
             // 
-            // cmnFechaingre
-            // 
-            this.cmnFechaingre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cmnFechaingre.HeaderText = "Fecha de Ingreso";
-            this.cmnFechaingre.Name = "cmnFechaingre";
-            this.cmnFechaingre.ReadOnly = true;
-            // 
-            // cmnVenci
-            // 
-            this.cmnVenci.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cmnVenci.HeaderText = "Vencimiento";
-            this.cmnVenci.Name = "cmnVenci";
-            this.cmnVenci.ReadOnly = true;
-            // 
             // cmnCanti
             // 
             this.cmnCanti.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -226,7 +155,7 @@ namespace BancoSangre.Windows.Donaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(896, 450);
             this.Controls.Add(this.dgbDatos);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FrmDonacion";
@@ -244,21 +173,14 @@ namespace BancoSangre.Windows.Donaciones
 
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnNuevo;
-        private System.Windows.Forms.ToolStripButton btnEditar;
         private System.Windows.Forms.ToolStripButton btnBorrar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton btnBuscar;
-        private System.Windows.Forms.ToolStripButton btnActualizar;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton btnCerrar;
         private System.Windows.Forms.DataGridView dgbDatos;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnFechaDonacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cmnIdenti;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnDonante;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnPaciente;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnTipoDonacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cmnFechaingre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cmnVenci;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnCanti;
     }
 }

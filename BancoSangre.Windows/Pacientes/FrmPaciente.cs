@@ -1,4 +1,5 @@
-﻿using BancoSangre.BL.Entidades.DTO.Pacientes;
+﻿using BancoSangre.BL.Entidades;
+
 using BancoSangre.Servicios.Servicios;
 using BancoSangre.Servicios.Servicios.Facades;
 using System;
@@ -20,7 +21,7 @@ namespace BancoSangre.Windows.Pacientes
             InitializeComponent();
         }
         private IServicioPaciente _servi;
-        private List<PacienteListDto> _list;
+        private List<Paciente> _list;
 
         private void FrmPaciente_Load(object sender, EventArgs e)
         {
@@ -52,7 +53,7 @@ namespace BancoSangre.Windows.Pacientes
             dgbDatos.Rows.Add(r);
         }
 
-        private void SetearFila(DataGridViewRow r, PacienteListDto pacienteListDto)
+        private void SetearFila(DataGridViewRow r, Paciente pacienteListDto)
         {
             r.Cells[CmnNombre.Index].Value = pacienteListDto.NombrePaciente;
             r.Cells[cmnApellido.Index].Value = pacienteListDto.ApellidoPaciente;
@@ -86,7 +87,7 @@ namespace BancoSangre.Windows.Pacientes
             }
             try
             {
-                PacienteEditDto pacienteEditDto = frm.getPaciente();
+                Paciente pacienteEditDto = frm.getPaciente();
                 if (_servi.existe(pacienteEditDto))
                 {
                     MessageBox.Show("Registro Repetido", "Mensaje", MessageBoxButtons.OK,
@@ -95,15 +96,15 @@ namespace BancoSangre.Windows.Pacientes
                 }
                 _servi.guardar(pacienteEditDto);
                 DataGridViewRow r = ConstruirFila();
-                PacienteListDto pacienteListDto = new PacienteListDto
+                Paciente pacienteListDto = new Paciente
                 {
                     PacienteID = pacienteEditDto.PacienteID,
                     NombrePaciente= pacienteEditDto.NombrePaciente,
                     ApellidoPaciente= pacienteEditDto.ApellidoPaciente,
-                    institucion=pacienteEditDto.institucion.Denominacion,
-                    localidad=pacienteEditDto.localidad.NombreLocalidad,
-                    provincia=pacienteEditDto.provincia.NombreProvincia,
-                    tipoSangre=pacienteEditDto.tipoSangre.Grupo
+                    institucion=pacienteEditDto.institucion,
+                    localidad=pacienteEditDto.localidad,
+                    provincia=pacienteEditDto.provincia,
+                    tipoSangre=pacienteEditDto.tipoSangre
                 };
                 SetearFila(r, pacienteListDto);
                 AgregarFila(r);
@@ -125,8 +126,8 @@ namespace BancoSangre.Windows.Pacientes
                 return;
             }
             DataGridViewRow r = dgbDatos.SelectedRows[0];
-            PacienteListDto pacienteListDto = (PacienteListDto)r.Tag;
-            PacienteListDto institucionListDtoaux = (PacienteListDto)pacienteListDto.Clone();
+            Paciente pacienteListDto = (Paciente)r.Tag;
+            Paciente institucionListDtoaux = (Paciente)pacienteListDto.Clone();
             DialogResult dr = MessageBox.Show($"¿Desea dar de baja al registro seleccionado {pacienteListDto.NroDocumento}?",
                 "Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.No)
@@ -156,10 +157,10 @@ namespace BancoSangre.Windows.Pacientes
                 return;
             }
             DataGridViewRow r = dgbDatos.SelectedRows[0];
-            PacienteListDto pacienteListDto = (PacienteListDto)r.Tag;
-            PacienteListDto InstitucionListDtoAuxiliar = (PacienteListDto)pacienteListDto.Clone();
+            Paciente pacienteListDto = (Paciente)r.Tag;
+            Paciente InstitucionListDtoAuxiliar = (Paciente)pacienteListDto.Clone();
             FrmPacienteAE frm = new FrmPacienteAE();
-            PacienteEditDto pacienteEditDto = _servi.getPacientePorID(pacienteListDto.PacienteID);
+            Paciente pacienteEditDto = _servi.getPacientePorID(pacienteListDto.PacienteID);
             frm.Text = "Editar Paciente";
             frm.SetPaciente(pacienteEditDto);
             DialogResult dr = frm.ShowDialog(this);
@@ -179,18 +180,18 @@ namespace BancoSangre.Windows.Pacientes
                     pacienteListDto.PacienteID = pacienteEditDto.PacienteID;
                     pacienteListDto.NombrePaciente = pacienteEditDto.NombrePaciente;
                     pacienteListDto.ApellidoPaciente = pacienteEditDto.ApellidoPaciente;
-                    pacienteListDto.Genero = pacienteEditDto.genero.GeneroDescripcion;
-                    pacienteListDto.TipoDocumento = pacienteEditDto.documento.Descripcion;
+                    pacienteListDto.genero = pacienteEditDto.genero;
+                    pacienteListDto.documento = pacienteEditDto.documento;
                     pacienteListDto.NroDocumento = pacienteEditDto.NroDocumento;
-                    pacienteListDto.direccion = pacienteEditDto.Direccion;
-                    pacienteListDto.provincia = pacienteEditDto.provincia.NombreProvincia;
-                    pacienteListDto.localidad = pacienteEditDto.localidad.NombreLocalidad;
+                    pacienteListDto.Direccion = pacienteEditDto.Direccion;
+                    pacienteListDto.provincia = pacienteEditDto.provincia;
+                    pacienteListDto.localidad = pacienteEditDto.localidad;
                     pacienteListDto.TelefonoFijo = pacienteEditDto.TelefonoFijo;
                     pacienteListDto.TelefonoMovil = pacienteEditDto.TelefonoMovil;
                     pacienteListDto.Email = pacienteEditDto.Email;
-                    pacienteListDto.fechaNacimiento = pacienteEditDto.FechaNac;
-                    pacienteListDto.tipoSangre = pacienteEditDto.tipoSangre.Grupo;
-                    pacienteListDto.institucion = pacienteEditDto.institucion.Denominacion;
+                    pacienteListDto.FechaNac = pacienteEditDto.FechaNac;
+                    pacienteListDto.tipoSangre = pacienteEditDto.tipoSangre;
+                    pacienteListDto.institucion = pacienteEditDto.institucion;
 
                     SetearFila(r, pacienteListDto);
                     MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -1,4 +1,5 @@
-﻿using BancoSangre.BL.Entidades.DTO.Pacientes;
+﻿using BancoSangre.BL.Entidades;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace BancoSangre.Servicios.Servicios.Facades
 {
     public interface IServicioPaciente
     {
-        List<PacienteListDto> GetLista();
-        void guardar(PacienteEditDto pacienteEditDto);
-        bool existe(PacienteEditDto pacienteEditDto);
+        List<Paciente> GetLista();
+        void guardar(Paciente pacienteEditDto);
+        bool existe(Paciente pacienteEditDto);
         void borrar(int id);
-        PacienteEditDto getPacientePorID(int id);
+        Paciente getPacientePorID(int id);
     }
 }

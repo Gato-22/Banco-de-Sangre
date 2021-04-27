@@ -1,4 +1,5 @@
-﻿using BancoSangre.BL.Entidades.DTO;
+﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace BancoSangre.Servicios.Servicios.Facades
 {
     public interface IServicioDonante
     {
-        List<DonanteListDto> GetLista();
-        void guardar(DonanteEditDto donanteEditDto);
-        bool existe(DonanteEditDto donanteEditDto);
+        List<Donante> GetLista();
+        void guardar(Donante donanteEditDto);
+        bool existe(Donante donanteEditDto);
         void borrar(int id);
-        DonanteEditDto getDonantePorId(int id);
+        Donante getDonantePorId(int id);
     }
 }

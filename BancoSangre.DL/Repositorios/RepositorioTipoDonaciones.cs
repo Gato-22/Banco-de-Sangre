@@ -62,7 +62,7 @@ namespace BancoSangre.DL.Repositorios
             try
             {
                 string cadenaComando =
-                    "SELECT TipoDonacionID, Descripcion FROM TiposDeDocumento WHERE TipoDeDocumentoID=@id";
+                    "SELECT TipoDonacionID, Descripcion FROM TipoDeDonacion WHERE TipoDonacionID=@id";
                 SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
                 comando.Parameters.AddWithValue("@id", id);
                 SqlDataReader reader = comando.ExecuteReader();
@@ -74,7 +74,7 @@ namespace BancoSangre.DL.Repositorios
                 reader.Close();
                 return tipoDonacion;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw new Exception("Error al intentar leer el tipo de donacion");
             }

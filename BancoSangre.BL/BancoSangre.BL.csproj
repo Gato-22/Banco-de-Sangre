@@ -48,16 +48,12 @@
     <Compile Include="Entidades\Donante.cs" />
     <Compile Include="Entidades\DTO\Documentos\DocumentoEditDto.cs" />
     <Compile Include="Entidades\DTO\Documentos\DocumentoListDto.cs" />
-    <Compile Include="Entidades\DTO\DonanteEditDto.cs" />
-    <Compile Include="Entidades\DTO\DonanteListDto.cs" />
     <Compile Include="Entidades\DTO\Generos\GeneroEditDto.cs" />
     <Compile Include="Entidades\DTO\Generos\GeneroListDto.cs" />
     <Compile Include="Entidades\DTO\Institucion\InstitucionEditdto.cs" />
     <Compile Include="Entidades\DTO\Institucion\InstitucionListDto.cs" />
     <Compile Include="Entidades\DTO\Localidad\LocalidadEditDto.cs" />
     <Compile Include="Entidades\DTO\Localidad\LocalidadListDto.cs" />
-    <Compile Include="Entidades\DTO\Pacientes\PacienteEditDto.cs" />
-    <Compile Include="Entidades\DTO\Pacientes\PacienteListDto.cs" />
     <Compile Include="Entidades\DTO\Provincia\ProvinciaCantidadLocalidadListDto.cs" />
     <Compile Include="Entidades\DTO\Provincia\ProvinciaEditDto.cs" />
     <Compile Include="Entidades\DTO\Provincia\ProvinciaListDto.cs" />

@@ -1,8 +1,12 @@
-﻿using System;
+﻿using BancoSangre.BL.Entidades.DTO;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BancoSangre.BL.Entidades;
 using System.Threading.Tasks;
+using BancoSangre.BL.Entidades;
 
 namespace BancoSangre.BL.Entidades
 {
@@ -21,7 +25,7 @@ namespace BancoSangre.BL.Entidades
 
         public TipoDonacion TipoDonacion { get; set; }
 
-        public DonacionesDonacionesAutomatizadas DonacionesDonacionesAutomatizadas { get; set; }
+        public DonacionesDonacionesAutomatizadas DonacionesDonacionesAutomatizadas { get; set; } = new DonacionesDonacionesAutomatizadas();
         public object Clone()
         {
             return this.MemberwiseClone();

@@ -3,7 +3,7 @@ using BancoSangre.BL.Entidades.DTO.Documentos;
 using BancoSangre.BL.Entidades.DTO.Generos;
 using BancoSangre.BL.Entidades.DTO.Institucion;
 using BancoSangre.BL.Entidades.DTO.Localidad;
-using BancoSangre.BL.Entidades.DTO.Pacientes;
+
 using BancoSangre.BL.Entidades.DTO.Provincia;
 using BancoSangre.BL.Entidades.DTO.TiposSangres;
 using BancoSangre.DL.Repositorios.Facades;
@@ -95,9 +95,9 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        public PacienteEditDto getPacientePorID(int PacienteID)
+        public Paciente getPacientePorID(int PacienteID)
         {
-            PacienteEditDto paciente = null;
+            Paciente paciente = null;
             try
             {
                 string cadenacomando = "select DonanteID,Nombre,Apellido,GeneroID,TipoDeDocumentoID,NroDocumento,Direccion,LocalidadID,ProvinciaID,TelefonoFijo," +
@@ -108,7 +108,7 @@ namespace BancoSangre.DL.Repositorios
                 if (reader.HasRows)
                 {
                     reader.Read();
-                    paciente = ConstruirPacienteEditDto(reader);
+                    paciente = ConstruirPaciente(reader);
                 }
                 reader.Close();
                 return paciente;
@@ -120,7 +120,7 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        private PacienteEditDto ConstruirPacienteEditDto(SqlDataReader reader)
+        private Paciente ConstruirPaciente(SqlDataReader reader)
         {
             var generoEditDto = _genero.GetGeneroPorID(reader.GetInt32(3));
             var documentoEditDto = _documento.GetDocumentoPorID(reader.GetInt32(4));
@@ -128,47 +128,48 @@ namespace BancoSangre.DL.Repositorios
             var provinciaEditDto = _provi.GetProvinciaPorID(reader.GetInt32(8));
             var tipoSangreEditDto = _tipoSangre.GetTipoSangrePorID(reader.GetInt32(13));
             var institucionEditDto = _insti.GetInstitucionPorID(reader.GetInt32(14));
-            return new PacienteEditDto
+            return new Paciente
             {
                 PacienteID = reader.GetInt32(0),
                 NombrePaciente = reader.GetString(1),
                 ApellidoPaciente = reader.GetString(2),
-                genero = new GeneroListDto { GeneroID = generoEditDto.GeneroID, GeneroDescripcion = generoEditDto.GeneroDescripcion },
-                documento = new DocumentoListDto
+                genero = new Genero { GeneroID = generoEditDto.GeneroID, GeneroDescripcion = generoEditDto.GeneroDescripcion },
+                documento = new Documento
                 {
                     TipoDocumentoID = documentoEditDto.TipoDocumentoID,
                     Descripcion = documentoEditDto.Descripcion
                 },
                 NroDocumento = reader.GetString(5),
                 Direccion = reader.GetString(6),
-                localidad = new LocalidadListDto
+                localidad = new Localidad
                 {
                     LocalidadID = localidadEditDto.LocalidadID,
                     NombreLocalidad = localidadEditDto.NombreLocalidad,
-                    NombreProvincia = localidadEditDto.ProvinciaID.NombreProvincia
+                    //NombreProvincia = localidadEditDto.ProvinciaID.NombreProvincia
                 },
-                provincia = new ProvinciaListDto { Provinciaid = provinciaEditDto.ProvinciaId, NombreProvincia = provinciaEditDto.NombreProvincia },
+                provincia = new Provincia { ProvinciaID = provinciaEditDto.ProvinciaId, NombreProvincia = provinciaEditDto.NombreProvincia },
                 TelefonoFijo = reader[9] != DBNull.Value ? reader.GetString(9) : string.Empty,
                 TelefonoMovil = reader[10] != DBNull.Value ? reader.GetString(10) : string.Empty,
                 Email= reader[11] != DBNull.Value ? reader.GetString(11) : string.Empty,
                 
                 FechaNac=reader.GetDateTime(12),
-                tipoSangre= new TipoSangreListDto { GrupoSanguineoID=tipoSangreEditDto.GrupoSanguineoID, Grupo=tipoSangreEditDto.Grupo},
-                institucion=new InstitucionListDto { InstitucionID=institucionEditDto.InstitucionID, Denominacion=institucionEditDto.Denominacion}
+                tipoSangre= new TipoSangre { GrupoSanguineoID=tipoSangreEditDto.GrupoSanguineoID, Grupo=tipoSangreEditDto.Grupo},
+                institucion=new Institucion { InstitucionID=institucionEditDto.InstitucionID, Denominacion=institucionEditDto.Denominacion}
             };
         }
 
-        public List<PacienteListDto> GetLista()
+        public List<Paciente> GetLista()
         {
-            List<PacienteListDto> lista = new List<PacienteListDto>();
+            List<Paciente> lista = new List<Paciente>();
             try
             {
-                string cadenaComando = "SELECT DonanteID, Nombre,Apellido,NombreLocalidad,NombreProvincia,Grupo, Denominacion, p.Direccion from Pacientes p inner join Localidades l on p.LocalidadID=l.LocalidadID inner join Provincias pr on p.ProvinciaID=pr.ProvinciaID inner join GruposSanguineos g on p.GrupoSanguineoID=g.GrupoSanguineoID inner join Instituciones ins on p.InstitucionID=ins.InstitucionID";
+                string cadenaComando = "select DonanteID,Nombre,Apellido,GeneroID,TipoDeDocumentoID,NroDocumento,Direccion,LocalidadID,ProvinciaID,TelefonoFijo," +
+                    "TelefonoMovil,CorreoElectronico,FechaNacimiento, GrupoSanguineoID, InstitucionID from Pacientes";
                 SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
                 SqlDataReader reader = comando.ExecuteReader();
                 while (reader.Read())
                 {
-                    var pacienteListDto = ConstruirPacienteListDto(reader);
+                    var pacienteListDto = ConstruirPaciente(reader);
                     lista.Add(pacienteListDto);
                 }
                 reader.Close();
@@ -180,7 +181,19 @@ namespace BancoSangre.DL.Repositorios
                 throw new Exception("Error al intentar men");
             }
         }
-
+        //private Paciente ConstruirPaciente(SqlDataReader reader)
+        //{
+        //    return new Paciente
+        //    {
+        //        PacienteID = reader.GetInt32(0),
+        //        NombrePaciente = reader.GetString(1),
+        //        ApellidoPaciente = reader.GetString(2),
+        //        localidad = reader.GetString(3),
+        //        provincia = reader.GetString(4),
+        //        tipoSangre = reader.GetString(5),
+        //        institucion = reader.GetString(6)
+        //    };
+        //}
         public void guardar(Paciente paciente)
         {
             if (paciente.PacienteID == 0)
@@ -297,18 +310,6 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-        private PacienteListDto ConstruirPacienteListDto(SqlDataReader reader)
-        {
-            return new PacienteListDto
-            {
-                PacienteID = reader.GetInt32(0),
-                NombrePaciente = reader.GetString(1),
-                ApellidoPaciente = reader.GetString(2),
-                localidad = reader.GetString(3),
-                provincia = reader.GetString(4),
-                tipoSangre = reader.GetString(5),
-                institucion=reader.GetString(6)
-            };
-        }
+        
     }
 }

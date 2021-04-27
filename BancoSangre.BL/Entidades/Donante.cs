@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BancoSangre.BL.Entidades
 {
-    public class Donante
+    public class Donante:ICloneable
     {
         public int DonanteID { get; set; }
         public string NombreDonante { get; set; }
@@ -22,5 +22,10 @@ namespace BancoSangre.BL.Entidades
         public string Email { get; set; }
         public DateTime FechaNac { get; set; }
         public TipoSangre tipoSangre { get; set; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

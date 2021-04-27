@@ -1,4 +1,6 @@
 ﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO;
+
 using BancoSangre.Windows.Ahelper;
 using System;
 using System.Collections.Generic;
@@ -44,8 +46,8 @@ namespace BancoSangre.Windows.Donaciones
             }
             if (esedicion)
             {
-                FechaDonaciondateTimePicker1.Text = donacion.FechaDonacion.ToString();
-                txtident.Text = donacion.Identificacion;
+                //FechaDonaciondateTimePicker1.Text = donacion.FechaDonacion.ToString();
+                //txtident.Text = donacion.Identificacion;
                 DonanteComboBox.SelectedValue = donacion.Donante.DonanteID;
                 PacienteComboBox.SelectedValue = donacion.Paciente.PacienteID;
                 TipoDonacionComboBox.SelectedValue = donacion.TipoDonacion.TipoDonacionID;
@@ -57,12 +59,13 @@ namespace BancoSangre.Windows.Donaciones
 
                 }
                 //LocalidadComboBox.SelectedValue = donanteEditDto.localidad.LocalidadID;
-                FechaIngresodateTimePicker2.Text = donacion.FechaIngreso.ToString();
-                txtvenc.Text = donacion.vencimiento;
+                //FechaIngresodateTimePicker2.Text = donacion.FechaIngreso.ToString();
+                //txtvenc.Text = donacion.vencimiento;
                 txtcaNT.Text = donacion.Cantidad.ToString();
                 
             }
         }
+        
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if (ValidarDatos())
@@ -72,10 +75,18 @@ namespace BancoSangre.Windows.Donaciones
                     donacion = new Donacion();
                 }
                 //donacion.Intervalo = int.Parse(txtIntervalo.Text);
-                donacion.FechaDonacion = DateTime.Parse(FechaDonaciondateTimePicker1.Text);
-                donacion.Identificacion = txtident.Text;
-                donacion.FechaIngreso = DateTime.Parse(FechaIngresodateTimePicker2.Text);
-                donacion.vencimiento = txtvenc.Text;
+                donacion.FechaDonacion = DateTime.Now;
+                //donacion.Identificacion = txtident.Text;
+                donacion.Donante = (Donante)DonanteComboBox.SelectedItem;
+                donacion.Paciente = (Paciente)PacienteComboBox.SelectedItem;
+                donacion.TipoDonacion = (TipoDonacion)TipoDonacionComboBox.SelectedItem;
+                if (donacion.TipoDonacion.TipoDonacionID==2)
+                {
+                    donacion.DonacionesDonacionesAutomatizadas.donacionAutomatizada = (DonacionAutomatizada)TipoDonacionAutomatizadaComboBox.SelectedItem;
+                    donacion.DonacionesDonacionesAutomatizadas.donacion = donacion; 
+                }
+                //donacion.FechaIngreso = DateTime.Parse(FechaIngresodateTimePicker2.Text);
+                //donacion.vencimiento = txtvenc.Text;
                 donacion.Cantidad = int.Parse(txtcaNT.Text);
                 DialogResult = DialogResult.OK;
             }
@@ -108,6 +119,19 @@ namespace BancoSangre.Windows.Donaciones
             else
             {
                 TipoDonacionAutomatizadaComboBox.Enabled = false;
+            }
+        }
+
+        private void PacienteComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (PacienteComboBox.SelectedIndex!=0)
+            {
+                Paciente paciente = (Paciente)PacienteComboBox.SelectedItem;
+                GrupoSanguineotxt.Text = paciente.tipoSangre.Grupo;
+            }
+            else
+            {
+                GrupoSanguineotxt.Text = "";
             }
         }
     }

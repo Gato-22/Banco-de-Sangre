@@ -5,6 +5,7 @@ using BancoSangre.DL.Repositorios.Facades;
 using BancoSangre.Servicios.Servicios.Facades;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,9 @@ namespace BancoSangre.Servicios.Servicios
     public class ServicioDonacio : IServicioDonacion
     {
         IRepositorioDonacion _repo;
+        IRepositorioDonacionAutomatizada _automatizada;
         ConexionBd _conexionBd;
+        SqlTransaction sqlTransaction;
         public void borrar(int id)
         {
             try
@@ -37,7 +40,7 @@ namespace BancoSangre.Servicios.Servicios
             {
                 _conexionBd = new ConexionBd();
                 _repo = new RepositorioDonacion(_conexionBd.AbrirConexion());
-                var existe = _repo.existe(donacion);
+                var existe = false; //_repo.existe(donacion);
                 _conexionBd.CerrarConexion();
                 return existe;
             }
@@ -76,13 +79,21 @@ namespace BancoSangre.Servicios.Servicios
             try
             {
                 _conexionBd = new ConexionBd();
-                _repo = new RepositorioDonacion(_conexionBd.AbrirConexion());
+                var cn = _conexionBd.AbrirConexion();
+                sqlTransaction = cn.BeginTransaction();
+                _automatizada = new RepositorioDonacionAutomatizada(cn,sqlTransaction);
+                _repo = new RepositorioDonacion(cn,sqlTransaction);
                 _repo.guardar(donacion);
+                if (donacion.TipoDonacion.TipoDonacionID==2)
+                {
+                    _automatizada.guardar(donacion.DonacionesDonacionesAutomatizadas.donacionAutomatizada);
+                }
+                sqlTransaction.Commit();
                 _conexionBd.CerrarConexion();
             }
             catch (Exception e)
             {
-
+                sqlTransaction.Rollback();
                 throw new Exception(e.Message);
             }
         }

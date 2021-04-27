@@ -1,4 +1,5 @@
-﻿using BancoSangre.BL.Entidades.DTO;
+﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO;
 using BancoSangre.BL.Entidades.DTO.Documentos;
 using BancoSangre.BL.Entidades.DTO.Generos;
 using BancoSangre.BL.Entidades.DTO.Institucion;
@@ -24,14 +25,14 @@ namespace BancoSangre.Windows.Donaciones
         {
             InitializeComponent();
         }
-        private DonanteEditDto donanteEditDto;
+        private Donante donanteEditDto;
 
-        internal DonanteEditDto getDonante()
+        internal Donante getDonante()
         {
             return donanteEditDto;
         }
         bool esedicion = false;
-        public void setDonante(DonanteEditDto donanteEditDto)
+        public void setDonante(Donante donanteEditDto)
         {
             this.donanteEditDto = donanteEditDto;
         }
@@ -60,8 +61,8 @@ namespace BancoSangre.Windows.Donaciones
                 TelefonoFijoTxt.Text = donanteEditDto.TelefonoFijo;
                 TelefonoMoviltxt.Text = donanteEditDto.TelefonoMovil;
                 CorreoElectronicoTxt.Text = donanteEditDto.Email;
-                provinciasComboBox.SelectedValue = donanteEditDto.provincia.Provinciaid;
-                Helper.CargarDatosComboLocalidades(ref LocalidadComboBox, donanteEditDto.provincia);
+                provinciasComboBox.SelectedValue = donanteEditDto.provincia;
+                Helper.CargarDatosComboLocalidades(ref LocalidadComboBox,Helper.ConvertirProvinciaEnProvinciaListDto( donanteEditDto.provincia));
                 LocalidadComboBox.SelectedValue = donanteEditDto.localidad.LocalidadID;
                 GeneroComboBox.SelectedValue = donanteEditDto.genero.GeneroID;
                 DocumentoComboBox.SelectedValue = donanteEditDto.documento.TipoDocumentoID;
@@ -81,21 +82,21 @@ namespace BancoSangre.Windows.Donaciones
             {
                 if (donanteEditDto == null)
                 {
-                    donanteEditDto = new DonanteEditDto();
+                    donanteEditDto = new Donante();
                 }
                 donanteEditDto.NombreDonante = NombreTxt.Text;
                 donanteEditDto.ApellidoDonante = Apellidotxt.Text;
-                donanteEditDto.genero = (GeneroListDto)GeneroComboBox.SelectedItem;
-                donanteEditDto.documento = (DocumentoListDto)DocumentoComboBox.SelectedItem;
+                donanteEditDto.genero = Helper.ConvertirGeneroListDtoEnGenero((GeneroListDto)GeneroComboBox.SelectedItem);
+                donanteEditDto.documento = Helper.ConvertirDocumentoListDtoEnDocumento((DocumentoListDto)DocumentoComboBox.SelectedItem);
                 donanteEditDto.NroDocumento = NroDocumentoTxt.Text;
                 donanteEditDto.Direccion = direcciontxt.Text;
-                donanteEditDto.localidad = (LocalidadListDto)LocalidadComboBox.SelectedItem;
-                donanteEditDto.provincia = (ProvinciaListDto)provinciasComboBox.SelectedItem;
+                donanteEditDto.localidad = Helper.ConvertirLocalidadListDtoEnLocalidad((LocalidadListDto)LocalidadComboBox.SelectedItem);
+                donanteEditDto.provincia = Helper.ConvertirProvinciaListDtoEnProvincia((ProvinciaListDto)provinciasComboBox.SelectedItem);
                 donanteEditDto.TelefonoFijo = TelefonoFijoTxt.Text;
                 donanteEditDto.TelefonoMovil = TelefonoMoviltxt.Text;
                 donanteEditDto.Email = CorreoElectronicoTxt.Text;
                 donanteEditDto.FechaNac = FechadateTimePicker1.Value;
-                donanteEditDto.tipoSangre = (TipoSangreListDto)GrupoSanguineoComboBox.SelectedItem;               
+                donanteEditDto.tipoSangre = Helper.ConvertirTipoSangreListDtoEnTipoSangre((TipoSangreListDto)GrupoSanguineoComboBox.SelectedItem);               
                 DialogResult = DialogResult.OK;
             }
         }

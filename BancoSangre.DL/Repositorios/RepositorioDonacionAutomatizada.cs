@@ -12,9 +12,15 @@ namespace BancoSangre.DL.Repositorios
     public class RepositorioDonacionAutomatizada : IRepositorioDonacionAutomatizada
     {
         private readonly SqlConnection _conexion;
+        private SqlTransaction transaction;
         public RepositorioDonacionAutomatizada(SqlConnection conexion)
         {
             _conexion = conexion;
+        }
+        public RepositorioDonacionAutomatizada(SqlConnection conexion,SqlTransaction transaction)
+        {
+            _conexion = conexion;
+            this.transaction = transaction;
         }
         public void borrar(int id)
         {
@@ -125,12 +131,12 @@ namespace BancoSangre.DL.Repositorios
                 try
                 {
                     string cadenaComando = "Insert Into TipoDeDonacionAutomatizada Values(@Nombre, @nom)";
-                    SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
+                    SqlCommand comando = new SqlCommand(cadenaComando, _conexion,transaction);
                     comando.Parameters.AddWithValue("@Nombre", dona.Descripcion);
                     comando.Parameters.AddWithValue("@nom", dona.Intervalo);
                     comando.ExecuteNonQuery();
                     cadenaComando = "select @@IDENTITY";
-                    comando = new SqlCommand(cadenaComando, _conexion);
+                    comando = new SqlCommand(cadenaComando, _conexion,transaction);
                     dona.DonacionAutoID = (int)(decimal)comando.ExecuteScalar();
                 }
                 catch (Exception)
@@ -145,7 +151,7 @@ namespace BancoSangre.DL.Repositorios
                 try
                 {
                     string cadenacomando = "UPDATE TipoDeDonacionAutomatizada SET Descripcion=@descripcion, IntervaloDonacionEnDias=@Inter where TipoID=@ID";
-                    SqlCommand comando = new SqlCommand(cadenacomando, _conexion);
+                    SqlCommand comando = new SqlCommand(cadenacomando, _conexion,transaction);
                     comando.Parameters.AddWithValue("@descripcion",dona.Descripcion);
                     comando.Parameters.AddWithValue("@Inter", dona.Intervalo);
                     comando.Parameters.AddWithValue("@ID", dona.DonacionAutoID);

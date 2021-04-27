@@ -11,10 +11,32 @@ namespace BancoSangre.DL.Repositorios
 {
     public class RepositorioDonacion : IRepositorioDonacion
     {
-        private readonly SqlConnection _conexion;
+        private  SqlConnection _conexion;
+        private IRepositorioLocalidades _loca;
+        private IRepositorioProvincias _provi;
+        private IRepositorioGeneros _genero;
+        private IRepositorioDocumentos _documento;
+        private IRepositorioTipoSangre _tipoSangre;
+        private IRepositorioInstituciones _insti;
+        private  IRepositorioDonante _repositorioDonante;
+        private  IRepositorioPacientes _repositorioPaciente;
+        private  IRepositorioTipoDonaciones _repositorioTipoDonaciones;
+        private SqlTransaction sqlTransaction;
         public RepositorioDonacion(SqlConnection conexion)
         {
             _conexion = conexion;
+        }
+        public RepositorioDonacion(SqlConnection conexion,SqlTransaction sqlTransaction)
+        {
+            _conexion = conexion;
+            this.sqlTransaction = sqlTransaction;
+        }
+        public RepositorioDonacion(SqlConnection sqlConnection, IRepositorioDonante Donante, IRepositorioPacientes Paciente, IRepositorioTipoDonaciones TipoDonaciones)
+        {
+            this._conexion = sqlConnection;
+            _repositorioDonante = Donante;
+            _repositorioPaciente = Paciente;
+            _repositorioTipoDonaciones = TipoDonaciones;
         }
         public void borrar(int id)
         {
@@ -38,30 +60,25 @@ namespace BancoSangre.DL.Repositorios
 
         public bool existe(Donacion donacion)
         {
+            //string cadenaComando = "SELECT * FROM Donantes WHERE TipoDeDocumentoId=@doc and NroDocumento=@nro";
             if (donacion.DonacionId == 0)
             {
-                string cadenaComando = "SELECT DonacionId, FechaDonacion,Identificacion,FechaIngreso,Vencimiento,Cantidad FROM Donaciones WHERE FechaDonacion=@nom and Identificacion=@N and FechaIngreso=@NO and "+
-                    "Vencimiento=@nomb and Cantidad=@Nombr";
+                
+               
+                string cadenaComando = "SELECT * FROM Donaciones WHERE Identificacion=@Identificacion";
                 SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
-                comando.Parameters.AddWithValue("@N", donacion.Identificacion);
-                comando.Parameters.AddWithValue("@NO", donacion.FechaIngreso);
-                comando.Parameters.AddWithValue("@nom", donacion.FechaDonacion);
-                comando.Parameters.AddWithValue("@nomb", donacion.vencimiento);
-                comando.Parameters.AddWithValue("@Nombr", donacion.Cantidad);
+                comando.Parameters.AddWithValue("@Identificacion", donacion.Identificacion);
+                
                 SqlDataReader reader = comando.ExecuteReader();
                 return reader.HasRows;
             }
             else
             {
-                string cadenaComando = "SELECT DonacionId, FechaDonacion,Identificacion,FechaIngreso,Vencimiento,Cantidad FROM Donaciones WHERE FechaDonacion=@nom and Identificacion=@N and FechaIngreso=@NO and " +
-                    "Vencimiento=@nomb and Cantidad=@Nombr AND DonacionId<>@id";
+                //string cadenaComando = "SELECT * FROM Donantes WHERE TipoDeDocumentoId=@doc and NroDocumento=@nro AND DonanteID<>@DonanteID";
+                string cadenaComando = "SELECT * FROM Donaciones WHERE Identificacion=@Identificacion and DonacionID=@DonacionID";
                 SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
-                comando.Parameters.AddWithValue("@N", donacion.Identificacion);
-                comando.Parameters.AddWithValue("@NO", donacion.FechaIngreso);
-                comando.Parameters.AddWithValue("@nom", donacion.FechaDonacion);
-                comando.Parameters.AddWithValue("@nomb", donacion.vencimiento);
-                comando.Parameters.AddWithValue("@Nombr", donacion.Cantidad);
-                comando.Parameters.AddWithValue("@id", donacion.DonacionId);
+                comando.Parameters.AddWithValue("@Identificacion", donacion.Identificacion);
+                comando.Parameters.AddWithValue("@DonacionID", donacion.DonacionId);
                 SqlDataReader reader = comando.ExecuteReader();
                 return reader.HasRows;
             }
@@ -72,7 +89,7 @@ namespace BancoSangre.DL.Repositorios
             List<Donacion> lista = new List<Donacion>();
             try
             {
-                string cadenaComando = "SELECT DonacionId, FechaDonacion,Identificacion,FechaIngreso,Vencimiento,Cantidad FROM Donaciones";
+                string cadenaComando = "SELECT DonacionId, FechaDonacion,Cantidad,DonanteID,PacienteID,TipoDonacionID FROM Donaciones";
                 SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
                 SqlDataReader reader = comando.ExecuteReader();
                 while (reader.Read())
@@ -88,7 +105,7 @@ namespace BancoSangre.DL.Repositorios
             catch (Exception)
             {
 
-                throw new Exception("Error al intentar we");
+                throw new Exception("Error al intentar construir we");
             }
         }
 
@@ -98,7 +115,7 @@ namespace BancoSangre.DL.Repositorios
             try
             {
                 string cadenaComando =
-                    "SELECT DonacionId, FechaDonacion,Identificacion,FechaIngreso,Vencimiento,Cantidad FROM Donaciones WHERE DonacionId<>@id";
+                    "SELECT DonacionId, FechaDonacion,Cantidad,DonanteID,PacienteID,TipoDonacionID FROM Donaciones WHERE DonacionId<>@id";
                 SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
                 comando.Parameters.AddWithValue("@id", id);
                 SqlDataReader reader = comando.ExecuteReader();
@@ -112,21 +129,43 @@ namespace BancoSangre.DL.Repositorios
             }
             catch (Exception)
             {
-                throw new Exception("Error al intentar leer los tipos de sangre");
+                throw new Exception("Error al intentar leer Las donaciones");
             }
         }
 
         private Donacion construirdonacion(SqlDataReader reader)
         {
-            return new Donacion
-            {
-                DonacionId = reader.GetInt32(0),
-                FechaDonacion = reader.GetDateTime(1),
-                Identificacion = reader.GetString(2),
-                FechaIngreso = reader.GetDateTime(3),
-                vencimiento = reader.GetString(4),
-                Cantidad=reader.GetInt32(5)
-            };
+            _genero = new RepositorioGeneros(_conexion);
+            _documento = new RepositorioDocumentos(_conexion);
+            _provi = new RepositorioProvincias(_conexion);
+            _loca = new RepositorioLocalidad(_conexion,_provi);
+            _insti = new RepositorioInstituciones(_conexion,_provi,_loca);
+            _tipoSangre = new RepositorioTipoSangre(_conexion);
+            _repositorioDonante = new RepositorioDonante(_conexion,_provi,_loca,_genero,_documento,_tipoSangre);
+            _repositorioPaciente = new RepositorioPacientes(_conexion, _provi, _loca,_insti, _genero, _documento,_tipoSangre);
+            _repositorioTipoDonaciones = new RepositorioTipoDonaciones(_conexion);
+
+            //return new Donacion
+            //{
+            //    DonacionId = reader.GetInt32(0),
+            //    FechaDonacion = reader.GetDateTime(1),
+            //    Cantidad=reader.GetInt32(2),
+            //    Donante=_repositorioDonante.getDonantePorId(reader.GetInt32(3)),
+            //    Paciente=_repositorioPaciente.getPacientePorID(reader.GetInt32(4)),
+            //    TipoDonacion=_repositorioTipoDonaciones.getTipoDonacionporID(reader.GetInt32(5))
+
+
+            //};
+            var donacion = new Donacion();
+
+            donacion.DonacionId = reader.GetInt32(0);
+            donacion.FechaDonacion = reader.GetDateTime(1);
+            donacion.Cantidad = reader.GetInt32(2);
+            donacion.Donante = _repositorioDonante.getDonantePorId(reader.GetInt32(3));
+            donacion.Paciente = _repositorioPaciente.getPacientePorID(reader.GetInt32(4));
+            donacion.TipoDonacion = _repositorioTipoDonaciones.getTipoDonacionporID(reader.GetInt32(5));
+            return donacion;
+
         }
 
         public void guardar(Donacion donacion)
@@ -135,48 +174,49 @@ namespace BancoSangre.DL.Repositorios
             {
                 try
                 {
-                    string cadenaComando = "Insert Into Donaciones Values(@n, @no, @nom, @nomb, @Nombr)";
-                    SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
-                    comando.Parameters.AddWithValue("@n", donacion.FechaIngreso);
-                    comando.Parameters.AddWithValue("@no", donacion.Identificacion);
-                    comando.Parameters.AddWithValue("@nom", donacion.FechaDonacion);
-                    comando.Parameters.AddWithValue("@nomb", donacion.vencimiento);
-                    comando.Parameters.AddWithValue("@Nombr", donacion.Cantidad);
+                    string cadenaComando = "Insert Into Donaciones(FechaDonacion, Cantidad, DonanteID, PacienteID, TipoDonacionID) Values(@FechaDonacion,@Cantidad,@DonanteID,@PacienteID,@TipoDonacionID)";
+                    SqlCommand comando = new SqlCommand(cadenaComando, _conexion,sqlTransaction);
+                    comando.Parameters.AddWithValue("@FechaDonacion", donacion.FechaDonacion);
+                    comando.Parameters.AddWithValue("@Cantidad", donacion.Cantidad);
+                    comando.Parameters.AddWithValue("@DonanteID", donacion.Donante.DonanteID);
+                    comando.Parameters.AddWithValue("@PacienteID", donacion.Paciente.PacienteID);
+                    comando.Parameters.AddWithValue("@TipoDonacionID", donacion.TipoDonacion.TipoDonacionID);
                     comando.ExecuteNonQuery();
                     cadenaComando = "select @@IDENTITY";
-                    comando = new SqlCommand(cadenaComando, _conexion);
+                    comando = new SqlCommand(cadenaComando, _conexion,sqlTransaction);
                     donacion.DonacionId = (int)(decimal)comando.ExecuteScalar();
 
                 }
-                catch (Exception)
+                catch (Exception gfd)
                 {
 
                     throw new Exception("ojo llamar al programador (error guardar registro)");
                 }
 
             }
-            else
-            {
-                try
-                {
-                    string cadenacomando = "UPDATE Donaciones SET FechaDonacion=@FechaDonacion, Identificacion=@Identificacion, FechaIngreso=@FechaIngreso, Vencimiento=@Vencimiento, Cantidad=@Cantidad where DonacionId=@ID";
-                    SqlCommand comando = new SqlCommand(cadenacomando, _conexion);
-                    comando.Parameters.AddWithValue("@FechaDonacion", donacion.FechaDonacion);
-                    comando.Parameters.AddWithValue("@Identificacion", donacion.Identificacion);               
-                    comando.Parameters.AddWithValue("@FechaIngreso", donacion.FechaIngreso);
-                    comando.Parameters.AddWithValue("@Vencimiento", donacion.vencimiento);
-                    comando.Parameters.AddWithValue("@Cantidad", donacion.Cantidad);
+            //else
+            //{
+            //    try
+            //    {
+            //        string cadenacomando = "UPDATE Donaciones SET FechaDonacion=@FechaDonacion, Identificacion=@Identificacion, FechaIngreso=@FechaIngreso, Vencimiento=@Vencimiento," +
+            //            " Cantidad=@Cantidad,DonanteID=@DonanteID where DonacionId=@ID";
+            //        SqlCommand comando = new SqlCommand(cadenacomando, _conexion);
+            //        comando.Parameters.AddWithValue("@FechaDonacion", donacion.FechaDonacion);
+            //        comando.Parameters.AddWithValue("@Identificacion", donacion.Identificacion);               
+            //        comando.Parameters.AddWithValue("@FechaIngreso", donacion.FechaIngreso);
+            //        comando.Parameters.AddWithValue("@Vencimiento", donacion.vencimiento);
+            //        comando.Parameters.AddWithValue("@Cantidad", donacion.Cantidad);
 
-                    comando.Parameters.AddWithValue("@ID", donacion.DonacionId);
-                    comando.ExecuteNonQuery();
+            //        comando.Parameters.AddWithValue("@ID", donacion.DonacionId);
+            //        comando.ExecuteNonQuery();
 
-                }
-                catch (Exception)
-                {
+            //    }
+            //    catch (Exception)
+            //    {
 
-                    throw new Exception("ojo llamar al programador (error al modificar registro)");
-                }
-            }
+            //        throw new Exception("ojo llamar al programador (error al modificar registro)");
+            //    }
+            //}
         }
     }
 }

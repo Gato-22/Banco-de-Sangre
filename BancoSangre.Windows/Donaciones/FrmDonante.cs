@@ -1,4 +1,5 @@
-﻿using BancoSangre.BL.Entidades.DTO;
+﻿using BancoSangre.BL.Entidades;
+using BancoSangre.BL.Entidades.DTO;
 using BancoSangre.Servicios.Servicios;
 using BancoSangre.Servicios.Servicios.Facades;
 using System;
@@ -20,7 +21,7 @@ namespace BancoSangre.Windows.Donaciones
             InitializeComponent();
         }
         private IServicioDonante _servi;
-        private List<DonanteListDto> _list;
+        private List<Donante> _list;
         private void FrmDonante_Load(object sender, EventArgs e)
         {
             try
@@ -51,7 +52,7 @@ namespace BancoSangre.Windows.Donaciones
             dgbDatos.Rows.Add(r);
         }
 
-        private void SetearFila(DataGridViewRow r, DonanteListDto donanteListDto)
+        private void SetearFila(DataGridViewRow r, Donante donanteListDto)
         {
             r.Cells[CmnNombre.Index].Value = donanteListDto.NombreDonante;
             r.Cells[cmnApellido.Index].Value = donanteListDto.ApellidoDonante;
@@ -84,7 +85,7 @@ namespace BancoSangre.Windows.Donaciones
             }
             try
             {
-                DonanteEditDto donanteEditDto = frm.getDonante();
+                Donante donanteEditDto = frm.getDonante();
                 if (_servi.existe(donanteEditDto))
                 {
                     MessageBox.Show("Registro Repetido", "Mensaje", MessageBoxButtons.OK,
@@ -93,15 +94,15 @@ namespace BancoSangre.Windows.Donaciones
                 }
                 _servi.guardar(donanteEditDto);
                 DataGridViewRow r = ConstruirFila();
-                DonanteListDto donanteListDto = new DonanteListDto
+                Donante donanteListDto = new Donante
                 {
                     DonanteID = donanteEditDto.DonanteID,
                     NombreDonante = donanteEditDto.NombreDonante,
                     ApellidoDonante = donanteEditDto.ApellidoDonante,
                     
-                    localidad = donanteEditDto.localidad.NombreLocalidad,
-                    provincia = donanteEditDto.provincia.NombreProvincia,
-                    tipoSangre = donanteEditDto.tipoSangre.Grupo
+                    localidad = donanteEditDto.localidad,
+                    provincia = donanteEditDto.provincia,
+                    tipoSangre = donanteEditDto.tipoSangre
                 };
                 SetearFila(r, donanteListDto);
                 AgregarFila(r);
@@ -123,8 +124,8 @@ namespace BancoSangre.Windows.Donaciones
                 return;
             }
             DataGridViewRow r = dgbDatos.SelectedRows[0];
-            DonanteListDto pacienteListDto = (DonanteListDto)r.Tag;
-            DonanteListDto institucionListDtoaux = (DonanteListDto)pacienteListDto.Clone();
+            Donante pacienteListDto = (Donante)r.Tag;
+            Donante institucionListDtoaux = (Donante)pacienteListDto.Clone();
             DialogResult dr = MessageBox.Show($"¿Desea dar de baja al registro seleccionado {pacienteListDto.NroDocumento}?",
                 "Confirmar Baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.No)
@@ -154,10 +155,10 @@ namespace BancoSangre.Windows.Donaciones
                 return;
             }
             DataGridViewRow r = dgbDatos.SelectedRows[0];
-            DonanteListDto donanteListDto = (DonanteListDto)r.Tag;
-            DonanteListDto InstitucionListDtoAuxiliar = (DonanteListDto)donanteListDto.Clone();
+            Donante donanteListDto = (Donante)r.Tag;
+            Donante InstitucionListDtoAuxiliar = (Donante)donanteListDto.Clone();
             FrmDonanteAE frm = new FrmDonanteAE();
-            DonanteEditDto donanteEditDto = _servi.getDonantePorId(donanteListDto.DonanteID);
+            Donante donanteEditDto = _servi.getDonantePorId(donanteListDto.DonanteID);
             frm.Text = "Editar Donante";
             frm.setDonante(donanteEditDto);
             DialogResult dr = frm.ShowDialog(this);
@@ -177,17 +178,17 @@ namespace BancoSangre.Windows.Donaciones
                     donanteListDto.DonanteID = donanteEditDto.DonanteID;
                     donanteListDto.NombreDonante = donanteEditDto.NombreDonante;
                     donanteListDto.ApellidoDonante = donanteEditDto.ApellidoDonante;
-                    donanteListDto.Genero = donanteEditDto.genero.GeneroDescripcion;
-                    donanteListDto.TipoDocumento = donanteEditDto.documento.Descripcion;
+                    donanteListDto.genero = donanteEditDto.genero;
+                    donanteListDto.documento = donanteEditDto.documento;
                     donanteListDto.NroDocumento = donanteEditDto.NroDocumento;
-                    donanteListDto.direccion = donanteEditDto.Direccion;
-                    donanteListDto.provincia = donanteEditDto.provincia.NombreProvincia;
-                    donanteListDto.localidad = donanteEditDto.localidad.NombreLocalidad;
+                    donanteListDto.Direccion = donanteEditDto.Direccion;
+                    donanteListDto.provincia = donanteEditDto.provincia;
+                    donanteListDto.localidad = donanteEditDto.localidad;
                     donanteListDto.TelefonoFijo = donanteEditDto.TelefonoFijo;
                     donanteListDto.TelefonoMovil = donanteEditDto.TelefonoMovil;
                     donanteListDto.Email = donanteEditDto.Email;
-                    donanteListDto.fechaNacimiento = donanteEditDto.FechaNac;
-                    donanteListDto.tipoSangre = donanteEditDto.tipoSangre.Grupo;
+                    donanteListDto.FechaNac = donanteEditDto.FechaNac;
+                    donanteListDto.tipoSangre = donanteEditDto.tipoSangre;
                     
 
                     SetearFila(r, donanteListDto);

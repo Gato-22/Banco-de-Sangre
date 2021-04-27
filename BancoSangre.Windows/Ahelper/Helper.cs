@@ -4,7 +4,7 @@ using BancoSangre.BL.Entidades.DTO.Documentos;
 using BancoSangre.BL.Entidades.DTO.Generos;
 using BancoSangre.BL.Entidades.DTO.Institucion;
 using BancoSangre.BL.Entidades.DTO.Localidad;
-using BancoSangre.BL.Entidades.DTO.Pacientes;
+
 using BancoSangre.BL.Entidades.DTO.Provincia;
 using BancoSangre.BL.Entidades.DTO.TiposSangres;
 using BancoSangre.Servicios.Servicios;
@@ -62,6 +62,16 @@ namespace BancoSangre.Windows.Ahelper
             combo.DisplayMember = "GeneroDescripcion";
             combo.SelectedIndex = 0;
         }
+
+        internal static ProvinciaListDto ConvertirProvinciaEnProvinciaListDto(Provincia provincia)
+        {
+            return new ProvinciaListDto
+            {
+                NombreProvincia=provincia.NombreProvincia,
+                Provinciaid=provincia.ProvinciaID
+            };
+        }
+
         public static void CargarDatosComboDocumento(ref ComboBox combo)
         {
             IServicioDocumento servicioDocumento = new ServicioDocumentos();
@@ -84,6 +94,65 @@ namespace BancoSangre.Windows.Ahelper
             combo.DisplayMember = "Grupo";
             combo.SelectedIndex = 0;
         }
+
+        internal static Provincia ConvertirProvinciaListDtoEnProvincia(ProvinciaListDto selectedItem)
+        {
+            return new Provincia
+            {
+                NombreProvincia = selectedItem.NombreProvincia,
+                ProvinciaID = selectedItem.Provinciaid
+            };
+            throw new NotImplementedException();
+        }
+
+        internal static Localidad ConvertirLocalidadListDtoEnLocalidad(LocalidadListDto selectedItem)
+        {
+            return new Localidad
+            {
+                LocalidadID = selectedItem.LocalidadID,
+                NombreLocalidad = selectedItem.NombreLocalidad,
+                //provincia = selectedItem.NombreProvincia
+            };
+        }
+
+        internal static Documento ConvertirDocumentoListDtoEnDocumento(DocumentoListDto selectedItem)
+        {
+            return new Documento
+            {
+                Descripcion = selectedItem.Descripcion,
+                TipoDocumentoID = selectedItem.TipoDocumentoID
+            };
+        }
+
+        internal static Institucion ConvertirInstitucionListDtoEnInstitucion(InstitucionListDto selectedItem)
+        {
+            return new Institucion
+            {
+                Denominacion=selectedItem.Denominacion,
+                Direccion=selectedItem.Direccion,
+                //localidad=selectedItem.localidad
+            };
+        }
+
+        internal static TipoSangre ConvertirTipoSangreListDtoEnTipoSangre(TipoSangreListDto selectedItem)
+        {
+            return new TipoSangre
+            {
+                Factor = selectedItem.Factor,
+                Grupo = selectedItem.Grupo,
+                GrupoSanguineoID = selectedItem.GrupoSanguineoID
+            };
+        }
+
+        internal static Genero ConvertirGeneroListDtoEnGenero(GeneroListDto selectedItem)
+        {
+            return new Genero
+            {
+                GeneroDescripcion = selectedItem.GeneroDescripcion,
+                GeneroID = selectedItem.GeneroID
+            };
+        }
+
         public static void CargarDatosComboInstitucion(ref ComboBox combo)
         {
             IServicioIntitucion servicioIntitucion = new ServicioInstitucion();
@@ -99,7 +168,7 @@ namespace BancoSangre.Windows.Ahelper
         {
             IServicioDonante servicioDonante = new ServicioDonante();
             var lista = servicioDonante.GetLista();
-            var defaultt = new DonanteListDto { DonanteID = 0, NombreDonante = "Seleccione Donante" };
+            var defaultt = new Donante { DonanteID = 0, NombreDonante = "Seleccione Donante" };
             lista.Insert(0, defaultt);
             combo.DataSource = lista;
             combo.ValueMember = "DonanteID";
@@ -110,7 +179,7 @@ namespace BancoSangre.Windows.Ahelper
         {
             IServicioPaciente servicioPaciente = new ServicioPaciente();
             var lista = servicioPaciente.GetLista();
-            var defaultt = new PacienteListDto { PacienteID = 0, NombrePaciente = "Seleccione Paciente" };
+            var defaultt = new Paciente { PacienteID = 0, NombrePaciente = "Seleccione Paciente" };
             lista.Insert(0, defaultt);
             combo.DataSource = lista;
             combo.ValueMember = "PacienteID";

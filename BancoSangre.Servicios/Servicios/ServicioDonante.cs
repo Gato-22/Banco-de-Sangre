@@ -41,7 +41,7 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public bool existe(DonanteEditDto donanteEditDto)
+        public bool existe(Donante donanteEditDto)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace BancoSangre.Servicios.Servicios
                     Direccion = donanteEditDto.Direccion,
                     provincia = new Provincia()
                     {
-                        ProvinciaID = donanteEditDto.provincia.Provinciaid,
+                        ProvinciaID = donanteEditDto.provincia.ProvinciaID,
                         NombreProvincia = donanteEditDto.provincia.NombreProvincia
                     },
                     localidad = new Localidad
@@ -75,7 +75,7 @@ namespace BancoSangre.Servicios.Servicios
                         NombreLocalidad = donanteEditDto.localidad.NombreLocalidad,
                         provincia = new Provincia()
                         {
-                            ProvinciaID = donanteEditDto.provincia.Provinciaid,
+                            ProvinciaID = donanteEditDto.provincia.ProvinciaID,
                             NombreProvincia = donanteEditDto.provincia.NombreProvincia
                         },
                     },
@@ -104,12 +104,18 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public List<DonanteListDto> GetLista()
+        public List<Donante> GetLista()
         {
             try
             {
                 _conexionBd = new ConexionBd();
-                _repo = new RepositorioDonante(_conexionBd.AbrirConexion());
+                _repositorioGeneros = new RepositorioGeneros(_conexionBd.AbrirConexion());
+                _repositorioDocumentos = new RepositorioDocumentos(_conexionBd.AbrirConexion());
+                _repositorioProvincias = new RepositorioProvincias(_conexionBd.AbrirConexion());
+                _repositorioLocalidades = new RepositorioLocalidad(_conexionBd.AbrirConexion(), _repositorioProvincias);
+                _repositorioTipoSangre = new RepositorioTipoSangre(_conexionBd.AbrirConexion());
+
+                _repo = new RepositorioDonante(_conexionBd.AbrirConexion(), _repositorioProvincias, _repositorioLocalidades, _repositorioGeneros, _repositorioDocumentos, _repositorioTipoSangre);
                 var lista = _repo.GetLista();
                 _conexionBd.CerrarConexion();
                 return lista;
@@ -121,7 +127,7 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public DonanteEditDto getDonantePorId(int id)
+        public Donante getDonantePorId(int id)
         {
             try
             {
@@ -143,7 +149,7 @@ namespace BancoSangre.Servicios.Servicios
             }
         }
 
-        public void guardar(DonanteEditDto donanteEditDto)
+        public void guardar(Donante donanteEditDto)
         {
             try
             {
@@ -168,7 +174,7 @@ namespace BancoSangre.Servicios.Servicios
                     Direccion = donanteEditDto.Direccion,
                     provincia = new Provincia()
                     {
-                        ProvinciaID = donanteEditDto.provincia.Provinciaid,
+                        ProvinciaID = donanteEditDto.provincia.ProvinciaID,
                         NombreProvincia = donanteEditDto.provincia.NombreProvincia
                     },
                     localidad = new Localidad
@@ -177,7 +183,7 @@ namespace BancoSangre.Servicios.Servicios
                         NombreLocalidad = donanteEditDto.localidad.NombreLocalidad,
                         provincia = new Provincia()
                         {
-                            ProvinciaID = donanteEditDto.provincia.Provinciaid,
+                            ProvinciaID = donanteEditDto.provincia.ProvinciaID,
                             NombreProvincia = donanteEditDto.provincia.NombreProvincia
                         },
                     },

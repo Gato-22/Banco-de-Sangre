@@ -11,7 +11,7 @@ namespace BancoSangre.DL.Repositorios.Facades
     {
         List<Donacion> GetDonacion();
         void guardar(Donacion donacion);
-        bool existe(Donacion donacion);
+        //bool existe(Donacion donacion);
         void borrar(int id);
         Donacion GetDonacionPorID(int id);
     }
