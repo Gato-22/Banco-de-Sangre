@@ -92,6 +92,7 @@ namespace BancoSangre.Windows.Ahelper
             combo.DataSource = lista;
             combo.ValueMember = "GrupoSanguineoID";
             combo.DisplayMember = "Grupo";
+
             combo.SelectedIndex = 0;
         }
 
