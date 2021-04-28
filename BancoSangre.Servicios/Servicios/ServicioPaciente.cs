@@ -115,7 +115,7 @@ namespace BancoSangre.Servicios.Servicios
                     
 
                 };
-                var existe = _repo.existe(paciente);
+                var existe = false;
                 _conexionBd.CerrarConexion();
                 return existe;
             }

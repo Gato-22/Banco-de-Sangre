@@ -123,7 +123,7 @@ namespace BancoSangre.DL.Repositorios
             var documentoEditDto = _documento.GetDocumentoPorID(reader.GetInt32(4));
             var localidadEditDto = _loca.GetlocalidadPorId(reader.GetInt32(7));
             var provinciaEditDto = _provi.GetProvinciaPorID(reader.GetInt32(8));
-            var tipoSangreEditDto = _tipoSangre.GetTipoSangrePorID(reader.GetInt32(13));          
+            var tipoSangreEditDto = _tipoSangre.GetTipoSangrePorID(reader.GetInt32(13));
             return new Donante
             {
                 DonanteID = reader.GetInt32(0),
@@ -143,13 +143,14 @@ namespace BancoSangre.DL.Repositorios
                     NombreLocalidad = localidadEditDto.NombreLocalidad,
                     //NombreProvincia = localidadEditDto.ProvinciaID.NombreProvincia
                 },
-                
+
                 TelefonoFijo = reader[9] != DBNull.Value ? reader.GetString(9) : string.Empty,
                 TelefonoMovil = reader[10] != DBNull.Value ? reader.GetString(10) : string.Empty,
                 Email = reader[11] != DBNull.Value ? reader.GetString(11) : string.Empty,
 
                 FechaNac = reader.GetDateTime(12),
-                tipoSangre = new TipoSangre { GrupoSanguineoID = tipoSangreEditDto.GrupoSanguineoID, Grupo = tipoSangreEditDto.Grupo }
+                tipoSangre = new TipoSangre { GrupoSanguineoID = tipoSangreEditDto.GrupoSanguineoID, Grupo = tipoSangreEditDto.Grupo },
+                NroDocumento = reader.GetString(5)
                 
             };
         }

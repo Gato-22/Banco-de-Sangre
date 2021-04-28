@@ -192,7 +192,7 @@ namespace BancoSangre.Windows.Donaciones
                     
 
                     SetearFila(r, donanteListDto);
-                    MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Registro Editado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 else

@@ -22,6 +22,11 @@ namespace BancoSangre.BL.Entidades
         public string Email { get; set; }
         public DateTime FechaNac { get; set; }
         public TipoSangre tipoSangre { get; set; }
+        public string Nombrecompleto
+        {
+            get { return NombreDonante + " " + ApellidoDonante; }
+            set { Nombrecompleto = value; }
+        }
 
         public object Clone()
         {

@@ -21,6 +21,8 @@ namespace BancoSangre.Windows.Donaciones
             InitializeComponent();
         }
         private Donacion donacion;
+        public List<Donante> list = new List<Donante>();
+        public int cantidad = 0;
         public void SetDonacion(Donacion donacion)
         {
             this.donacion = donacion;
@@ -40,6 +42,7 @@ namespace BancoSangre.Windows.Donaciones
             TipoDonacionAutomatizadaComboBox.Enabled = false;
             DonanteComboBox.Enabled = false;
 
+
             //Helper.CargarDatosComboTipoDonacionAutomatizada(ref TipoDonacionAutomatizadaComboBox);
             if (donacion != null)
             {
@@ -47,7 +50,7 @@ namespace BancoSangre.Windows.Donaciones
             }
             if (esedicion)
             {
-                Helper.CargarDatosComboDonantes(ref DonanteComboBox,donacion.Paciente);
+                Helper.CargarDatosComboDonantes(ref DonanteComboBox,donacion.Paciente,this);
                 //FechaDonaciondateTimePicker1.Text = donacion.FechaDonacion.ToString();
                 //txtident.Text = donacion.Identificacion;
                 DonanteComboBox.SelectedValue = donacion.Donante.DonanteID;
@@ -163,20 +166,42 @@ namespace BancoSangre.Windows.Donaciones
             }
         }
 
+        
         private void PacienteComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             if (PacienteComboBox.SelectedIndex!=0)
             {
+                
                 Paciente paciente = (Paciente)PacienteComboBox.SelectedItem;
+                
                 GrupoSanguineotxt.Text = paciente.tipoSangre.Grupo;
-                DonanteComboBox.Enabled = true;
-                Helper.CargarDatosComboDonantes(ref DonanteComboBox, paciente);
+                
+                
+                Helper.CargarDatosComboDonantes(ref DonanteComboBox, paciente,this);
             }
             else
             {
                 DonanteComboBox.Enabled = false;
+                CantidadDonantestxt.Text = "";
                 GrupoSanguineotxt.Text = "";
+                
             }
+        }
+
+        private void CantidadDonantestxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GrupoSanguineotxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PacienteComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CantidadDonantestxt.Text = cantidad.ToString();
+            DonanteComboBox.Enabled = true;
         }
     }
 }

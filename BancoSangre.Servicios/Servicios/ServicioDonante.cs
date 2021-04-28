@@ -93,7 +93,7 @@ namespace BancoSangre.Servicios.Servicios
 
 
                 };
-                var existe = _repo.existe(donante);
+                var existe = false;
                 _conexionBd.CerrarConexion();
                 return existe;
             }

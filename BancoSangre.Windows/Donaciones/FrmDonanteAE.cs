@@ -62,6 +62,7 @@ namespace BancoSangre.Windows.Donaciones
                 TelefonoFijoTxt.Text = donanteEditDto.TelefonoFijo;
                 TelefonoMoviltxt.Text = donanteEditDto.TelefonoMovil;
                 CorreoElectronicoTxt.Text = donanteEditDto.Email;
+
                 provinciasComboBox.SelectedValue = donanteEditDto.provincia.ProvinciaID;
                 Helper.CargarDatosComboLocalidades(ref LocalidadComboBox,Helper.ConvertirProvinciaEnProvinciaListDto( donanteEditDto.provincia));
                 LocalidadComboBox.SelectedValue = donanteEditDto.localidad.LocalidadID;

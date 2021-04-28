@@ -46,6 +46,8 @@ namespace BancoSangre.Windows.Donaciones
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.GrupoSanguineotxt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.CantidadDonantestxt = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,7 +105,7 @@ namespace BancoSangre.Windows.Donaciones
             // 
             this.DonanteComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DonanteComboBox.FormattingEnabled = true;
-            this.DonanteComboBox.Location = new System.Drawing.Point(222, 122);
+            this.DonanteComboBox.Location = new System.Drawing.Point(222, 150);
             this.DonanteComboBox.Name = "DonanteComboBox";
             this.DonanteComboBox.Size = new System.Drawing.Size(177, 21);
             this.DonanteComboBox.TabIndex = 1;
@@ -116,13 +118,14 @@ namespace BancoSangre.Windows.Donaciones
             this.PacienteComboBox.Name = "PacienteComboBox";
             this.PacienteComboBox.Size = new System.Drawing.Size(177, 21);
             this.PacienteComboBox.TabIndex = 2;
+            this.PacienteComboBox.SelectedIndexChanged += new System.EventHandler(this.PacienteComboBox_SelectedIndexChanged);
             this.PacienteComboBox.SelectedValueChanged += new System.EventHandler(this.PacienteComboBox_SelectedValueChanged);
             // 
             // TipoDonacionComboBox
             // 
             this.TipoDonacionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TipoDonacionComboBox.FormattingEnabled = true;
-            this.TipoDonacionComboBox.Location = new System.Drawing.Point(222, 149);
+            this.TipoDonacionComboBox.Location = new System.Drawing.Point(222, 177);
             this.TipoDonacionComboBox.Name = "TipoDonacionComboBox";
             this.TipoDonacionComboBox.Size = new System.Drawing.Size(177, 21);
             this.TipoDonacionComboBox.TabIndex = 3;
@@ -132,7 +135,7 @@ namespace BancoSangre.Windows.Donaciones
             // 
             this.TipoDonacionAutomatizadaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TipoDonacionAutomatizadaComboBox.FormattingEnabled = true;
-            this.TipoDonacionAutomatizadaComboBox.Location = new System.Drawing.Point(222, 176);
+            this.TipoDonacionAutomatizadaComboBox.Location = new System.Drawing.Point(222, 204);
             this.TipoDonacionAutomatizadaComboBox.Name = "TipoDonacionAutomatizadaComboBox";
             this.TipoDonacionAutomatizadaComboBox.Size = new System.Drawing.Size(177, 21);
             this.TipoDonacionAutomatizadaComboBox.TabIndex = 4;
@@ -140,7 +143,7 @@ namespace BancoSangre.Windows.Donaciones
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(167, 122);
+            this.label11.Location = new System.Drawing.Point(167, 150);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(48, 13);
             this.label11.TabIndex = 22;
@@ -160,7 +163,7 @@ namespace BancoSangre.Windows.Donaciones
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(122, 152);
+            this.label13.Location = new System.Drawing.Point(122, 180);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(94, 13);
             this.label13.TabIndex = 22;
@@ -170,7 +173,7 @@ namespace BancoSangre.Windows.Donaciones
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(55, 179);
+            this.label14.Location = new System.Drawing.Point(55, 207);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(161, 13);
             this.label14.TabIndex = 22;
@@ -188,6 +191,7 @@ namespace BancoSangre.Windows.Donaciones
             this.GrupoSanguineotxt.Name = "GrupoSanguineotxt";
             this.GrupoSanguineotxt.Size = new System.Drawing.Size(28, 20);
             this.GrupoSanguineotxt.TabIndex = 6;
+            this.GrupoSanguineotxt.TextChanged += new System.EventHandler(this.GrupoSanguineotxt_TextChanged);
             // 
             // label3
             // 
@@ -199,12 +203,32 @@ namespace BancoSangre.Windows.Donaciones
             this.label3.Text = "Grupo Sanguíneo";
             this.label3.Click += new System.EventHandler(this.label11_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(102, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(113, 13);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "Cantidad de Donantes";
+            // 
+            // CantidadDonantestxt
+            // 
+            this.CantidadDonantestxt.Enabled = false;
+            this.CantidadDonantestxt.Location = new System.Drawing.Point(222, 124);
+            this.CantidadDonantestxt.Name = "CantidadDonantestxt";
+            this.CantidadDonantestxt.Size = new System.Drawing.Size(42, 20);
+            this.CantidadDonantestxt.TabIndex = 26;
+            this.CantidadDonantestxt.TextChanged += new System.EventHandler(this.CantidadDonantestxt_TextChanged);
+            // 
             // FrmDonacionAE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 375);
             this.ControlBox = false;
+            this.Controls.Add(this.CantidadDonantestxt);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.TipoDonacionAutomatizadaComboBox);
             this.Controls.Add(this.TipoDonacionComboBox);
             this.Controls.Add(this.PacienteComboBox);
@@ -245,5 +269,7 @@ namespace BancoSangre.Windows.Donaciones
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox GrupoSanguineotxt;
+        private System.Windows.Forms.TextBox CantidadDonantestxt;
+        private System.Windows.Forms.Label label2;
     }
 }

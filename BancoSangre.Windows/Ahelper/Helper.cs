@@ -9,6 +9,7 @@ using BancoSangre.BL.Entidades.DTO.Provincia;
 using BancoSangre.BL.Entidades.DTO.TiposSangres;
 using BancoSangre.Servicios.Servicios;
 using BancoSangre.Servicios.Servicios.Facades;
+using BancoSangre.Windows.Donaciones;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace BancoSangre.Windows.Ahelper
 {
     public class Helper
     {
+        int cantidad = 0;
         public static void CargarDatosComboProvincias(ref ComboBox combo)
         {
             iServiciosProvincia _sericioprovincia = new ServicioProvincias();
@@ -166,17 +168,24 @@ namespace BancoSangre.Windows.Ahelper
             combo.DisplayMember = "Denominacion";
             combo.SelectedIndex = 0;
         }
-        public static void CargarDatosComboDonantes(ref ComboBox combo, Paciente paciente)
+        
+        public static void CargarDatosComboDonantes(ref ComboBox combo, Paciente paciente, FrmDonacionAE frm)
         {
             IServicioDonante servicioDonante = new ServicioDonante();
-            var lista = servicioDonante.GetLista(paciente);
+            var lista = servicioDonante.GetLista(paciente);                                             
             var defaultt = new Donante { DonanteID = 0, NombreDonante = "Seleccione Donante" };
+            frm.cantidad = lista.Count();
             lista.Insert(0, defaultt);
             combo.DataSource = lista;
             combo.ValueMember = "DonanteID";
-            combo.DisplayMember = "NombreDonante";
+            combo.DisplayMember = "Nombrecompleto";
             combo.SelectedIndex = 0;
+            
         }
+        //public static void GetCantidaddonante()
+        //{
+        //    return frm.cantidad;
+        //}
         public static void CargarDatosComboPaciente(ref ComboBox combo)
         {
             IServicioPaciente servicioPaciente = new ServicioPaciente();
@@ -185,7 +194,7 @@ namespace BancoSangre.Windows.Ahelper
             lista.Insert(0, defaultt);
             combo.DataSource = lista;
             combo.ValueMember = "PacienteID";
-            combo.DisplayMember = "NombrePaciente";
+            combo.DisplayMember = "NombreCompleto";
             combo.SelectedIndex = 0;
         }
         public static void CargarDatosComboTipoDonacion(ref ComboBox combo)
