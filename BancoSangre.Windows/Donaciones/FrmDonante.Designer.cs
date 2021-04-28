@@ -29,7 +29,7 @@ namespace BancoSangre.Windows.Donaciones
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
@@ -115,8 +115,8 @@ namespace BancoSangre.Windows.Donaciones
             this.dgbDatos.AllowUserToDeleteRows = false;
             this.dgbDatos.AllowUserToResizeColumns = false;
             this.dgbDatos.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gray;
-            this.dgbDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Gray;
+            this.dgbDatos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgbDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgbDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CmnNombre,
@@ -174,6 +174,7 @@ namespace BancoSangre.Windows.Donaciones
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ControlBox = false;
             this.Controls.Add(this.dgbDatos);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FrmDonante";
