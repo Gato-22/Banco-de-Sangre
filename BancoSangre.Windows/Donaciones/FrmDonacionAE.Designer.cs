@@ -85,6 +85,7 @@ namespace BancoSangre.Windows.Donaciones
             // txtcaNT
             // 
             this.txtcaNT.Location = new System.Drawing.Point(222, 255);
+            this.txtcaNT.MaxLength = 1000;
             this.txtcaNT.Name = "txtcaNT";
             this.txtcaNT.Size = new System.Drawing.Size(177, 20);
             this.txtcaNT.TabIndex = 6;

@@ -70,5 +70,10 @@ namespace BancoSangre.Windows.Provincias
 
             return valido;
         }
+
+        private void txtProvincias_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

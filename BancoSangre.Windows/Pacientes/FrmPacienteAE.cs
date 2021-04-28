@@ -40,9 +40,10 @@ namespace BancoSangre.Windows.Pacientes
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            Helper.CargarDatosComboProvincias(ref provinciasComboBox);
+            
             Helper.CargarDatosComboDocumento(ref DocumentoComboBox);
             Helper.CargarDatosComboGenero(ref GeneroComboBox);
+            Helper.CargarDatosComboProvincias(ref provinciasComboBox);
             LocalidadComboBox.Enabled = false;
             //Helper.CargarDatosComboLocalidades(ref LocalidadComboBox, pacienteEditDto.provincia);
             Helper.CargarDatosComboInstitucion(ref InstitucionComboBox);
@@ -57,18 +58,21 @@ namespace BancoSangre.Windows.Pacientes
 
                 NombreTxt.Text = pacienteEditDto.NombrePaciente;
                 Apellidotxt.Text = pacienteEditDto.ApellidoPaciente;
+                //Helper.CargarDatosComboDocumento(ref DocumentoComboBox);
                 NroDocumentoTxt.Text = pacienteEditDto.NroDocumento;
                 direcciontxt.Text = pacienteEditDto.Direccion;
                 TelefonoFijoTxt.Text = pacienteEditDto.TelefonoFijo;
                 TelefonoMoviltxt.Text = pacienteEditDto.TelefonoMovil;
                 CorreoElectronicoTxt.Text = pacienteEditDto.Email;
-                provinciasComboBox.SelectedValue = pacienteEditDto.provincia;
+                
+                provinciasComboBox.SelectedValue = pacienteEditDto.provincia.ProvinciaID;
                 Helper.CargarDatosComboLocalidades(ref LocalidadComboBox,Helper.ConvertirProvinciaEnProvinciaListDto(pacienteEditDto.provincia));
                 LocalidadComboBox.SelectedValue = pacienteEditDto.localidad.LocalidadID;
                 GeneroComboBox.SelectedValue = pacienteEditDto.genero.GeneroID;
                 DocumentoComboBox.SelectedValue = pacienteEditDto.documento.TipoDocumentoID;
                 GrupoSanguineoComboBox.SelectedValue = pacienteEditDto.tipoSangre.GrupoSanguineoID;
                 InstitucionComboBox.SelectedValue = pacienteEditDto.institucion.InstitucionID;
+                FechadateTimePicker1.Value = pacienteEditDto.FechaNac.Date;
             }
         }
 

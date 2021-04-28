@@ -151,6 +151,14 @@ namespace BancoSangre.Windows.Donaciones
                 valido = false;
                 errorProvider1.SetError(GrupoSanguineoComboBox, "Debe seleccionar un Grupo Sanguineo");
             }
+            //DateTime Edad = FechadateTimePicker1.Value.Date;
+            int EDADD = DateTime.Now.Year-FechadateTimePicker1.Value.Year;
+            if (EDADD<18)
+            {
+
+                valido = false;
+                errorProvider1.SetError(FechadateTimePicker1, "La persona debe ser Mayor de 18 años para donar");
+            }
             return valido;
             
         }

@@ -67,7 +67,7 @@ namespace BancoSangre.DL.Repositorios
             {
                 if (paciente.PacienteID == 0)
                 {
-                    //editar esto
+                    
                     string cadenaComando = "SELECT * FROM Pacientes WHERE TipoDeDocumentoId=@doc and NroDocumento=@nro";
                     SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
                     comando.Parameters.AddWithValue("@doc", paciente.documento.TipoDocumentoID);
@@ -201,7 +201,9 @@ namespace BancoSangre.DL.Repositorios
                 //Nuevo registro
                 try
                 {
-                    string cadenaComando = "INSERT INTO Pacientes VALUES(@Nombre,@Apellido, @GeneroID,@TipoDeDocumentoID,@NroDocumento,@Direccion,@LocalidadID,@ProvinciaId,@TelefonoFijo,@TelefonoMovil,@CorreoElectronico,@FechaNacimiento,@GrupoSanguineoID,@InstitucionID)";
+                    string cadenaComando = "INSERT INTO Pacientes(Nombre,Apellido,GeneroID,TipoDeDocumentoID,NroDocumento,Direccion,LocalidadID,ProvinciaID,TelefonoFijo,TelefonoMovil," +
+                        "CorreoElectronico,FechaNacimiento,GrupoSanguineoID,InstitucionID) VALUES(@Nombre,@Apellido, @GeneroID,@TipoDeDocumentoID,@NroDocumento,@Direccion," +
+                        "@LocalidadID,@ProvinciaID,@TelefonoFijo,@TelefonoMovil,@CorreoElectronico,@FechaNacimiento,@GrupoSanguineoID,@InstitucionID)";
                     SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
                     comando.Parameters.AddWithValue("@Nombre", paciente.NombrePaciente);
                     comando.Parameters.AddWithValue("@Apellido", paciente.ApellidoPaciente);
@@ -210,7 +212,7 @@ namespace BancoSangre.DL.Repositorios
                     comando.Parameters.AddWithValue("@NroDocumento", paciente.NroDocumento);
                     comando.Parameters.AddWithValue("@Direccion", paciente.Direccion);
                     comando.Parameters.AddWithValue("@LocalidadID", paciente.localidad.LocalidadID);
-                    comando.Parameters.AddWithValue("@ProvinciaId", paciente.provincia.ProvinciaID);
+                    comando.Parameters.AddWithValue("@ProvinciaID", paciente.provincia.ProvinciaID);
                     if (paciente.TelefonoFijo != string.Empty)
                     {
                         comando.Parameters.AddWithValue("@TelefonoFijo", paciente.TelefonoFijo);
@@ -247,7 +249,7 @@ namespace BancoSangre.DL.Repositorios
                     paciente.PacienteID = (int)(decimal)comando.ExecuteScalar();
 
                 }
-                catch (Exception)
+                catch (Exception gh)
                 {
                     throw new Exception("Error al intentar guardar al paciente");
                 }

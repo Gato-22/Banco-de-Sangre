@@ -212,5 +212,28 @@ namespace BancoSangre.Servicios.Servicios
                 throw new Exception(" error al ver si existe el Donante");
             }
         }
+
+        public List<Donante> GetLista(Paciente paciente)
+        {
+            try
+            {
+                _conexionBd = new ConexionBd();
+                _repositorioGeneros = new RepositorioGeneros(_conexionBd.AbrirConexion());
+                _repositorioDocumentos = new RepositorioDocumentos(_conexionBd.AbrirConexion());
+                _repositorioProvincias = new RepositorioProvincias(_conexionBd.AbrirConexion());
+                _repositorioLocalidades = new RepositorioLocalidad(_conexionBd.AbrirConexion(), _repositorioProvincias);
+                _repositorioTipoSangre = new RepositorioTipoSangre(_conexionBd.AbrirConexion());
+
+                _repo = new RepositorioDonante(_conexionBd.AbrirConexion(), _repositorioProvincias, _repositorioLocalidades, _repositorioGeneros, _repositorioDocumentos, _repositorioTipoSangre);
+                var lista = _repo.GetLista(paciente);
+                _conexionBd.CerrarConexion();
+                return lista;
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

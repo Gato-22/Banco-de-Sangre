@@ -15,5 +15,6 @@ namespace BancoSangre.Servicios.Servicios.Facades
         bool existe(Donante donanteEditDto);
         void borrar(int id);
         Donante getDonantePorId(int id);
+        List<Donante> GetLista(Paciente paciente);
     }
 }

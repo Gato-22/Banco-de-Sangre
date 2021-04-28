@@ -31,8 +31,11 @@ namespace BancoSangre.Windows.Pacientes
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnNuevo = new System.Windows.Forms.ToolStripButton();
+            this.btnEditar = new System.Windows.Forms.ToolStripButton();
+            this.btnBorrar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnCerrar = new System.Windows.Forms.ToolStripButton();
             this.dgbDatos = new System.Windows.Forms.DataGridView();
             this.CmnNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnApellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,12 +43,6 @@ namespace BancoSangre.Windows.Pacientes
             this.cmnProv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnInstitu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnNuevo = new System.Windows.Forms.ToolStripButton();
-            this.btnEditar = new System.Windows.Forms.ToolStripButton();
-            this.btnBorrar = new System.Windows.Forms.ToolStripButton();
-            this.btnBuscar = new System.Windows.Forms.ToolStripButton();
-            this.btnActualizar = new System.Windows.Forms.ToolStripButton();
-            this.btnCerrar = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgbDatos)).BeginInit();
             this.SuspendLayout();
@@ -57,9 +54,6 @@ namespace BancoSangre.Windows.Pacientes
             this.btnEditar,
             this.btnBorrar,
             this.toolStripSeparator1,
-            this.btnBuscar,
-            this.btnActualizar,
-            this.toolStripSeparator2,
             this.btnCerrar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -67,15 +61,54 @@ namespace BancoSangre.Windows.Pacientes
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // btnNuevo
+            // 
+            this.btnNuevo.Image = global::BancoSangre.Windows.Properties.Resources.new_copy_64px;
+            this.btnNuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(68, 83);
+            this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Image = global::BancoSangre.Windows.Properties.Resources.pencil_64px;
+            this.btnEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(68, 83);
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // btnBorrar
+            // 
+            this.btnBorrar.Image = global::BancoSangre.Windows.Properties.Resources.delete_64px;
+            this.btnBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnBorrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(68, 83);
+            this.btnBorrar.Text = "Borrar";
+            this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 86);
             // 
-            // toolStripSeparator2
+            // btnCerrar
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 86);
+            this.btnCerrar.Image = global::BancoSangre.Windows.Properties.Resources.close_pane_64px;
+            this.btnCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnCerrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(68, 83);
+            this.btnCerrar.Text = "Cerrar";
+            this.btnCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // dgbDatos
             // 
@@ -145,70 +178,6 @@ namespace BancoSangre.Windows.Pacientes
             this.cmnInstitu.Name = "cmnInstitu";
             this.cmnInstitu.ReadOnly = true;
             // 
-            // btnNuevo
-            // 
-            this.btnNuevo.Image = global::BancoSangre.Windows.Properties.Resources.new_copy_64px;
-            this.btnNuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(68, 83);
-            this.btnNuevo.Text = "Nuevo";
-            this.btnNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Image = global::BancoSangre.Windows.Properties.Resources.pencil_64px;
-            this.btnEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(68, 83);
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnBorrar
-            // 
-            this.btnBorrar.Image = global::BancoSangre.Windows.Properties.Resources.delete_64px;
-            this.btnBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnBorrar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(68, 83);
-            this.btnBorrar.Text = "Borrar";
-            this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Image = global::BancoSangre.Windows.Properties.Resources.google_web_search_64px;
-            this.btnBuscar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnBuscar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(68, 83);
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // btnActualizar
-            // 
-            this.btnActualizar.Image = global::BancoSangre.Windows.Properties.Resources.restart_64px;
-            this.btnActualizar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnActualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(68, 83);
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // btnCerrar
-            // 
-            this.btnCerrar.Image = global::BancoSangre.Windows.Properties.Resources.close_pane_64px;
-            this.btnCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnCerrar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(68, 83);
-            this.btnCerrar.Text = "Cerrar";
-            this.btnCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
-            // 
             // FrmPaciente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -233,9 +202,6 @@ namespace BancoSangre.Windows.Pacientes
         private System.Windows.Forms.ToolStripButton btnEditar;
         private System.Windows.Forms.ToolStripButton btnBorrar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton btnBuscar;
-        private System.Windows.Forms.ToolStripButton btnActualizar;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnCerrar;
         private System.Windows.Forms.DataGridView dgbDatos;
         private System.Windows.Forms.DataGridViewTextBoxColumn CmnNombre;

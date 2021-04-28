@@ -57,7 +57,7 @@ namespace BancoSangre.Windows.Instituciones
             // DenominacionTxt
             // 
             this.DenominacionTxt.Location = new System.Drawing.Point(223, 41);
-            this.DenominacionTxt.MaxLength = 150;
+            this.DenominacionTxt.MaxLength = 200;
             this.DenominacionTxt.Name = "DenominacionTxt";
             this.DenominacionTxt.Size = new System.Drawing.Size(505, 20);
             this.DenominacionTxt.TabIndex = 0;
@@ -126,7 +126,7 @@ namespace BancoSangre.Windows.Instituciones
             // direcciontxt
             // 
             this.direcciontxt.Location = new System.Drawing.Point(101, 27);
-            this.direcciontxt.MaxLength = 150;
+            this.direcciontxt.MaxLength = 100;
             this.direcciontxt.Name = "direcciontxt";
             this.direcciontxt.Size = new System.Drawing.Size(565, 20);
             this.direcciontxt.TabIndex = 0;
@@ -158,6 +158,7 @@ namespace BancoSangre.Windows.Instituciones
             // TelefonoMoviltxt
             // 
             this.TelefonoMoviltxt.Location = new System.Drawing.Point(101, 63);
+            this.TelefonoMoviltxt.MaxLength = 20;
             this.TelefonoMoviltxt.Name = "TelefonoMoviltxt";
             this.TelefonoMoviltxt.Size = new System.Drawing.Size(234, 20);
             this.TelefonoMoviltxt.TabIndex = 1;
@@ -165,6 +166,7 @@ namespace BancoSangre.Windows.Instituciones
             // CorreoElectronicoTxt
             // 
             this.CorreoElectronicoTxt.Location = new System.Drawing.Point(444, 47);
+            this.CorreoElectronicoTxt.MaxLength = 150;
             this.CorreoElectronicoTxt.Name = "CorreoElectronicoTxt";
             this.CorreoElectronicoTxt.Size = new System.Drawing.Size(222, 20);
             this.CorreoElectronicoTxt.TabIndex = 2;
@@ -172,6 +174,7 @@ namespace BancoSangre.Windows.Instituciones
             // TelefonoFijoTxt
             // 
             this.TelefonoFijoTxt.Location = new System.Drawing.Point(101, 29);
+            this.TelefonoFijoTxt.MaxLength = 20;
             this.TelefonoFijoTxt.Name = "TelefonoFijoTxt";
             this.TelefonoFijoTxt.Size = new System.Drawing.Size(234, 20);
             this.TelefonoFijoTxt.TabIndex = 0;

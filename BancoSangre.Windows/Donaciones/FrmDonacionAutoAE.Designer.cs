@@ -102,6 +102,7 @@ namespace BancoSangre.Windows.Donaciones
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(302, 69);
+            this.txtDescripcion.MaxLength = 50;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(133, 20);
             this.txtDescripcion.TabIndex = 0;

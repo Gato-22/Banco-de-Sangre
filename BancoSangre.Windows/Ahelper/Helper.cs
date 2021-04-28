@@ -129,6 +129,7 @@ namespace BancoSangre.Windows.Ahelper
         {
             return new Institucion
             {
+                InstitucionID=selectedItem.InstitucionID,
                 Denominacion=selectedItem.Denominacion,
                 Direccion=selectedItem.Direccion,
                 //localidad=selectedItem.localidad
@@ -165,10 +166,10 @@ namespace BancoSangre.Windows.Ahelper
             combo.DisplayMember = "Denominacion";
             combo.SelectedIndex = 0;
         }
-        public static void CargarDatosComboDonantes(ref ComboBox combo)
+        public static void CargarDatosComboDonantes(ref ComboBox combo, Paciente paciente)
         {
             IServicioDonante servicioDonante = new ServicioDonante();
-            var lista = servicioDonante.GetLista();
+            var lista = servicioDonante.GetLista(paciente);
             var defaultt = new Donante { DonanteID = 0, NombreDonante = "Seleccione Donante" };
             lista.Insert(0, defaultt);
             combo.DataSource = lista;

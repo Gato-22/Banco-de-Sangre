@@ -59,8 +59,8 @@ namespace BancoSangre.Windows.Donaciones
         {
             r.Cells[cmnFechaDonacion.Index].Value = donacion.FechaDonacion;
             //r.Cells[cmnIdenti.Index].Value = donacion.Identificacion;
-            r.Cells[cmnDonante.Index].Value = donacion.Donante.NombreDonante + donacion.Donante.ApellidoDonante;
-            r.Cells[cmnPaciente.Index].Value = donacion.Paciente.NombrePaciente + donacion.Paciente.ApellidoPaciente;
+            r.Cells[cmnDonante.Index].Value = donacion.Donante.NombreDonante +" "+ donacion.Donante.ApellidoDonante;
+            r.Cells[cmnPaciente.Index].Value = donacion.Paciente.NombrePaciente +" "+ donacion.Paciente.ApellidoPaciente;
             r.Cells[cmnTipoDonacion.Index].Value = donacion.TipoDonacion.Descripcion;
             
             //r.Cells[cmnFechaingre.Index].Value = donacion.FechaIngreso;

@@ -109,7 +109,10 @@ namespace BancoSangre.Servicios.Servicios
                                 NombreProvincia = pacienteEditDto.provincia.NombreProvincia
                             },
                         },
-                    }
+                        
+                    },
+                    PacienteID=pacienteEditDto.PacienteID
+                    
 
                 };
                 var existe = _repo.existe(paciente);

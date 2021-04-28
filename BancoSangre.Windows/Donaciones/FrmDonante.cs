@@ -56,9 +56,9 @@ namespace BancoSangre.Windows.Donaciones
         {
             r.Cells[CmnNombre.Index].Value = donanteListDto.NombreDonante;
             r.Cells[cmnApellido.Index].Value = donanteListDto.ApellidoDonante;
-            r.Cells[cmnLoca.Index].Value = donanteListDto.localidad;
-            r.Cells[cmnProv.Index].Value = donanteListDto.provincia;
-            r.Cells[cmnGrupo.Index].Value = donanteListDto.tipoSangre;
+            r.Cells[cmnLoca.Index].Value = donanteListDto.localidad.NombreLocalidad;
+            r.Cells[cmnProv.Index].Value = donanteListDto.provincia.NombreProvincia;
+            r.Cells[cmnGrupo.Index].Value = donanteListDto.tipoSangre.Grupo;
             r.Tag = donanteListDto;
         }
 

@@ -308,6 +308,29 @@ namespace BancoSangre.DL.Repositorios
             }
         }
 
-      
+        public List<Donante> GetLista(Paciente paciente)
+        {
+            List<Donante> lista = new List<Donante>();
+            try
+            {
+                string cadenacomando = "select DonanteID,Nombre,Apellido,GeneroID,TipoDeDocumentoID,NroDocumento,Direccion,LocalidadID,ProvinciaID,TelefonoFijo," +
+                    "TelefonoMovil,CorreoElectronico,FechaNacimiento, GrupoSanguineoID from Donantes where GrupoSanguineoID=@Id";
+                SqlCommand comando = new SqlCommand(cadenacomando, _conexion);
+                comando.Parameters.AddWithValue("@Id", paciente.tipoSangre.GrupoSanguineoID);
+                SqlDataReader reader = comando.ExecuteReader();
+                while (reader.Read())
+                {
+                    var donanteListDto = ConstruirDonante(reader);
+                    lista.Add(donanteListDto);
+                }
+                reader.Close();
+                return lista;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("error al intentar leer donantes");
+            }
+        }
     }
 }

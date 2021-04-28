@@ -31,15 +31,12 @@ namespace BancoSangre.Windows.Sangre
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTipoSangre));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.dgbDatos = new System.Windows.Forms.DataGridView();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.btnBorrar = new System.Windows.Forms.ToolStripButton();
-            this.btnBuscar = new System.Windows.Forms.ToolStripButton();
-            this.btnActualizar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnCerrar = new System.Windows.Forms.ToolStripButton();
+            this.dgbDatos = new System.Windows.Forms.DataGridView();
             this.cmnGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnFactor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
@@ -53,43 +50,12 @@ namespace BancoSangre.Windows.Sangre
             this.btnEditar,
             this.btnBorrar,
             this.toolStripSeparator1,
-            this.btnBuscar,
-            this.btnActualizar,
-            this.toolStripSeparator2,
             this.btnCerrar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 86);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 86);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 86);
-            // 
-            // dgbDatos
-            // 
-            this.dgbDatos.AllowUserToAddRows = false;
-            this.dgbDatos.AllowUserToDeleteRows = false;
-            this.dgbDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgbDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cmnGrupo,
-            this.cmnFactor});
-            this.dgbDatos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgbDatos.Location = new System.Drawing.Point(0, 86);
-            this.dgbDatos.MultiSelect = false;
-            this.dgbDatos.Name = "dgbDatos";
-            this.dgbDatos.ReadOnly = true;
-            this.dgbDatos.RowHeadersVisible = false;
-            this.dgbDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgbDatos.Size = new System.Drawing.Size(800, 364);
-            this.dgbDatos.TabIndex = 2;
             // 
             // btnNuevo
             // 
@@ -124,25 +90,10 @@ namespace BancoSangre.Windows.Sangre
             this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
-            // btnBuscar
+            // toolStripSeparator1
             // 
-            this.btnBuscar.Image = global::BancoSangre.Windows.Properties.Resources.google_web_search_64px;
-            this.btnBuscar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnBuscar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(68, 83);
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // btnActualizar
-            // 
-            this.btnActualizar.Image = global::BancoSangre.Windows.Properties.Resources.restart_64px;
-            this.btnActualizar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnActualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(68, 83);
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 86);
             // 
             // btnCerrar
             // 
@@ -154,6 +105,24 @@ namespace BancoSangre.Windows.Sangre
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // dgbDatos
+            // 
+            this.dgbDatos.AllowUserToAddRows = false;
+            this.dgbDatos.AllowUserToDeleteRows = false;
+            this.dgbDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgbDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cmnGrupo,
+            this.cmnFactor});
+            this.dgbDatos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgbDatos.Location = new System.Drawing.Point(0, 86);
+            this.dgbDatos.MultiSelect = false;
+            this.dgbDatos.Name = "dgbDatos";
+            this.dgbDatos.ReadOnly = true;
+            this.dgbDatos.RowHeadersVisible = false;
+            this.dgbDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgbDatos.Size = new System.Drawing.Size(800, 364);
+            this.dgbDatos.TabIndex = 2;
             // 
             // cmnGrupo
             // 
@@ -194,9 +163,6 @@ namespace BancoSangre.Windows.Sangre
         private System.Windows.Forms.ToolStripButton btnEditar;
         private System.Windows.Forms.ToolStripButton btnBorrar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton btnBuscar;
-        private System.Windows.Forms.ToolStripButton btnActualizar;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnCerrar;
         private System.Windows.Forms.DataGridView dgbDatos;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnGrupo;

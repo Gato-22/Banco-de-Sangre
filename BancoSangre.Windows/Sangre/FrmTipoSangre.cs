@@ -2,6 +2,7 @@
 using BancoSangre.BL.Entidades.DTO.TiposSangres;
 using BancoSangre.Servicios.Servicios;
 using BancoSangre.Servicios.Servicios.Facades;
+using BancoSangre.Windows.Ahelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -114,7 +115,7 @@ namespace BancoSangre.Windows.Sangre
             if (dgbDatos.SelectedRows.Count > 0)
             {
                 DataGridViewRow r = dgbDatos.SelectedRows[0];
-                TipoSangre tipoSangre = (TipoSangre)r.Tag;
+                TipoSangre tipoSangre = Helper.ConvertirTipoSangreListDtoEnTipoSangre((TipoSangreListDto)r.Tag);
                 DialogResult dr = MessageBox.Show($@"vas a dar de baja el registro que seleccionaste recien: {tipoSangre.Grupo} {tipoSangre.Factor}",
                     @"Confirmar baja", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (dr == DialogResult.Yes)

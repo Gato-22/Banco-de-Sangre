@@ -15,6 +15,7 @@ namespace BancoSangre.DL.Repositorios.Facades
         bool existe(Donante donante);
         void borrar(int donanteid);
         Donante getDonantePorId(int donanteID);
+        List<Donante> GetLista(Paciente paciente);
         //List<Paciente> GetLista();
         //void guardar(Paciente paciente);
         //bool existe(Paciente paciente);

@@ -67,6 +67,18 @@ namespace BancoSangre.Windows.Donaciones
                 valido = false;
                 errorProvider1.SetError(txtIntervalo, "El numero de dias es requerido");
             }
+            int cantidad = 0;
+            if (!int.TryParse(txtIntervalo.Text, out cantidad))
+            {
+                valido = false;
+                errorProvider1.SetError(txtIntervalo, "Ingrese numeros validos, enteros");
+            }
+
+            if (cantidad<=0)
+            {
+                valido = false;
+                errorProvider1.SetError(txtIntervalo, "Ingrese numeros Mayor a 0, enteros");
+            }
 
             return valido;
         }

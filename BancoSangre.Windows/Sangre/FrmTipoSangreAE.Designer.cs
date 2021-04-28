@@ -78,6 +78,7 @@ namespace BancoSangre.Windows.Sangre
             // txtGrupo
             // 
             this.txtGrupo.Location = new System.Drawing.Point(279, 65);
+            this.txtGrupo.MaxLength = 3;
             this.txtGrupo.Name = "txtGrupo";
             this.txtGrupo.Size = new System.Drawing.Size(133, 20);
             this.txtGrupo.TabIndex = 0;
@@ -90,6 +91,7 @@ namespace BancoSangre.Windows.Sangre
             // txtFactor
             // 
             this.txtFactor.Location = new System.Drawing.Point(279, 91);
+            this.txtFactor.MaxLength = 3;
             this.txtFactor.Name = "txtFactor";
             this.txtFactor.Size = new System.Drawing.Size(133, 20);
             this.txtFactor.TabIndex = 1;

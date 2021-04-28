@@ -55,12 +55,13 @@ namespace BancoSangre.Windows.Pacientes
 
         private void SetearFila(DataGridViewRow r, Paciente pacienteListDto)
         {
+            
             r.Cells[CmnNombre.Index].Value = pacienteListDto.NombrePaciente;
             r.Cells[cmnApellido.Index].Value = pacienteListDto.ApellidoPaciente;
-            r.Cells[cmnLoca.Index].Value = pacienteListDto.localidad;
-            r.Cells[cmnProv.Index].Value = pacienteListDto.provincia;
-            r.Cells[cmnGrupo.Index].Value = pacienteListDto.tipoSangre;
-            r.Cells[cmnInstitu.Index].Value = pacienteListDto.institucion;
+            r.Cells[cmnLoca.Index].Value = pacienteListDto.localidad.NombreLocalidad;
+            r.Cells[cmnProv.Index].Value = pacienteListDto.provincia.NombreProvincia;
+            r.Cells[cmnGrupo.Index].Value = pacienteListDto.tipoSangre.Grupo;
+            r.Cells[cmnInstitu.Index].Value = pacienteListDto.institucion.Denominacion;
             r.Tag = pacienteListDto;
         }
 
@@ -194,7 +195,7 @@ namespace BancoSangre.Windows.Pacientes
                     pacienteListDto.institucion = pacienteEditDto.institucion;
 
                     SetearFila(r, pacienteListDto);
-                    MessageBox.Show("Registro Agregado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Registro Editado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 else

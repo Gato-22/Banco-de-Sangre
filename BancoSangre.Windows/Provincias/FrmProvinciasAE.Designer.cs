@@ -54,6 +54,7 @@ namespace BancoSangre.Windows.Provincias
             this.txtProvincias.Name = "txtProvincias";
             this.txtProvincias.Size = new System.Drawing.Size(139, 20);
             this.txtProvincias.TabIndex = 0;
+            this.txtProvincias.TextChanged += new System.EventHandler(this.txtProvincias_TextChanged);
             // 
             // btnAceptar
             // 

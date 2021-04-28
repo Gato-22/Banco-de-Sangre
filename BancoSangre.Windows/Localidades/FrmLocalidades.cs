@@ -232,6 +232,7 @@ namespace BancoSangre.Windows.Localidades
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
+            _servicio = new ServicioLocalidad();
             ActualizarGrilla();
         }
     }

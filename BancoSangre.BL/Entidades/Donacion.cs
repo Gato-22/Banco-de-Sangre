@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using BancoSangre.BL.Entidades;
 using System.Threading.Tasks;
-using BancoSangre.BL.Entidades;
+
 
 namespace BancoSangre.BL.Entidades
 {

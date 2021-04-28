@@ -34,10 +34,11 @@ namespace BancoSangre.Windows.Donaciones
         {
 
             base.OnLoad(e);
-            Helper.CargarDatosComboDonantes(ref DonanteComboBox);
+            //Helper.CargarDatosComboDonantes(ref DonanteComboBox);
             Helper.CargarDatosComboPaciente(ref PacienteComboBox);
             Helper.CargarDatosComboTipoDonacion(ref TipoDonacionComboBox);
             TipoDonacionAutomatizadaComboBox.Enabled = false;
+            DonanteComboBox.Enabled = false;
 
             //Helper.CargarDatosComboTipoDonacionAutomatizada(ref TipoDonacionAutomatizadaComboBox);
             if (donacion != null)
@@ -46,11 +47,13 @@ namespace BancoSangre.Windows.Donaciones
             }
             if (esedicion)
             {
+                Helper.CargarDatosComboDonantes(ref DonanteComboBox,donacion.Paciente);
                 //FechaDonaciondateTimePicker1.Text = donacion.FechaDonacion.ToString();
                 //txtident.Text = donacion.Identificacion;
                 DonanteComboBox.SelectedValue = donacion.Donante.DonanteID;
                 PacienteComboBox.SelectedValue = donacion.Paciente.PacienteID;
                 TipoDonacionComboBox.SelectedValue = donacion.TipoDonacion.TipoDonacionID;
+                DonanteComboBox.Enabled = true;
                 if (donacion.TipoDonacion.TipoDonacionID==2)
                 {
                     Helper.CargarDatosComboTipoDonacionAutomatizada(ref TipoDonacionAutomatizadaComboBox);
@@ -95,6 +98,44 @@ namespace BancoSangre.Windows.Donaciones
         private bool ValidarDatos()
         {
             bool valido = true;
+            errorProvider1.Clear();
+            if (DonanteComboBox.SelectedIndex == 0)
+            {
+                valido = false;
+                errorProvider1.SetError(DonanteComboBox, "Debe seleccionar un Donante");
+            }
+            if (PacienteComboBox.SelectedIndex == 0)
+            {
+                valido = false;
+                errorProvider1.SetError(PacienteComboBox, "Debe seleccionar un paciente");
+            }
+            if (TipoDonacionComboBox.SelectedIndex == 0)
+            {
+                valido = false;
+                errorProvider1.SetError(TipoDonacionComboBox, "Debe seleccionar un tipo de donacion");
+            }
+            if (TipoDonacionAutomatizadaComboBox.SelectedIndex == 0)
+            {
+                valido = false;
+                errorProvider1.SetError(TipoDonacionAutomatizadaComboBox, "Debe seleccionar un Tipo de donacion automatizada");
+            }
+            if (string.IsNullOrEmpty(txtcaNT.Text) || string.IsNullOrWhiteSpace(txtcaNT.Text))
+            {
+                valido = false;
+                errorProvider1.SetError(txtcaNT, "Datos Numericos Requeridos");
+            }
+            int cantidad = 0;
+            if (!int.TryParse(txtcaNT.Text,out cantidad))
+            {
+                valido = false;
+                errorProvider1.SetError(txtcaNT, "Ingrese numeros validos, enteros");
+            }
+            if (cantidad <= 0)
+            {
+                valido = false;
+                errorProvider1.SetError(txtcaNT, "Ingrese numeros Mayor a 0, enteros");
+            }
+
             return valido;
         }
 
@@ -128,9 +169,12 @@ namespace BancoSangre.Windows.Donaciones
             {
                 Paciente paciente = (Paciente)PacienteComboBox.SelectedItem;
                 GrupoSanguineotxt.Text = paciente.tipoSangre.Grupo;
+                DonanteComboBox.Enabled = true;
+                Helper.CargarDatosComboDonantes(ref DonanteComboBox, paciente);
             }
             else
             {
+                DonanteComboBox.Enabled = false;
                 GrupoSanguineotxt.Text = "";
             }
         }
