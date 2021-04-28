@@ -39,13 +39,14 @@ namespace BancoSangre.Windows.Donaciones
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            Helper.CargarDatosComboProvincias(ref provinciasComboBox);
             Helper.CargarDatosComboDocumento(ref DocumentoComboBox);
             Helper.CargarDatosComboGenero(ref GeneroComboBox);
+            Helper.CargarDatosComboProvincias(ref provinciasComboBox);
             LocalidadComboBox.Enabled = false;
+            Helper.CargarDatosComboTipoSangre(ref GrupoSanguineoComboBox);
             //Helper.CargarDatosComboLocalidades(ref LocalidadComboBox, pacienteEditDto.provincia);
 
-            Helper.CargarDatosComboTipoSangre(ref GrupoSanguineoComboBox);
+            
             if (donanteEditDto != null)
             {
                 esedicion = true;
@@ -61,12 +62,13 @@ namespace BancoSangre.Windows.Donaciones
                 TelefonoFijoTxt.Text = donanteEditDto.TelefonoFijo;
                 TelefonoMoviltxt.Text = donanteEditDto.TelefonoMovil;
                 CorreoElectronicoTxt.Text = donanteEditDto.Email;
-                provinciasComboBox.SelectedValue = donanteEditDto.provincia;
+                provinciasComboBox.SelectedValue = donanteEditDto.provincia.ProvinciaID;
                 Helper.CargarDatosComboLocalidades(ref LocalidadComboBox,Helper.ConvertirProvinciaEnProvinciaListDto( donanteEditDto.provincia));
                 LocalidadComboBox.SelectedValue = donanteEditDto.localidad.LocalidadID;
                 GeneroComboBox.SelectedValue = donanteEditDto.genero.GeneroID;
                 DocumentoComboBox.SelectedValue = donanteEditDto.documento.TipoDocumentoID;
                 GrupoSanguineoComboBox.SelectedValue = donanteEditDto.tipoSangre.GrupoSanguineoID;
+                FechadateTimePicker1.Value = donanteEditDto.FechaNac.Date;
 
             }
         }
