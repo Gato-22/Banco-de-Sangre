@@ -98,6 +98,15 @@ namespace BancoSangre.Windows.Ahelper
             combo.SelectedIndex = 0;
         }
 
+        internal static InstitucionEditdto ConvertirInstitucionListDtoEnInstitucionEditDto(InstitucionListDto selectedItem)
+        {
+            return new InstitucionEditdto
+            {
+                InstitucionID = selectedItem.InstitucionID,
+                Denominacion=selectedItem.Denominacion             
+            };
+        }
+
         internal static Provincia ConvertirProvinciaListDtoEnProvincia(ProvinciaListDto selectedItem)
         {
             return new Provincia

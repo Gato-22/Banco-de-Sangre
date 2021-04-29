@@ -46,7 +46,7 @@ namespace BancoSangre.Windows.Pacientes
             Helper.CargarDatosComboProvincias(ref provinciasComboBox);
             LocalidadComboBox.Enabled = false;
             //Helper.CargarDatosComboLocalidades(ref LocalidadComboBox, pacienteEditDto.provincia);
-            Helper.CargarDatosComboInstitucion(ref InstitucionComboBox);
+            //Helper.CargarDatosComboInstitucion(ref InstitucionComboBox);
             Helper.CargarDatosComboTipoSangre(ref GrupoSanguineoComboBox);
             if (pacienteEditDto!=null)
             {
@@ -71,7 +71,7 @@ namespace BancoSangre.Windows.Pacientes
                 GeneroComboBox.SelectedValue = pacienteEditDto.genero.GeneroID;
                 DocumentoComboBox.SelectedValue = pacienteEditDto.documento.TipoDocumentoID;
                 GrupoSanguineoComboBox.SelectedValue = pacienteEditDto.tipoSangre.GrupoSanguineoID;
-                InstitucionComboBox.SelectedValue = pacienteEditDto.institucion.InstitucionID;
+                //InstitucionComboBox.SelectedValue = pacienteEditDto.institucion.InstitucionID;
                 FechadateTimePicker1.Value = pacienteEditDto.FechaNac.Date;
             }
         }
@@ -102,7 +102,7 @@ namespace BancoSangre.Windows.Pacientes
                 pacienteEditDto.Email = CorreoElectronicoTxt.Text;
                 pacienteEditDto.FechaNac = FechadateTimePicker1.Value;
                 pacienteEditDto.tipoSangre = Helper.ConvertirTipoSangreListDtoEnTipoSangre((TipoSangreListDto)GrupoSanguineoComboBox.SelectedItem);
-                pacienteEditDto.institucion = Helper.ConvertirInstitucionListDtoEnInstitucion((InstitucionListDto)InstitucionComboBox.SelectedItem);
+                //pacienteEditDto.institucion = Helper.ConvertirInstitucionListDtoEnInstitucion((InstitucionListDto)InstitucionComboBox.SelectedItem);
                 DialogResult = DialogResult.OK;
             }
             
@@ -156,11 +156,11 @@ namespace BancoSangre.Windows.Pacientes
                 valido = false;
                 errorProvider1.SetError(GrupoSanguineoComboBox, "Debe seleccionar un Grupo Sanguineo");
             }
-            if (InstitucionComboBox.SelectedIndex == 0)
-            {
-                valido = false;
-                errorProvider1.SetError(InstitucionComboBox, "Debe seleccionar una Institucion");
-            }
+            //if (InstitucionComboBox.SelectedIndex == 0)
+            //{
+            //    valido = false;
+            //    errorProvider1.SetError(InstitucionComboBox, "Debe seleccionar una Institucion");
+            //}
             return valido;
         }
 

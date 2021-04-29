@@ -21,6 +21,7 @@ namespace BancoSangre.Servicios.Servicios
         private IRepositorioLocalidades _repositorioLocalidades;
         private IRepositorioProvincias _repositorioProvincias;
         private IRepositorioTipoSangre _repositorioTipoSangre;
+        
         public ServicioDonante()
         {
 
@@ -93,7 +94,7 @@ namespace BancoSangre.Servicios.Servicios
 
 
                 };
-                var existe = false;
+                var existe = _repo.existe(donante);
                 _conexionBd.CerrarConexion();
                 return existe;
             }

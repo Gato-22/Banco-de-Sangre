@@ -1,6 +1,8 @@
 ﻿using BancoSangre.BL.Entidades;
 using BancoSangre.BL.Entidades.DTO;
-
+using BancoSangre.BL.Entidades.DTO.Institucion;
+using BancoSangre.Servicios.Servicios;
+using BancoSangre.Servicios.Servicios.Facades;
 using BancoSangre.Windows.Ahelper;
 using System;
 using System.Collections.Generic;
@@ -16,12 +18,19 @@ namespace BancoSangre.Windows.Donaciones
 {
     public partial class FrmDonacionAE : Form
     {
+        private IServicioPaciente _servicioPaciente;
+        private IServicioDonante _servicioDonante;
+        private ServicioDonante servicioDonante = new ServicioDonante();
         public FrmDonacionAE()
         {
             InitializeComponent();
+            this.list = servicioDonante.GetLista();
         }
         private Donacion donacion;
-        public List<Donante> list = new List<Donante>();
+        public List<Donante> list;
+        
+           
+            
         public int cantidad = 0;
         public void SetDonacion(Donacion donacion)
         {
@@ -34,14 +43,14 @@ namespace BancoSangre.Windows.Donaciones
         }
         protected override void OnLoad(EventArgs e)
         {
-
+            
             base.OnLoad(e);
             //Helper.CargarDatosComboDonantes(ref DonanteComboBox);
             Helper.CargarDatosComboPaciente(ref PacienteComboBox);
             Helper.CargarDatosComboTipoDonacion(ref TipoDonacionComboBox);
             TipoDonacionAutomatizadaComboBox.Enabled = false;
             DonanteComboBox.Enabled = false;
-
+            Helper.CargarDatosComboInstitucion(ref InstitucionComboBox);
 
             //Helper.CargarDatosComboTipoDonacionAutomatizada(ref TipoDonacionAutomatizadaComboBox);
             if (donacion != null)
@@ -81,11 +90,14 @@ namespace BancoSangre.Windows.Donaciones
                     donacion = new Donacion();
                 }
                 //donacion.Intervalo = int.Parse(txtIntervalo.Text);
-                donacion.FechaDonacion = DateTime.Now;
+                //donacion.FechaDonacion = DateTime.Now;
+                donacion.FechaDonacion = dateTimePicker1.Value;
                 //donacion.Identificacion = txtident.Text;
+                //donacion. = Helper.ConvertirInstitucionListDtoEnInstitucion((InstitucionListDto)InstitucionComboBox.SelectedItem);
                 donacion.Donante = (Donante)DonanteComboBox.SelectedItem;
                 donacion.Paciente = (Paciente)PacienteComboBox.SelectedItem;
                 donacion.TipoDonacion = (TipoDonacion)TipoDonacionComboBox.SelectedItem;
+                donacion.institucion = Helper.ConvertirInstitucionListDtoEnInstitucionEditDto((InstitucionListDto)InstitucionComboBox.SelectedItem);
                 if (donacion.TipoDonacion.TipoDonacionID==2)
                 {
                     donacion.DonacionesDonacionesAutomatizadas.donacionAutomatizada = (DonacionAutomatizada)TipoDonacionAutomatizadaComboBox.SelectedItem;
@@ -169,23 +181,67 @@ namespace BancoSangre.Windows.Donaciones
         
         private void PacienteComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (PacienteComboBox.SelectedIndex!=0)
+            try
             {
-                
-                Paciente paciente = (Paciente)PacienteComboBox.SelectedItem;
-                
-                GrupoSanguineotxt.Text = paciente.tipoSangre.Grupo;
-                
-                
-                Helper.CargarDatosComboDonantes(ref DonanteComboBox, paciente,this);
+                _servicioDonante = new ServicioDonante();
+                if (PacienteComboBox.SelectedIndex != 0)
+                {
+                    //list = _servicioDonante.GetLista();
+                    //MostrarDatosEnGrilla();
+
+                    //EditarEsto
+                    //Donante donante = (Donante);
+                    //list = _servicioDonante.GetLista(donante);
+                    //MostrarDatosEnGrilla();
+
+                    //GrupoSanguineotxt.Text = donante.;
+
+
+                    //Helper.CargarDatosComboDonantes(ref DonanteComboBox, paciente, this);
+                }
+                else
+                {
+                    DonanteComboBox.Enabled = false;
+                    CantidadDonantestxt.Text = "";
+                    GrupoSanguineotxt.Text = "";
+
+                }
             }
-            else
+            catch (Exception)
             {
-                DonanteComboBox.Enabled = false;
-                CantidadDonantestxt.Text = "";
-                GrupoSanguineotxt.Text = "";
-                
+
+                throw;
             }
+        }
+
+        private void MostrarDatosEnGrilla()
+        {
+            dgbDatos.Rows.Clear();
+            foreach (var donante in list)
+            {
+                DataGridViewRow r = ConstruirFila();
+                SetearFila(r, donante);
+                agregarFila(r);
+            }
+        }
+
+        private void agregarFila(DataGridViewRow r)
+        {
+            dgbDatos.Rows.Add();
+        }
+
+        private void SetearFila(DataGridViewRow r, Donante donante)
+        {
+            r.Cells[CmnNombre.Index].Value = donante.Nombrecompleto;
+            r.Cells[cmnGrupo.Index].Value = donante.tipoSangre.Grupo;
+            r.Tag=donante;
+        }
+
+        private DataGridViewRow ConstruirFila()
+        {
+            DataGridViewRow r = new DataGridViewRow();
+            r.CreateCells(dgbDatos);
+            return r;
         }
 
         private void CantidadDonantestxt_TextChanged(object sender, EventArgs e)

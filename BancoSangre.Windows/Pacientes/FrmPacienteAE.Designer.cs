@@ -59,9 +59,7 @@ namespace BancoSangre.Windows.Pacientes
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.FechadateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.GrupoSanguineoComboBox = new System.Windows.Forms.ComboBox();
-            this.InstitucionComboBox = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2.SuspendLayout();
@@ -317,9 +315,7 @@ namespace BancoSangre.Windows.Pacientes
             // 
             this.groupBox3.Controls.Add(this.FechadateTimePicker1);
             this.groupBox3.Controls.Add(this.GrupoSanguineoComboBox);
-            this.groupBox3.Controls.Add(this.InstitucionComboBox);
             this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Location = new System.Drawing.Point(44, 402);
             this.groupBox3.Name = "groupBox3";
@@ -345,15 +341,6 @@ namespace BancoSangre.Windows.Pacientes
             this.GrupoSanguineoComboBox.Size = new System.Drawing.Size(203, 21);
             this.GrupoSanguineoComboBox.TabIndex = 0;
             // 
-            // InstitucionComboBox
-            // 
-            this.InstitucionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.InstitucionComboBox.FormattingEnabled = true;
-            this.InstitucionComboBox.Location = new System.Drawing.Point(122, 58);
-            this.InstitucionComboBox.Name = "InstitucionComboBox";
-            this.InstitucionComboBox.Size = new System.Drawing.Size(203, 21);
-            this.InstitucionComboBox.TabIndex = 1;
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -362,15 +349,6 @@ namespace BancoSangre.Windows.Pacientes
             this.label12.Size = new System.Drawing.Size(111, 13);
             this.label12.TabIndex = 127;
             this.label12.Text = "Fecha de Nacimiento:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(61, 66);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(58, 13);
-            this.label13.TabIndex = 128;
-            this.label13.Text = "Institución:";
             // 
             // label14
             // 
@@ -451,9 +429,7 @@ namespace BancoSangre.Windows.Pacientes
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DateTimePicker FechadateTimePicker1;
         private System.Windows.Forms.ComboBox GrupoSanguineoComboBox;
-        private System.Windows.Forms.ComboBox InstitucionComboBox;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ErrorProvider errorProvider1;
     }

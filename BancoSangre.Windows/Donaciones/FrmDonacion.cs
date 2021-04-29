@@ -20,6 +20,7 @@ namespace BancoSangre.Windows.Donaciones
             InitializeComponent();
         }
         private IServicioDonacion _servi;
+        private List<Donante> _listaDonante;
         private List<Donacion> _lista;
 
         private void FrmDonacion_Load(object sender, EventArgs e)
@@ -62,7 +63,7 @@ namespace BancoSangre.Windows.Donaciones
             r.Cells[cmnDonante.Index].Value = donacion.Donante.NombreDonante +" "+ donacion.Donante.ApellidoDonante;
             r.Cells[cmnPaciente.Index].Value = donacion.Paciente.NombrePaciente +" "+ donacion.Paciente.ApellidoPaciente;
             r.Cells[cmnTipoDonacion.Index].Value = donacion.TipoDonacion.Descripcion;
-            
+            r.Cells[cmnInstitucion.Index].Value = donacion.institucion.Denominacion;
             //r.Cells[cmnFechaingre.Index].Value = donacion.FechaIngreso;
             //r.Cells[cmnVenci.Index].Value = donacion.vencimiento;
             r.Cells[cmnCanti.Index].Value = donacion.Cantidad;
@@ -173,6 +174,11 @@ namespace BancoSangre.Windows.Donaciones
                     }
                 }
             }
+        }
+
+        private void dgbDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
         }
     }
 }

@@ -36,6 +36,7 @@ namespace BancoSangre.Windows.Donaciones
             this.btnCerrar = new System.Windows.Forms.ToolStripButton();
             this.dgbDatos = new System.Windows.Forms.DataGridView();
             this.cmnFechaDonacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmnInstitucion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnDonante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnPaciente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmnTipoDonacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -102,6 +103,7 @@ namespace BancoSangre.Windows.Donaciones
             this.dgbDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgbDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cmnFechaDonacion,
+            this.cmnInstitucion,
             this.cmnDonante,
             this.cmnPaciente,
             this.cmnTipoDonacion,
@@ -115,6 +117,7 @@ namespace BancoSangre.Windows.Donaciones
             this.dgbDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgbDatos.Size = new System.Drawing.Size(896, 364);
             this.dgbDatos.TabIndex = 4;
+            this.dgbDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgbDatos_CellContentClick);
             // 
             // cmnFechaDonacion
             // 
@@ -122,6 +125,13 @@ namespace BancoSangre.Windows.Donaciones
             this.cmnFechaDonacion.HeaderText = "Fecha de Donacion";
             this.cmnFechaDonacion.Name = "cmnFechaDonacion";
             this.cmnFechaDonacion.ReadOnly = true;
+            // 
+            // cmnInstitucion
+            // 
+            this.cmnInstitucion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cmnInstitucion.HeaderText = "Institucion";
+            this.cmnInstitucion.Name = "cmnInstitucion";
+            this.cmnInstitucion.ReadOnly = true;
             // 
             // cmnDonante
             // 
@@ -179,6 +189,7 @@ namespace BancoSangre.Windows.Donaciones
         private System.Windows.Forms.ToolStripButton btnCerrar;
         private System.Windows.Forms.DataGridView dgbDatos;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnFechaDonacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cmnInstitucion;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnDonante;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnPaciente;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmnTipoDonacion;

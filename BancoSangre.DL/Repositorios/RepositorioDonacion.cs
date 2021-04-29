@@ -89,7 +89,7 @@ namespace BancoSangre.DL.Repositorios
             List<Donacion> lista = new List<Donacion>();
             try
             {
-                string cadenaComando = "SELECT DonacionId, FechaDonacion,Cantidad,DonanteID,PacienteID,TipoDonacionID FROM Donaciones";
+                string cadenaComando = "SELECT DonacionId, FechaDonacion,Cantidad,DonanteID,PacienteID,TipoDonacionID,InstitucionID FROM Donaciones";
                 SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
                 SqlDataReader reader = comando.ExecuteReader();
                 while (reader.Read())
@@ -102,7 +102,7 @@ namespace BancoSangre.DL.Repositorios
                 return lista;
 
             }
-            catch (Exception)
+            catch (Exception kj)
             {
 
                 throw new Exception("Error al intentar construir we");
@@ -115,7 +115,7 @@ namespace BancoSangre.DL.Repositorios
             try
             {
                 string cadenaComando =
-                    "SELECT DonacionId, FechaDonacion,Cantidad,DonanteID,PacienteID,TipoDonacionID FROM Donaciones WHERE DonacionId<>@id";
+                    "SELECT DonacionId, FechaDonacion,Cantidad,DonanteID,PacienteID,TipoDonacionID,InstitucionID FROM Donaciones WHERE DonacionId<>@id";
                 SqlCommand comando = new SqlCommand(cadenaComando, _conexion);
                 comando.Parameters.AddWithValue("@id", id);
                 SqlDataReader reader = comando.ExecuteReader();
@@ -164,6 +164,7 @@ namespace BancoSangre.DL.Repositorios
             donacion.Donante = _repositorioDonante.getDonantePorId(reader.GetInt32(3));
             donacion.Paciente = _repositorioPaciente.getPacientePorID(reader.GetInt32(4));
             donacion.TipoDonacion = _repositorioTipoDonaciones.getTipoDonacionporID(reader.GetInt32(5));
+            donacion.institucion = _insti.GetInstitucionPorID(reader.GetInt32(6));
             return donacion;
 
         }
@@ -174,13 +175,15 @@ namespace BancoSangre.DL.Repositorios
             {
                 try
                 {
-                    string cadenaComando = "Insert Into Donaciones(FechaDonacion, Cantidad, DonanteID, PacienteID, TipoDonacionID) Values(@FechaDonacion,@Cantidad,@DonanteID,@PacienteID,@TipoDonacionID)";
+                    string cadenaComando = "Insert Into Donaciones(FechaDonacion, Cantidad, DonanteID, PacienteID, TipoDonacionID, InstitucionID) " +
+                        "Values(@FechaDonacion,@Cantidad,@DonanteID,@PacienteID,@TipoDonacionID,@InstitucionID)";
                     SqlCommand comando = new SqlCommand(cadenaComando, _conexion,sqlTransaction);
                     comando.Parameters.AddWithValue("@FechaDonacion", donacion.FechaDonacion);
                     comando.Parameters.AddWithValue("@Cantidad", donacion.Cantidad);
                     comando.Parameters.AddWithValue("@DonanteID", donacion.Donante.DonanteID);
                     comando.Parameters.AddWithValue("@PacienteID", donacion.Paciente.PacienteID);
                     comando.Parameters.AddWithValue("@TipoDonacionID", donacion.TipoDonacion.TipoDonacionID);
+                    comando.Parameters.AddWithValue("@InstitucionID", donacion.institucion.InstitucionID);
                     comando.ExecuteNonQuery();
                     cadenaComando = "select @@IDENTITY";
                     comando = new SqlCommand(cadenaComando, _conexion,sqlTransaction);
